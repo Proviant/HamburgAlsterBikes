@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>10</LangVersion>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SOHBicycleModel\SOHBicycleModel.csproj" />
+      <ProjectReference Include="..\SOHFerryModel\SOHFerryModel.csproj" />
+        <ProjectReference Include="..\SOHTrainModel\SOHTrainModel.csproj"/>
+    </ItemGroup>
+
+</Project>

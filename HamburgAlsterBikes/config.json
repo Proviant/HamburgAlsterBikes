@@ -1,0 +1,64 @@
+{
+  "id": "dammtor_show_case_landuse_2022",
+  "globals": {
+    "deltaT": 1,
+    "startPoint": "2022-12-12T06:00:00",
+    "endPoint": "2022-12-12T07:00:00",
+    "deltaTUnit": "seconds",
+    "console": true,
+    "pythonVisualization" : true
+  },
+  "agents": [{
+    "name": "HumanTraveler",
+    "outputs": [
+      {
+        "kind": "trips",
+        "outputConfiguration": {
+          "tripsFields": ["StableId"]
+        }
+      }
+    ],
+    "individual": [
+      {"value": true, "parameter": "ResultTrajectoryEnabled"}
+    ]
+  }],
+  "layers": [
+    {
+      "name": "SpatialGraphMediatorLayer",
+      "inputs": [
+        {
+          "file": "resources/hamburg_alster_walk_graph.geojson",
+          "inputConfiguration": {
+            "modalities": ["Walking"],
+            "isBidirectedGraph": true
+          }
+        },
+        {
+          "file": "resources/hamburg_alster_bike_graph.geojson",
+          "inputConfiguration": {
+            "modalities": ["Cycling"],
+            "isBidirectedGraph": true
+          }
+        },
+        {
+          "file": "resources/hamburg_alster_drive_graph.geojson",
+          "inputConfiguration": {
+            "modalities": ["CarDriving"],
+            "isBidirectedGraph":true
+          }
+        }
+      ]
+    },
+    {"name": "BicycleParkingLayer", "file": "resources/kellinghusenstrasse_bike_and_ride.geojson"},
+    {"name": "BicycleRentalLayer", "file": "resources/kellinghusenstrasse_bicycle_rental_stations.geojson", "outputFrequency":60, "output": "none"},
+    {"name": "CarRentalLayer", "file": "resources/kellinghusenstrasse_car_rental.geojson", "output": "geojson"},
+    {"name": "CarParkingLayer", "file": "resources/kellinghusenstrasse_car_parking.geojson"},
+    {"name": "HumanTravelerSchedulerLayer", "file": "resources/human_traveler_dammtor.csv"}
+  ],
+  "entities": [
+    {"name": "RentalBicycle", "file": "resources/bicycle.csv"},
+    {"name": "Bicycle", "file": "resources/bicycle.csv"},
+    {"name": "Car", "file": "resources/car.csv"},
+    {"name": "RentalCar", "file": "resources/car.csv"}
+  ]
+}
