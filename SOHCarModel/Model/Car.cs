@@ -1,3 +1,4 @@
+using System;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
 using SOHCarModel.Parking;
@@ -5,6 +6,7 @@ using SOHCarModel.Steering;
 using SOHDomain.Graph;
 using SOHDomain.Model;
 using SOHDomain.Steering.Capables;
+using SOHTravellingBox.model.Trafic;
 
 namespace SOHCarModel.Model
 {
@@ -20,6 +22,8 @@ namespace SOHCarModel.Model
         public Car()
         {
             ModalityType = SpatialModalityType.CarDriving;
+
+            Console.WriteLine("TEST");
         }
 
         [PropertyDescription] public StreetLayer StreetLayer { get; set; }

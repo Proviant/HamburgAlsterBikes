@@ -5,17 +5,15 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using Mars.Common.Core.Logging;
+using Mars.Components.Environments;
 using Mars.Components.Layers;
 using Mars.Components.Starter;
 using Mars.Core.Simulation;
 using Mars.Interfaces;
+using Mars.Interfaces.Environments;
 using Mars.Interfaces.Model;
 using SOHBicycleModel.Model;
-using SOHBicycleModel.Parking;
-using SOHBicycleModel.Rental;
 using SOHCarModel.Model;
-using SOHCarModel.Parking;
-using SOHCarModel.Rental;
 using SOHDomain.Graph;
 using SOHMultimodalModel.Model;
 using SOHTravellingBox.model;
@@ -31,13 +29,13 @@ namespace SOHTravellingBox
         public static void Main(string[] args)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("EN-US");
-            LoggerFactory.SetLogLevel(LogLevel.Warning);
+            LoggerFactory.SetLogLevel(LogLevel.Off);
 
             var description = new ModelDescription();
 
             // All environments where the agent move on resolve routes.
             // description.AddLayer<SidewalkLayer>();
-            // description.AddLayer<StreetLayer>(new[] {typeof(ISpatialGraphLayer)});
+            description.AddLayer<StreetLayer>(new[] { typeof(ISpatialGraphLayer) });
             description.AddLayer<SpatialGraphMediatorLayer>(new[] { typeof(ISpatialGraphLayer) });
 
             // All data layers and interacting entities.
@@ -51,10 +49,10 @@ namespace SOHTravellingBox
             description.AddLayer<AgentSchedulerLayer<HumanTraveler, HumanTravelerLayer>>("HumanTravelerSchedulerLayer");
 
             description.AddAgent<HumanTraveler, HumanTravelerLayer>();
-            description.AddEntity<LightSignal>();
-            //description.AddEntity<Bicycle>();
+            // description.AddEntity<LightSignal>();
+            description.AddEntity<Bicycle>();
             //description.AddEntity<RentalBicycle>();
-            //description.AddEntity<Car>();
+            description.AddEntity<Car>();
             //description.AddEntity<RentalCar>();
 
             for (int i = 1; i <= 1; i++)

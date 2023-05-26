@@ -4,13 +4,18 @@ using SOHTravellingBox.model.Data;
 using System;
 using Mars.Interfaces.Environments;
 using SOHDomain.Model;
+using Mars.Interfaces.Annotations;
 
 namespace SOHTravellingBox.model
 {
-    public class LightSignal : IEntity
+    public class TrafficLight : IAgent
     {
-        // The street this light signal is part of
-        public ISpatialEdge StreetLocation { get; set; }
+        // The position of this traffic light
+        public Position Position { get; set; }
+        // The environment this traffic signal is part of.
+        [PropertyDescription]
+        private ISpatialGraphEnvironment Environment { get; set; }
+
         Guid IEntity.ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         // The waiting time in seconds, when the light signal is red / impassable
@@ -25,17 +30,14 @@ namespace SOHTravellingBox.model
         // The currently waiting agents in front of the signal.
         Queue<RoadUser> WaitingRoadUsers { get; set; }
 
-        public LightSignal(ISpatialEdge Edge, int LengthPhaseRed, int LengthPhaseGreen)
+        public TrafficLight(double Longitude, double Latidute, int LengthPhaseRed, int LengthPhaseGreen)
         {
+            this.Position = new Position(Longitude, Latidute);
             this.LengthPhaseGreen = LengthPhaseGreen;
             this.LengthPhaseRed = LengthPhaseRed;
             this.CurrTime = 0;
             this.CurrPhase = CarLightSignalPhase.GREEN;
             this.WaitingRoadUsers = new Queue<RoadUser>();
-        }
-
-        public LightSignal() : this(null, 0, 0)
-        {
         }
 
         ///
@@ -73,7 +75,7 @@ namespace SOHTravellingBox.model
         public Boolean Enter(RoadUser RoadUser)
         {
             // If there is a queue in front of the light signal OR there is a non-passable signal being displayed, then queue the agent.
-            if (IsOnSameRoad(RoadUser) && !CanPass(RoadUser) && !WaitingRoadUsers.Contains(RoadUser))
+            if (IsOnSameRoad(RoadUser) && !CanPass(RoadUser) && !IsQueued(RoadUser))
             {
                 this.WaitingRoadUsers.Enqueue(RoadUser);
                 return true;
@@ -98,7 +100,29 @@ namespace SOHTravellingBox.model
         /// </summary>
         public Boolean IsOnSameRoad(RoadUser RoadUser)
         {
-            return RoadUser.CurrentEdge.Equals(StreetLocation);
+            ISpatialEdge EdgeRoadUser = RoadUser.CurrentEdge;
+            ISpatialNode OwnNearestNode = Environment.NearestNode(Position);
+
+            // Iterate over all streets towards the node / traffic light. 
+            foreach (KeyValuePair<int, ISpatialEdge> Pair in OwnNearestNode.IncomingEdges)
+            {
+                // If any incoming edge / street matches, then this traffic signal is on the same road.
+                if (Pair.Value.Equals(EdgeRoadUser))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        ///
+        /// <summary>
+        ///  Checks, if the RoadUser is already waiting.
+        /// </summary>
+        public Boolean IsQueued(RoadUser RoadUser)
+        {
+            return WaitingRoadUsers.Contains(RoadUser);
         }
     }
 }

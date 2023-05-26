@@ -8,6 +8,8 @@ using SOHDomain.Model;
 using SOHDomain.Steering.Acceleration;
 using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Handles.Intersection;
+using SOHTravellingBox.model;
+using SOHTravellingBox.model.Trafic;
 
 namespace SOHDomain.Steering.Handles
 {
@@ -293,11 +295,18 @@ namespace SOHDomain.Steering.Handles
 
         protected virtual double HandleTrafficLights(SpatialGraphExploreResult exploreResult, double biggestDeceleration)
         {
-            LightSignal lightSignal = null;
-            if (TrafficLightHandler.AllSignals.Contains(Vehicle.CurrentEdge))
-            {
+            TrafficLight lightSignal = null;
+            Boolean canPass = true;
 
+            // If this vehicle is on same road as a traffic signal
+            if (TrafficLightHandler.AllSignals.ContainsKey(Vehicle.CurrentEdge))
+            {
+                lightSignal = TrafficLightHandler.AllSignals[Vehicle.CurrentEdge];
+                // If the vehicle can enter the queue of the lightsignal, then it can't pass this signal yet.
+                canPass = !lightSignal.Enter(Vehicle) && !lightSignal.IsQueued(Vehicle);
             }
+
+            return canPass ? 0 : biggestDeceleration;
         }
 
         private void PerformMoveAction(double distance)
