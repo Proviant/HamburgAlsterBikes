@@ -22,8 +22,6 @@ namespace SOHCarModel.Model
         public Car()
         {
             ModalityType = SpatialModalityType.CarDriving;
-
-            Console.WriteLine("TEST");
         }
 
         [PropertyDescription] public StreetLayer StreetLayer { get; set; }

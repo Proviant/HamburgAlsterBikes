@@ -8,20 +8,32 @@
     "console": true,
     "pythonVisualization" : true
   },
-  "agents": [{
-    "name": "HumanTraveler",
-    "outputs": [
-      {
-        "kind": "trips",
-        "outputConfiguration": {
-          "tripsFields": ["StableId"]
+  "agents": [
+    {
+      "name": "HumanTraveler",
+      "outputs": [
+        {
+          "kind": "trips",
+          "outputConfiguration": {
+            "tripsFields": ["StableId"]
+          }
         }
-      }
-    ],
-    "individual": [
-      {"value": true, "parameter": "ResultTrajectoryEnabled"}
-    ]
-  }],
+      ],
+      "individual": [
+        {"value": true, "parameter": "ResultTrajectoryEnabled"}
+      ]
+    },
+    {
+      "name": "TrafficLight",
+      "output": "none",
+      "file": "resources/trafficlights.csv",
+      "individual": [
+        { "parameter": "Longitude", "field": "Longitude" },
+        { "parameter": "Latitude", "field": "Latitude" },
+        { "parameter": "LengthPhaseRed", "field": "LengthPhaseRed" },
+        { "parameter": "LengthPhaseGreen", "field": "LengthPhaseGreen" }
+      ]
+    }],
   "layers": [
     {
       "name": "SpatialGraphMediatorLayer",
@@ -54,7 +66,7 @@
     {"name": "CarRentalLayer", "file": "resources/kellinghusenstrasse_car_rental.geojson", "output": "geojson"},
     {"name": "CarParkingLayer", "file": "resources/kellinghusenstrasse_car_parking.geojson"},
     {"name": "HumanTravelerSchedulerLayer", "file": "resources/human_traveler_dammtor.csv"},
-    {"name": "LightSignalLayer", "file": "resources/human_traveler_dammtor.csv"}
+    {"name": "TrafficLightLayer", "file": "resources/trafficlightslayer.geojson"}
   ],
   "entities": [
     {"name": "RentalBicycle", "file": "resources/bicycle.csv"},

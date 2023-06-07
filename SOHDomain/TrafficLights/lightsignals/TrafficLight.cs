@@ -5,22 +5,29 @@ using System;
 using Mars.Interfaces.Environments;
 using SOHDomain.Model;
 using Mars.Interfaces.Annotations;
+using SOHDomain.TrafficLights.layers;
+using SOHDomain.TrafficLights;
 
 namespace SOHTravellingBox.model
 {
-    public class TrafficLight : IAgent
+    public class TrafficLight : IAgent<TrafficLightLayer>
     {
         // The position of this traffic light
-        public Position Position { get; set; }
+        [PropertyDescription]
+        public Double Longitude { get; set; }
+        [PropertyDescription]
+        public Double Latidute { get; set; }
         // The environment this traffic signal is part of.
         [PropertyDescription]
-        private ISpatialGraphEnvironment Environment { get; set; }
+        private TrafficLightLayer TrafficLightLayer { get; set; }
 
         Guid IEntity.ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         // The waiting time in seconds, when the light signal is red / impassable
+        [PropertyDescription]
         int LengthPhaseRed { get; set; }
         // The allowed-to-move time in seconds, when the light signal is green / passable.
+        [PropertyDescription]
         int LengthPhaseGreen { get; set; }
         // The already waited time in the current phase.
         int CurrTime { get; set; }
@@ -32,12 +39,18 @@ namespace SOHTravellingBox.model
 
         public TrafficLight(double Longitude, double Latidute, int LengthPhaseRed, int LengthPhaseGreen)
         {
-            this.Position = new Position(Longitude, Latidute);
-            this.LengthPhaseGreen = LengthPhaseGreen;
+            this.Longitude = Longitude;
+            this.Latidute = Latidute;
             this.LengthPhaseRed = LengthPhaseRed;
+            this.LengthPhaseGreen = LengthPhaseGreen;
+        }
+
+        public void Init(TrafficLightLayer layer)
+        {
             this.CurrTime = 0;
             this.CurrPhase = CarLightSignalPhase.GREEN;
             this.WaitingRoadUsers = new Queue<RoadUser>();
+            this.TrafficLightLayer = layer;
         }
 
         ///
@@ -101,7 +114,7 @@ namespace SOHTravellingBox.model
         public Boolean IsOnSameRoad(RoadUser RoadUser)
         {
             ISpatialEdge EdgeRoadUser = RoadUser.CurrentEdge;
-            ISpatialNode OwnNearestNode = Environment.NearestNode(Position);
+            ISpatialNode OwnNearestNode = TrafficLightLayer.Environment.NearestNode(new Position(Longitude, Latidute));
 
             // Iterate over all streets towards the node / traffic light. 
             foreach (KeyValuePair<int, ISpatialEdge> Pair in OwnNearestNode.IncomingEdges)

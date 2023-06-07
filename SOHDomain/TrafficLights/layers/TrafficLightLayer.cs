@@ -1,24 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Mars.Common.Collections.KNNGraph;
 using Mars.Common.Core.Collections;
 using Mars.Components.Environments;
 using Mars.Components.Layers;
 using Mars.Components.Services;
 using Mars.Interfaces.Agents;
+using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Data;
 using Mars.Interfaces.Environments;
 using Mars.Interfaces.Layers;
+using Mars.Interfaces.Model;
 using SOHDomain.Graph;
 using SOHDomain.TrafficLights.layers;
 using SOHTravellingBox.model;
 
 namespace SOHDomain.TrafficLights
 {
-    public class TrafficLightLayer : VectorLayer, ITrafficLightLayer, ISpatialGraphLayer
+    public class TrafficLightLayer : AbstractLayer, ISpatialGraphLayer, ITrafficLightLayer
     {
+        [PropertyDescription]
         public ISpatialGraphEnvironment Environment { get; set; }
 
         /// <summary>
@@ -33,29 +34,32 @@ namespace SOHDomain.TrafficLights
             Environment = environment;
         }
 
-        public override bool InitLayer(
+        bool ILayer.InitLayer(
             LayerInitData layerInitData,
-            RegisterAgent registerAgentHandle = null,
-            UnregisterAgent unregisterAgent = null)
+            RegisterAgent registerAgentHandle,
+            UnregisterAgent unregisterAgent)
         {
             base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
-
-            if (LayerInitConfig.Value is ISpatialGraphEnvironment input)
-                Environment = input;
-            else if (!string.IsNullOrEmpty(LayerInitConfig.File))
-                Environment = new SpatialGraphEnvironment(layerInitData.LayerInitConfig.File);
+            Environment = new SpatialGraphEnvironment(layerInitData.LayerInitConfig.File);
 
             // Iterate over all elements in the config and add them to the dictionary.
             TrafficLightsByGUID = new Dictionary<Guid, IAgent>();
-            foreach (var config in layerInitData.AgentInitConfigs)
+            foreach (AgentMapping config in layerInitData.AgentInitConfigs)
             {
-                TrafficLightsByGUID.AddRange(AgentManager.SpawnAgents(config,
+                Console.WriteLine(config.File.ToString());
+
+                IDictionary<Guid, TrafficLight> spawnedAgents = AgentManager.SpawnAgents<TrafficLight>(config,
                     registerAgentHandle, unregisterAgent, new List<ILayer> { this },
-                    new List<IEnvironment> { Environment }));
+                    new List<IEnvironment> { Environment });
+
+                // Each agent has to be added individually, since there is no AddRange implemented in the IDictionary
+                foreach (KeyValuePair<Guid, TrafficLight> pair in spawnedAgents)
+                {
+                    TrafficLightsByGUID.Add(pair.Key, pair.Value);
+                }
             }
 
             Console.WriteLine("Anzahl Ampeln: " + TrafficLightsByGUID.Count);
-
             return true;
         }
 
@@ -66,8 +70,26 @@ namespace SOHDomain.TrafficLights
         public TrafficLight GetNearestTrafficLight(Position position)
         {
 
-
             return null;
+        }
+
+        public void Tick()
+        {
+            // Advance each traffic light by one second
+            foreach (TrafficLight light in TrafficLightsByGUID.Values)
+            {
+                light.Tick();
+            }
+        }
+
+        public void PreTick()
+        {
+            // Nothing
+        }
+
+        public void PostTick()
+        {
+            // Nothing
         }
     }
 }
