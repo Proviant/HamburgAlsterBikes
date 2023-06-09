@@ -13,21 +13,21 @@ namespace SOHTravellingBox.model
     public class TrafficLight : IAgent<TrafficLightLayer>
     {
         // The position of this traffic light
-        [PropertyDescription]
+        [PropertyDescription(Name = "Longitude")]
         public Double Longitude { get; set; }
-        [PropertyDescription]
+        [PropertyDescription(Name = "Latidute")]
         public Double Latidute { get; set; }
         // The environment this traffic signal is part of.
         [PropertyDescription]
         private TrafficLightLayer TrafficLightLayer { get; set; }
 
-        Guid IEntity.ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        Guid IEntity.ID { get; set; }
 
         // The waiting time in seconds, when the light signal is red / impassable
-        [PropertyDescription]
+        [PropertyDescription(Name = "LengthPhaseRed")]
         int LengthPhaseRed { get; set; }
         // The allowed-to-move time in seconds, when the light signal is green / passable.
-        [PropertyDescription]
+        [PropertyDescription(Name = "LengthPhaseGreen")]
         int LengthPhaseGreen { get; set; }
         // The already waited time in the current phase.
         int CurrTime { get; set; }
@@ -37,12 +37,8 @@ namespace SOHTravellingBox.model
         // The currently waiting agents in front of the signal.
         Queue<RoadUser> WaitingRoadUsers { get; set; }
 
-        public TrafficLight(double Longitude, double Latidute, int LengthPhaseRed, int LengthPhaseGreen)
+        public TrafficLight()
         {
-            this.Longitude = Longitude;
-            this.Latidute = Latidute;
-            this.LengthPhaseRed = LengthPhaseRed;
-            this.LengthPhaseGreen = LengthPhaseGreen;
         }
 
         public void Init(TrafficLightLayer layer)

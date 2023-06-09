@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Mars.Common.Core.Collections;
 using Mars.Components.Environments;
 using Mars.Components.Layers;
 using Mars.Components.Services;
+using Mars.Core.Data;
 using Mars.Interfaces.Agents;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Data;
@@ -26,12 +28,10 @@ namespace SOHDomain.TrafficLights
         ///     All traffic light entities of this layer sorted by GUID
         /// </summary>
         public IDictionary<Guid, IAgent> TrafficLightsByGUID { get; private set; }
+        public IDictionary<Position, IAgent> TrafficLightsByPos { get; private set; }
 
-        public IDictionary<Position, TrafficLight> TrafficLightsByPos { get; private set; }
-
-        public TrafficLightLayer(ISpatialGraphEnvironment environment = null)
+        public TrafficLightLayer()
         {
-            Environment = environment;
         }
 
         bool ILayer.InitLayer(
@@ -42,24 +42,21 @@ namespace SOHDomain.TrafficLights
             base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
             Environment = new SpatialGraphEnvironment(layerInitData.LayerInitConfig.File);
 
+            // Retrieve AgentManager
+            IAgentManager agentManager = layerInitData.Container.Resolve<IAgentManager>();
+            // Spawn in all TrafficLights onto the trafficlight-layer as a list
+            List<TrafficLight> lights = agentManager.Spawn<TrafficLight, TrafficLightLayer>().ToList();
+
             // Iterate over all elements in the config and add them to the dictionary.
             TrafficLightsByGUID = new Dictionary<Guid, IAgent>();
-            foreach (AgentMapping config in layerInitData.AgentInitConfigs)
+            TrafficLightsByPos = new Dictionary<Position, IAgent>();
+            foreach (TrafficLight light in lights)
             {
-                Console.WriteLine(config.File.ToString());
-
-                IDictionary<Guid, TrafficLight> spawnedAgents = AgentManager.SpawnAgents<TrafficLight>(config,
-                    registerAgentHandle, unregisterAgent, new List<ILayer> { this },
-                    new List<IEnvironment> { Environment });
-
-                // Each agent has to be added individually, since there is no AddRange implemented in the IDictionary
-                foreach (KeyValuePair<Guid, TrafficLight> pair in spawnedAgents)
-                {
-                    TrafficLightsByGUID.Add(pair.Key, pair.Value);
-                }
+                TrafficLightsByGUID.Add(Guid.NewGuid(), light);
+                TrafficLightsByPos.Add(new Position(light.Longitude, light.Latidute), light);
             }
 
-            Console.WriteLine("Anzahl Ampeln: " + TrafficLightsByGUID.Count);
+            Console.WriteLine("Anzahl Ampeln: " + TrafficLightsByPos.Count);
             return true;
         }
 
