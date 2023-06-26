@@ -13,8 +13,10 @@ using Mars.Interfaces;
 using Mars.Interfaces.Environments;
 using Mars.Interfaces.Model;
 using SOHBicycleModel.Model;
+using SOHBicycleModel.Rental;
 using SOHCarModel.Model;
 using SOHDomain.Graph;
+using SOHDomain.Model;
 using SOHDomain.TrafficLights;
 using SOHMultimodalModel.Model;
 using SOHTravellingBox.model;
@@ -47,15 +49,17 @@ namespace SOHTravellingBox
 
             // All agent layers
             description.AddLayer<HumanTravelerLayer>();
+            description.AddLayer<CarLayer>();
             description.AddLayer<TrafficLightLayer>("TrafficLightLayer");
             description.AddLayer<AgentSchedulerLayer<HumanTraveler, HumanTravelerLayer>>("HumanTravelerSchedulerLayer");
+            description.AddLayer<TrafficSchedulingLayer>();
 
             description.AddAgent<HumanTraveler, HumanTravelerLayer>();
             description.AddAgent<TrafficLight, TrafficLightLayer>();
             description.AddEntity<Bicycle>();
-            //description.AddEntity<RentalBicycle>();
+            description.AddEntity<RentalBicycle>();
             description.AddEntity<Car>();
-            //description.AddEntity<RentalCar>();
+            description.AddEntity<RentalCar>();
 
             for (int i = 1; i <= 1; i++)
             {

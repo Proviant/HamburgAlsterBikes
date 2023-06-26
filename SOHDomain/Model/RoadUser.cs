@@ -2,6 +2,7 @@ using System;
 using Mars.Interfaces.Agents;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
+using SOHDomain.TrafficLights;
 
 namespace SOHDomain.Model
 {
@@ -49,6 +50,10 @@ namespace SOHDomain.Model
         /// </summary>
         [PropertyDescription(Name = "velocity", Ignore = true)]
         public double Velocity { get; set; }
+
+
+        [PropertyDescription]
+        public TrafficLightLayer TrafficLightLayer { get; set; }
 
         /// <summary>
         ///     Gets the remaining distance in <c>meter (m)</c>

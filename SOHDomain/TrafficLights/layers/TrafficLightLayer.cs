@@ -27,8 +27,8 @@ namespace SOHDomain.TrafficLights
         /// <summary>
         ///     All traffic light entities of this layer sorted by GUID
         /// </summary>
-        public IDictionary<Guid, IAgent> TrafficLightsByGUID { get; private set; }
-        public IDictionary<Position, IAgent> TrafficLightsByPos { get; private set; }
+        public IDictionary<Guid, TrafficLight> TrafficLightsByGUID { get; private set; }
+        public IDictionary<Position, TrafficLight> TrafficLightsByPos { get; private set; }
 
         public TrafficLightLayer()
         {
@@ -48,8 +48,8 @@ namespace SOHDomain.TrafficLights
             List<TrafficLight> lights = agentManager.Spawn<TrafficLight, TrafficLightLayer>().ToList();
 
             // Iterate over all elements in the config and add them to the dictionary.
-            TrafficLightsByGUID = new Dictionary<Guid, IAgent>();
-            TrafficLightsByPos = new Dictionary<Position, IAgent>();
+            TrafficLightsByGUID = new Dictionary<Guid, TrafficLight>();
+            TrafficLightsByPos = new Dictionary<Position, TrafficLight>();
             foreach (TrafficLight light in lights)
             {
                 TrafficLightsByGUID.Add(Guid.NewGuid(), light);
@@ -66,7 +66,6 @@ namespace SOHDomain.TrafficLights
         /// </summary>
         public TrafficLight GetNearestTrafficLight(Position position)
         {
-
             return null;
         }
 

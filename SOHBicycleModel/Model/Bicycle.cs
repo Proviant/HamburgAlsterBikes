@@ -6,7 +6,6 @@ using SOHBicycleModel.Parking;
 using SOHBicycleModel.Steering;
 using SOHDomain.Model;
 using SOHDomain.Steering.Capables;
-using SOHTravellingBox.model.Trafic;
 
 namespace SOHBicycleModel.Model
 {

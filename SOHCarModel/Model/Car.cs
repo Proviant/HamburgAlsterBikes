@@ -6,7 +6,6 @@ using SOHCarModel.Steering;
 using SOHDomain.Graph;
 using SOHDomain.Model;
 using SOHDomain.Steering.Capables;
-using SOHTravellingBox.model.Trafic;
 
 namespace SOHCarModel.Model
 {

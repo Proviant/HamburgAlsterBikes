@@ -9,7 +9,6 @@ using SOHDomain.Steering.Acceleration;
 using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Handles.Intersection;
 using SOHTravellingBox.model;
-using SOHTravellingBox.model.Trafic;
 
 namespace SOHDomain.Steering.Handles
 {
@@ -42,7 +41,6 @@ namespace SOHDomain.Steering.Handles
             StandardSpeedLimit = standardSpeedLimit;
             VehicleAccelerator = new IntelligentDriverAccelerator();
             SetIntersectionTrafficCode(vehicle.TrafficCode);
-            NextTrafficLightPhase = TrafficLightPhase.None;
         }
 
         public double RemainingDistanceOnEdge => Vehicle.RemainingDistanceOnEdge;
@@ -51,8 +49,6 @@ namespace SOHDomain.Steering.Handles
         private double StandardSpeedLimit { get; }
 
         private double MaxSpeed => Math.Min(SpeedLimit, Vehicle.MaxSpeed);
-
-        public TrafficLightPhase NextTrafficLightPhase { get; protected set; }
 
         public Route Route { get; set; }
 
@@ -106,8 +102,6 @@ namespace SOHDomain.Steering.Handles
         protected virtual double HandleIntersectionAhead(SpatialGraphExploreResult exploreResult,
             double biggestDeceleration)
         {
-            NextTrafficLightPhase = exploreResult.EdgeExplores.FirstOrDefault()?.LightPhase ?? TrafficLightPhase.None;
-
             if (Vehicle.RemainingDistanceOnEdge > IntersectionAheadClearanceInM)
                 return biggestDeceleration;
 
@@ -295,17 +289,13 @@ namespace SOHDomain.Steering.Handles
 
         protected virtual double HandleTrafficLights(SpatialGraphExploreResult exploreResult, double biggestDeceleration)
         {
-            TrafficLight lightSignal = null;
-            Boolean canPass = true;
+            // If this vehicle is aimed towards a node containing a traffic light
+            TrafficLight lightSignal = Vehicle.TrafficLightLayer.TrafficLightsByPos[Vehicle.CurrentEdge.To.Position];
+            // And the traffic light queue is not occupied OR there is no traffic light
+            Boolean canPass = lightSignal != null && !lightSignal.Enter(Vehicle) && !lightSignal.IsQueued(Vehicle);
+            // Then continue on or start decelerating
 
-            // If this vehicle is on same road as a traffic signal
-            if (TrafficLightHandler.AllSignals.ContainsKey(Vehicle.CurrentEdge))
-            {
-                lightSignal = TrafficLightHandler.AllSignals[Vehicle.CurrentEdge];
-                // If the vehicle can enter the queue of the lightsignal, then it can't pass this signal yet.
-                canPass = !lightSignal.Enter(Vehicle) && !lightSignal.IsQueued(Vehicle);
-            }
-
+            Console.WriteLine("Tested it!");
             return canPass ? 0 : biggestDeceleration;
         }
 

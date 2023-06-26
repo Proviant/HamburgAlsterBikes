@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Mars.Components.Agents;
 using Mars.Interfaces.Annotations;
@@ -51,6 +52,7 @@ namespace SOHCarModel.Model
 
         public override void Tick()
         {
+            Console.WriteLine("Bewegt ein Auto");
             _steeringHandle.Move();
             if (GoalReached)
             {
@@ -82,11 +84,6 @@ namespace SOHCarModel.Model
         public double Latitude => Position.Latitude;
 
         public double Longitude => Position.Longitude;
-
-        /// <summary>
-        ///     Indicates the current light phase (red,green,yellow) of the next traffic light if available.
-        /// </summary>
-        public string NextTrafficLightPhase => _steeringHandle.NextTrafficLightPhase.ToString();
 
         [PropertyDescription(Name = "velocity")]
         public double Velocity
