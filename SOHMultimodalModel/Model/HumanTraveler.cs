@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Mars.Common.Core.Random;
 using Mars.Interfaces.Annotations;
@@ -13,14 +14,14 @@ namespace SOHMultimodalModel.Model
     {
         private ISet<ModalChoice> _choices;
 
-        [PropertyDescription] 
+        [PropertyDescription]
         public IBicycleParkingLayer BicycleParkingLayer { get; set; }
 
         public override void Init(HumanTravelerLayer layer)
         {
             base.Init(layer);
 
-            Gender = (GenderType) RandomHelper.Random.Next(0, 2);
+            Gender = (GenderType)RandomHelper.Random.Next(0, 2);
             OvertakingActivated = false;
 
             _choices = new ModalityChooser().Evaluate(this);
@@ -34,6 +35,8 @@ namespace SOHMultimodalModel.Model
             {
                 Car = CarParkingLayer.CreateOwnCarNear(StartPosition, radiusInM);
             }
+
+            Console.WriteLine("Erstellt");
         }
 
         protected override IEnumerable<ModalChoice> ModalChoices()
@@ -71,18 +74,18 @@ namespace SOHMultimodalModel.Model
         public ISet<ModalChoice> Evaluate(HumanTraveler attributes)
         {
             if (RandomHelper.Random.NextDouble() < attributes.HasCar)
-                return new HashSet<ModalChoice> {ModalChoice.CarDriving};
+                return new HashSet<ModalChoice> { ModalChoice.CarDriving };
 
             if (RandomHelper.Random.NextDouble() < attributes.HasBike)
-                return new HashSet<ModalChoice> {ModalChoice.CyclingOwnBike};
+                return new HashSet<ModalChoice> { ModalChoice.CyclingOwnBike };
 
             if (RandomHelper.Random.NextDouble() < attributes.PrefersCar)
-                return new HashSet<ModalChoice> {ModalChoice.CarRentalDriving};
+                return new HashSet<ModalChoice> { ModalChoice.CarRentalDriving };
 
             if (RandomHelper.Random.NextDouble() < attributes.PrefersBike)
-                return new HashSet<ModalChoice> {ModalChoice.CyclingRentalBike};
+                return new HashSet<ModalChoice> { ModalChoice.CyclingRentalBike };
 
-            return new HashSet<ModalChoice> {ModalChoice.Walking};
+            return new HashSet<ModalChoice> { ModalChoice.Walking };
         }
     }
 }

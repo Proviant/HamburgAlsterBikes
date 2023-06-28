@@ -1,37 +1,31 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Data;
 using System.Threading.Tasks;
 using Mars.Common;
+using Mars.Components.Environments;
 using Mars.Components.Layers;
+using Mars.Core.Data;
+using Mars.Interfaces.Data;
+using Mars.Interfaces.Layers;
 using NetTopologySuite.Geometries;
 using SOHMultimodalModel.Model;
 
 namespace SOHDomain.Model
 {
-    public class TrafficSchedulingLayer : SchedulerLayer
+    public class TrafficSchedulingLayer : AgentSchedulerLayer<HumanTraveler, HumanTravelerLayer>
     {
-        CycleTravelerLayer cycleLayer { get; set; }
-        CarTravelerLayer carLayer { get; set; }
 
-        public TrafficSchedulingLayer()
+        public override bool InitLayer(LayerInitData layerInitData, RegisterAgent registerAgentHandle = null, UnregisterAgent unregisterAgent = null)
         {
-            Console.WriteLine("Created Traffic Scheduling Layer!");
+            bool val = base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
+            return val;
         }
 
         protected override void Schedule(SchedulerEntry dataRow)
         {
-            var source = dataRow.SourceGeometry.RandomPositionFromGeometry();
-            var target = dataRow.TargetGeometry.RandomPositionFromGeometry();
-
-            CycleTraveler bicycleTraveler = new CycleTraveler();
-            CarTraveler carTraveler = new CarTraveler();
-
-            bicycleTraveler.Init(cycleLayer);
-            carTraveler.Init(carLayer);
-
-            RegisterAgent(cycleLayer, bicycleTraveler);
-            RegisterAgent(carLayer, carTraveler);
+            Console.WriteLine("Kam rein!!!");
         }
     }
 }

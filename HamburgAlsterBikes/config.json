@@ -60,6 +60,7 @@
     {"name": "CarRentalLayer", "file": "resources/kellinghusenstrasse_car_rental.geojson", "output": "geojson"},
     {"name": "CarParkingLayer", "file": "resources/kellinghusenstrasse_car_parking.geojson"},
     {"name": "HumanTravelerSchedulerLayer", "file": "resources/human_traveler_dammtor.csv"},
+    {"name": "TrafficSchedulingLayer", "file": "resources/travelers.csv"},
     {"name": "TrafficLightLayer", "file": "resources/trafficlights.csv"}
   ],
   "entities": [
