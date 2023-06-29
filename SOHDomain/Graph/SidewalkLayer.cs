@@ -22,12 +22,15 @@ namespace SOHDomain.Graph
         {
             base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
 
-            Environment = new SpatialGraphEnvironment(new SpatialGraphOptions { GraphImports = 
-                LayerInitConfig.Inputs.Do(input =>
+            Environment = new SpatialGraphEnvironment(new SpatialGraphOptions
+            {
+                GraphImports =
+                layerInitData.LayerInitConfig.Inputs.Do(input =>
             {
                 input.InputConfiguration ??= new InputConfiguration { IsBiDirectedImport = true };
                 input.InputConfiguration.Modalities = new HashSet<SpatialModalityType> { SpatialModalityType.Walking };
-            }).ToList() });
+            }).ToList()
+            });
 
             return true;
         }

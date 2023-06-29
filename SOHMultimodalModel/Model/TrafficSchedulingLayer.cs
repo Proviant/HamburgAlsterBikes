@@ -11,21 +11,11 @@ using Mars.Interfaces.Data;
 using Mars.Interfaces.Layers;
 using NetTopologySuite.Geometries;
 using SOHMultimodalModel.Model;
+using Mars.Interfaces.Annotations;
 
 namespace SOHDomain.Model
 {
     public class TrafficSchedulingLayer : AgentSchedulerLayer<HumanTraveler, HumanTravelerLayer>
     {
-
-        public override bool InitLayer(LayerInitData layerInitData, RegisterAgent registerAgentHandle = null, UnregisterAgent unregisterAgent = null)
-        {
-            bool val = base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
-            return val;
-        }
-
-        protected override void Schedule(SchedulerEntry dataRow)
-        {
-            Console.WriteLine("Kam rein!!!");
-        }
     }
 }

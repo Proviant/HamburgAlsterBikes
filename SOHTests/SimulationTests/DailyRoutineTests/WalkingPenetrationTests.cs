@@ -144,9 +144,9 @@ namespace SOHTests.SimulationTests.DailyRoutineTests
         {
             base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
 
-            if (LayerInitConfig.File != null)
+            if (layerInitData.LayerInitConfig.File != null)
             {
-                SidewalkEnvironment = new SpatialGraphEnvironment(LayerInitConfig.File);
+                SidewalkEnvironment = new SpatialGraphEnvironment(layerInitData.LayerInitConfig.File);
             }
 
             SpatialGraphMediatorLayer ??= new SpatialGraphMediatorLayer

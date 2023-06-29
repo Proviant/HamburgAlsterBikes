@@ -14,7 +14,7 @@ namespace SOHBusModel.Route
         {
             return _busRoutes.TryGetValue(line, out busRoute);
         }
-        
+
         public BusStationLayer BusStationLayer { get; }
 
         public BusRouteLayer(BusStationLayer stationLayer)
@@ -27,7 +27,7 @@ namespace SOHBusModel.Route
         public override bool InitLayer(LayerInitData layerInitData, RegisterAgent registerAgentHandle = null, UnregisterAgent unregisterAgent = null)
         {
             base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
-            _busRoutes = BusRouteReader.Read(LayerInitConfig.File, BusStationLayer);
+            _busRoutes = BusRouteReader.Read(layerInitData.LayerInitConfig.File, BusStationLayer);
             return true;
         }
     }

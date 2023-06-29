@@ -35,8 +35,6 @@ namespace SOHMultimodalModel.Model
             {
                 Car = CarParkingLayer.CreateOwnCarNear(StartPosition, radiusInM);
             }
-
-            Console.WriteLine("Erstellt");
         }
 
         protected override IEnumerable<ModalChoice> ModalChoices()

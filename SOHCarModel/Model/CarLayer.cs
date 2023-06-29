@@ -42,9 +42,9 @@ namespace SOHCarModel.Model
             UnregisterAgent unregisterAgent = null)
         {
             base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
-            if (LayerInitConfig.Value is ISpatialGraphEnvironment input)
+            if (layerInitData.LayerInitConfig.Value is ISpatialGraphEnvironment input)
                 Environment = input;
-            else if (!string.IsNullOrEmpty(LayerInitConfig.File))
+            else if (!string.IsNullOrEmpty(layerInitData.LayerInitConfig.File))
                 Environment = new SpatialGraphEnvironment(layerInitData.LayerInitConfig.File);
 
             Driver = new Dictionary<Guid, IAgent>();

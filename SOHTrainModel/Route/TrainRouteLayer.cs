@@ -14,7 +14,7 @@ namespace SOHTrainModel.Route
         {
             return _trainRoutes.TryGetValue(line, out trainRoute);
         }
-        
+
         public TrainStationLayer TrainStationLayer { get; }
 
         public TrainRouteLayer(TrainStationLayer stationLayer)
@@ -27,7 +27,7 @@ namespace SOHTrainModel.Route
         public override bool InitLayer(LayerInitData layerInitData, RegisterAgent registerAgentHandle = null, UnregisterAgent unregisterAgent = null)
         {
             base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
-            _trainRoutes = TrainRouteReader.Read(LayerInitConfig.File, TrainStationLayer);
+            _trainRoutes = TrainRouteReader.Read(layerInitData.LayerInitConfig.File, TrainStationLayer);
             return true;
         }
     }

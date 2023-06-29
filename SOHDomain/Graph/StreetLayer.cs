@@ -23,16 +23,19 @@ namespace SOHDomain.Graph
             base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
 
             if (layerInitData.LayerInitConfig.File == null) return true;
-            
-            Environment = new SpatialGraphEnvironment(new SpatialGraphOptions { GraphImports = LayerInitConfig.Inputs.Do(input =>
+
+            Environment = new SpatialGraphEnvironment(new SpatialGraphOptions
+            {
+                GraphImports = layerInitData.LayerInitConfig.Inputs.Do(input =>
             {
                 input.InputConfiguration ??= new InputConfiguration { IsBiDirectedImport = true };
-                input.InputConfiguration.Modalities = new HashSet<SpatialModalityType> {SpatialModalityType.Cycling, SpatialModalityType.CarDriving};
-            }).ToList() });
+                input.InputConfiguration.Modalities = new HashSet<SpatialModalityType> { SpatialModalityType.Cycling, SpatialModalityType.CarDriving };
+            }).ToList()
+            });
 
             return true;
         }
-        
+
         public ISpatialGraphEnvironment Environment { get; set; }
     }
 }

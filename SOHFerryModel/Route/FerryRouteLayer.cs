@@ -23,7 +23,7 @@ namespace SOHFerryModel.Route
             UnregisterAgent unregisterAgent = null)
         {
             base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
-            FerryRoutes = FerryRouteReader.Read(LayerInitConfig.File, StationLayer);
+            FerryRoutes = FerryRouteReader.Read(layerInitData.LayerInitConfig.File, StationLayer);
 
             return true;
         }

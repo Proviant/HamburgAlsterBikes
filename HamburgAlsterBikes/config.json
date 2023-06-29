@@ -2,11 +2,10 @@
   "id": "dammtor_show_case_landuse_2022",
   "globals": {
     "deltaT": 1,
-    "startPoint": "2022-12-12T06:00:00",
-    "endPoint": "2022-12-12T07:00:00",
+    "startPoint": "2023-06-29T00:00:00",
+    "endPoint": "2023-06-29T10:59:59",
     "deltaTUnit": "seconds",
-    "console": true,
-    "pythonVisualization" : true
+    "console": true
   },
   "agents": [
     {
@@ -59,8 +58,7 @@
     {"name": "BicycleRentalLayer", "file": "resources/kellinghusenstrasse_bicycle_rental_stations.geojson", "outputFrequency":60, "output": "none"},
     {"name": "CarRentalLayer", "file": "resources/kellinghusenstrasse_car_rental.geojson", "output": "geojson"},
     {"name": "CarParkingLayer", "file": "resources/kellinghusenstrasse_car_parking.geojson"},
-    {"name": "HumanTravelerSchedulerLayer", "file": "resources/human_traveler_dammtor.csv"},
-    {"name": "TrafficSchedulingLayer", "file": "resources/travelers.csv"},
+    {"name": "TrafficSchedulingLayer", "file": "resources/human_traveler_dammtor.csv"},
     {"name": "TrafficLightLayer", "file": "resources/trafficlights.csv"}
   ],
   "entities": [

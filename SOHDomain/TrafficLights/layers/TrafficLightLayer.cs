@@ -55,8 +55,6 @@ namespace SOHDomain.TrafficLights
                 TrafficLightsByGUID.Add(Guid.NewGuid(), light);
                 TrafficLightsByPos.Add(new Position(light.Longitude, light.Latidute), light);
             }
-
-            Console.WriteLine("Anzahl Ampeln: " + TrafficLightsByPos.Count);
             return true;
         }
 

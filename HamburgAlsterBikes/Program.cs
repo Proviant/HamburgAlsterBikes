@@ -53,7 +53,7 @@ namespace SOHTravellingBox
             description.AddLayer<TrafficLightLayer>("TrafficLightLayer");
             description.AddLayer<TrafficSchedulingLayer>("TrafficSchedulingLayer");
 
-            description.AddAgent<HumanTraveler, TrafficSchedulingLayer>();
+            description.AddAgent<HumanTraveler, HumanTravelerLayer>();
             description.AddAgent<TrafficLight, TrafficLightLayer>();
             description.AddEntity<Bicycle>();
             description.AddEntity<RentalBicycle>();

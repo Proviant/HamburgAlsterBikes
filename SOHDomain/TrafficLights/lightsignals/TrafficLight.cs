@@ -70,10 +70,20 @@ namespace SOHTravellingBox.model
                 }
             }
 
-            // If the leading RoadUser is not on this road anymore, dequeue.
-            if (!IsOnSameRoad(WaitingRoadUsers.Peek()))
+            // Retrieve RoadUser at the front of the queue
+            RoadUser roadUser = null;
+            if (WaitingRoadUsers.Count > 0)
             {
-                WaitingRoadUsers.Dequeue();
+                roadUser = WaitingRoadUsers.Peek();
+            }
+
+            // If the leading RoadUser is not on this road anymore, dequeue.
+            if (IsQueued(roadUser) && !IsOnSameRoad(roadUser))
+            {
+                if (WaitingRoadUsers.Count > 0)
+                {
+                    WaitingRoadUsers.Dequeue();
+                }
             }
         }
 
@@ -109,6 +119,11 @@ namespace SOHTravellingBox.model
         /// </summary>
         public Boolean IsOnSameRoad(RoadUser RoadUser)
         {
+            if (RoadUser == null)
+            {
+                return false;
+            }
+
             ISpatialEdge EdgeRoadUser = RoadUser.CurrentEdge;
             ISpatialNode OwnNearestNode = TrafficLightLayer.Environment.NearestNode(new Position(Longitude, Latidute));
 
