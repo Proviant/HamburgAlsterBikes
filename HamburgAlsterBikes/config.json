@@ -5,7 +5,7 @@
     "startPoint": "2023-06-29T00:00:00",
     "endPoint": "2023-06-29T10:59:59",
     "deltaTUnit": "seconds",
-    "console": true
+    "console": false
   },
   "agents": [
     {

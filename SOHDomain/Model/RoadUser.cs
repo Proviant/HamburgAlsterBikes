@@ -51,10 +51,6 @@ namespace SOHDomain.Model
         [PropertyDescription(Name = "velocity", Ignore = true)]
         public double Velocity { get; set; }
 
-
-        [PropertyDescription]
-        public TrafficLightLayer TrafficLightLayer { get; set; }
-
         /// <summary>
         ///     Gets the remaining distance in <c>meter (m)</c>
         ///     until the <see cref="CurrentEdge" /> is passed.

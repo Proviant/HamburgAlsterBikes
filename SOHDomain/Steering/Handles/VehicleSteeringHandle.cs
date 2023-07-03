@@ -3,11 +3,13 @@ using System.Linq;
 using Mars.Common;
 using Mars.Components.Environments;
 using Mars.Interfaces.Agents;
+using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
 using SOHDomain.Model;
 using SOHDomain.Steering.Acceleration;
 using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Handles.Intersection;
+using SOHDomain.TrafficLights;
 using SOHTravellingBox.model;
 
 namespace SOHDomain.Steering.Handles
@@ -21,6 +23,10 @@ namespace SOHDomain.Steering.Handles
         where TSteeringHandle : ISteeringHandle
         where TPassengerHandle : IPassengerHandle
     {
+
+        [PropertyDescription]
+        public TrafficLightLayer TrafficLightLayer { get; set; }
+
         protected const double MaximalDeceleration = 1000;
         private const int IntersectionAheadClearanceInM = 150;
         private const int FreeDrivingClearanceInM = 1000;
@@ -290,7 +296,12 @@ namespace SOHDomain.Steering.Handles
         protected virtual double HandleTrafficLights(SpatialGraphExploreResult exploreResult, double biggestDeceleration)
         {
             // If this vehicle is aimed towards a node containing a traffic light
-            TrafficLight lightSignal = Vehicle.TrafficLightLayer.TrafficLightsByPos[Vehicle.CurrentEdge.To.Position];
+            TrafficLight lightSignal = TrafficLightLayer.TrafficLightsByPos[Vehicle.CurrentEdge.To.Position];
+            if (lightSignal == null)
+            {
+                return 0;
+            }
+
             // And the traffic light queue is not occupied OR there is no traffic light
             Boolean canPass = lightSignal != null && !lightSignal.Enter(Vehicle) && !lightSignal.IsQueued(Vehicle);
             // Then continue on or start decelerating

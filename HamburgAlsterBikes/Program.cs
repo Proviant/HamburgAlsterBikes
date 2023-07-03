@@ -13,8 +13,11 @@ using Mars.Interfaces;
 using Mars.Interfaces.Environments;
 using Mars.Interfaces.Model;
 using SOHBicycleModel.Model;
+using SOHBicycleModel.Parking;
 using SOHBicycleModel.Rental;
 using SOHCarModel.Model;
+using SOHCarModel.Parking;
+using SOHCarModel.Rental;
 using SOHDomain.Graph;
 using SOHDomain.Model;
 using SOHDomain.TrafficLights;
@@ -37,15 +40,15 @@ namespace SOHTravellingBox
             var description = new ModelDescription();
 
             // All environments where the agent move on resolve routes.
-            // description.AddLayer<SidewalkLayer>();
+            description.AddLayer<SidewalkLayer>();
             description.AddLayer<StreetLayer>(new[] { typeof(ISpatialGraphLayer) });
             description.AddLayer<SpatialGraphMediatorLayer>(new[] { typeof(ISpatialGraphLayer) });
 
             // All data layers and interacting entities.
-            //description.AddLayer<BicycleParkingLayer>(new []{typeof(IBicycleParkingLayer)});
-            //description.AddLayer<BicycleRentalLayer>(new []{typeof(IBicycleRentalLayer)});
-            //description.AddLayer<CarParkingLayer>(new []{typeof(ICarParkingLayer)});
-            //description.AddLayer<CarRentalLayer>(new []{typeof(ICarRentalLayer)});
+            description.AddLayer<BicycleParkingLayer>(new[] { typeof(IBicycleParkingLayer) });
+            description.AddLayer<BicycleRentalLayer>(new[] { typeof(IBicycleRentalLayer) });
+            description.AddLayer<CarParkingLayer>(new[] { typeof(ICarParkingLayer) });
+            description.AddLayer<CarRentalLayer>(new[] { typeof(ICarRentalLayer) });
 
             // All agent layers
             description.AddLayer<HumanTravelerLayer>();
