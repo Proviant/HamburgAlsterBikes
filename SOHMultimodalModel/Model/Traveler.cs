@@ -3,6 +3,7 @@ using Mars.Common;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
 using NetTopologySuite.Geometries;
+using SOHDomain.TrafficLights;
 using SOHMultimodalModel.Multimodal;
 using Position = Mars.Interfaces.Environments.Position;
 
@@ -45,7 +46,7 @@ namespace SOHMultimodalModel.Model
         {
             MultimodalRoute ??= FindMultimodalRoute();
 
-            base.Move();
+            base.Move(trafficLightLayer);
 
             if (GoalReached) MultimodalLayer.UnregisterAgent(MultimodalLayer, this);
         }

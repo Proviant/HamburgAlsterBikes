@@ -40,7 +40,7 @@ namespace SOHBusModel.Model
         private long AmountOfTicksAtCurrentStation => Layer.Context.CurrentTick - _startTickForCurrentStation;
 
         public BusRoute.BusRouteEnumerator BusRouteEnumerator =>
-            (BusRoute.BusRouteEnumerator) (_busRouteEnumerator ??= BusRoute.GetEnumerator());
+            (BusRoute.BusRouteEnumerator)(_busRouteEnumerator ??= BusRoute.GetEnumerator());
 
         public IEnumerable<BusRouteEntry> RemainingStations => BusRoute.Skip(BusRouteEnumerator.CurrentIndex);
 
@@ -48,13 +48,13 @@ namespace SOHBusModel.Model
 
         public int StationStops => BusRoute.Entries.IndexOf(BusRouteEnumerator.Current);
 
-        [PropertyDescription(Name = "line")] 
+        [PropertyDescription(Name = "line")]
         public string Line { get; set; }
 
         [PropertyDescription(Name = "waitingInSeconds")]
         public int MinimumBoardingTimeInSeconds { get; set; }
 
-        [PropertyDescription] 
+        [PropertyDescription]
         public BusLayer Layer { get; }
 
         private Mars.Interfaces.Environments.Route Route
@@ -102,7 +102,7 @@ namespace SOHBusModel.Model
             {
                 Bus.BusStation?.Leave(Bus);
 
-                _steeringHandle.Move();
+                _steeringHandle.Move(null);
 
                 if (GoalReached)
                 {
@@ -150,7 +150,7 @@ namespace SOHBusModel.Model
 
             var source = Environment.NearestNode(BusRouteEnumerator.Current?.From.Position, SpatialModalityType.TrainDriving);
             var target = Environment.NearestNode(BusRouteEnumerator.Current?.To.Position, SpatialModalityType.TrainDriving);
-            
+
             Route = Environment.FindShortestRoute(source, target, edge => edge.Modalities.Contains(SpatialModalityType.TrainDriving));
 
             if (Route == null || Route.Count == 0)

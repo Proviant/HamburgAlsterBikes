@@ -75,7 +75,7 @@ namespace SOHTests.Commons.Agent
             if (_steering.Route.Count < 3) _steering.Route = CreateRoute(_edge, LaneOnCurrentEdge);
 
             var previousPosition = PositionOnCurrentEdge;
-            _steering.Move();
+            _steering.Move(null);
 
             if (PositionOnCurrentEdge < previousPosition) RoundsFinished++;
 

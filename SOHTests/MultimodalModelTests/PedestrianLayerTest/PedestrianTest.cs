@@ -99,7 +99,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
             Assert.Equal(0, pedestrian.Velocity);
             Assert.Equal(startNode.Position, pedestrian.Position);
 
-            pedestrian.Move();
+            pedestrian.Move(null);
 
             Assert.True(pedestrian.Velocity > 0);
             Assert.NotEqual(startNode.Position, pedestrian.Position);
@@ -122,10 +122,10 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
             var route = environment.GraphEnvironment.FindRoute(startNode, goalNode);
             pedestrian.MultimodalRoute = new MultimodalRoute(route, ModalChoice.Walking);
 
-            pedestrian.Move();
+            pedestrian.Move(null);
             Assert.NotEqual(startNode.Position, pedestrian.Position);
 
-            for (var tick = 0; tick < 200 && !pedestrian.GoalReached; tick++) pedestrian.Move();
+            for (var tick = 0; tick < 200 && !pedestrian.GoalReached; tick++) pedestrian.Move(null);
 
             Assert.Equal(goalNode.Position.X, pedestrian.Position.X, 3);
             Assert.Equal(goalNode.Position.Y, pedestrian.Position.Y, 3);
@@ -185,7 +185,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
             Assert.Null(pedestrian.ActiveSteeringHandle);
             Assert.Equal(node1.Position, pedestrian.Position);
 
-            pedestrian.Move();
+            pedestrian.Move(null);
             Assert.NotNull(pedestrian.ActiveSteeringHandle);
             Assert.True(pedestrian.ActiveSteeringHandle is WalkingSteeringHandle);
             Assert.NotEqual(node1.Position, pedestrian.Position);
@@ -210,7 +210,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
             pedestrian.MultimodalRoute = new MultimodalRoute(route, ModalChoice.Walking);
             Assert.Equal(startNode.Position, pedestrian.Position);
 
-            pedestrian.Move();
+            pedestrian.Move(null);
             var currentPosition = pedestrian.Position;
 
             // pedestrian.LeaveSidewalk();
@@ -233,7 +233,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
 
             var route = environment.GraphEnvironment.FindRoute(startNode, environment.Node2);
             pedestrian.MultimodalRoute = new MultimodalRoute(route, ModalChoice.Walking);
-            pedestrian.Move();
+            pedestrian.Move(null);
             Assert.NotNull(pedestrian.CurrentEdge);
             Assert.NotEqual(0, pedestrian.PositionOnCurrentEdge);
 
@@ -281,8 +281,8 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
 
             for (var tick = 0; tick < 5; tick++)
             {
-                walkingAgent.Move();
-                runningAgent.Move();
+                walkingAgent.Move(null);
+                runningAgent.Move(null);
             }
 
             Assert.True(runningAgent.Velocity > walkingAgent.Velocity);
@@ -307,7 +307,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
             var onWayToNode4 = true;
             for (var tick = 0; tick < 10000 && !pedestrian.GoalReached; tick++)
             {
-                pedestrian.Move();
+                pedestrian.Move(null);
 
                 if (onWayToNode4 && route.First().Edge.To.Equals(fourNodeEnv.Node4))
                 {
@@ -350,7 +350,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
 
             var firstRoute = environment.FindRoute(startNode, fourNodeGraphEnv.Node2, (_, edge, _) => edge.Length);
             pedestrian.MultimodalRoute = new MultimodalRoute(firstRoute, ModalChoice.Walking);
-            pedestrian.Move();
+            pedestrian.Move(null);
             Assert.NotNull(pedestrian.CurrentEdge);
             Assert.NotEqual(0, pedestrian.PositionOnCurrentEdge);
 
@@ -359,7 +359,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
 
             pedestrian.MultimodalRoute = new MultimodalRoute(secondRoute, ModalChoice.Walking);
             var oldPositionOnCurrentEdge = pedestrian.PositionOnCurrentEdge;
-            pedestrian.Move();
+            pedestrian.Move(null);
 
             Assert.Equal(firstRoute.First().Edge, pedestrian.CurrentEdge);
             Assert.Equal(secondRoute.First().Edge, pedestrian.CurrentEdge);
@@ -382,7 +382,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
 
             var firstRoute = environment.GraphEnvironment.FindRoute(startNode, environment.Node2);
             pedestrian.MultimodalRoute = new MultimodalRoute(firstRoute, ModalChoice.Walking);
-            pedestrian.Move();
+            pedestrian.Move(null);
             Assert.NotNull(pedestrian.ActiveSteeringHandle);
             Assert.NotNull(pedestrian.CurrentEdge);
             Assert.NotEqual(0, pedestrian.PositionOnCurrentEdge);
@@ -391,7 +391,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
             Assert.NotEqual(secondRoute.First().Edge, pedestrian.CurrentEdge);
 
             pedestrian.MultimodalRoute = new MultimodalRoute(secondRoute, ModalChoice.Walking);
-            pedestrian.Move();
+            pedestrian.Move(null);
 
             //jump to new route
             Assert.Equal(secondRoute.First().Edge, pedestrian.CurrentEdge);
@@ -449,7 +449,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
 
             for (var tick = 0; tick < 100; tick++)
             {
-                pedestrian.Move();
+                pedestrian.Move(null);
                 if (pedestrian.GoalReached) break;
             }
 
@@ -475,7 +475,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
             Assert.Equal(0, pedestrian.PositionOnCurrentEdge);
             Assert.Null(pedestrian.CurrentEdge);
 
-            pedestrian.Move();
+            pedestrian.Move(null);
 
             //no change, because of missing route
             Assert.Equal(FourNodeGraphEnv.Node1Pos, pedestrian.Position);
@@ -492,7 +492,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
 
             for (var tick = 0; tick < 10000; tick++)
             {
-                pedestrian.Move();
+                pedestrian.Move(null);
                 if (pedestrian.GoalReached) break;
             }
 
@@ -522,7 +522,7 @@ namespace SOHTests.MultimodalModelTests.PedestrianLayerTest
 
             public override void Tick()
             {
-                Move();
+                Move(null);
             }
         }
     }

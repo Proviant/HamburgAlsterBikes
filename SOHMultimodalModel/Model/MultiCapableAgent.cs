@@ -16,6 +16,7 @@ using SOHDomain.Graph;
 using SOHDomain.Model;
 using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Common;
+using SOHDomain.TrafficLights;
 using SOHFerryModel.Station;
 using SOHFerryModel.Steering;
 using SOHMultimodalModel.Commons;
@@ -227,9 +228,9 @@ namespace SOHMultimodalModel.Model
             }
         }
 
-        public override void Move()
+        public override void Move(TrafficLightLayer trafficLightLayer)
         {
-            base.Move();
+            base.Move(trafficLightLayer);
             StoreRouteResultIfNecessary();
         }
 
@@ -344,26 +345,26 @@ namespace SOHMultimodalModel.Model
             switch (passengerMessage)
             {
                 case PassengerMessage.TerminalStation:
-                {
-                    if (LeaveModalType(MultimodalRoute.CurrentModalChoice))
                     {
-                        MultimodalRoute.CurrentRoute.JumpToGoal();
-                        MultimodalRoute.Next();
-                    }
-
-                    break;
-                }
-                case PassengerMessage.GoalReached:
-                {
-                    if (Position.DistanceInMTo(MultimodalRoute.CurrentRoute.Goal) < DeltaDistanceEqualsInM)
                         if (LeaveModalType(MultimodalRoute.CurrentModalChoice))
                         {
                             MultimodalRoute.CurrentRoute.JumpToGoal();
                             MultimodalRoute.Next();
                         }
 
-                    break;
-                }
+                        break;
+                    }
+                case PassengerMessage.GoalReached:
+                    {
+                        if (Position.DistanceInMTo(MultimodalRoute.CurrentRoute.Goal) < DeltaDistanceEqualsInM)
+                            if (LeaveModalType(MultimodalRoute.CurrentModalChoice))
+                            {
+                                MultimodalRoute.CurrentRoute.JumpToGoal();
+                                MultimodalRoute.Next();
+                            }
+
+                        break;
+                    }
                 case PassengerMessage.NoDriver:
                     break;
                 default:

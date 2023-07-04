@@ -7,15 +7,20 @@ using Mars.Interfaces.Layers;
 using SOHCarModel.Common;
 using SOHCarModel.Steering;
 using SOHDomain.Steering.Common;
+using SOHDomain.TrafficLights;
 
 namespace SOHCarModel.Model
 {
+
     /// <summary>
     ///     Standard implementation of a driver agent that is bound to a single car and drives around with it on the given
     ///     osmRoute.
     /// </summary>
     public sealed class CarDriver : AbstractAgent, ICarSteeringCapable
     {
+        [PropertyDescription]
+        TrafficLightLayer trafficLightLayer { get; set; }
+
         public CarDriver(CarLayer layer, RegisterAgent register, UnregisterAgent unregister, int driveMode,
             double startLat = 0, double startLon = 0, double destLat = 0, double destLon = 0,
             ISpatialEdge startingEdge = null, string osmRoute = "", string trafficCode = "german")
@@ -53,7 +58,7 @@ namespace SOHCarModel.Model
         public override void Tick()
         {
             Console.WriteLine("Bewegt ein Auto");
-            _steeringHandle.Move();
+            _steeringHandle.Move(trafficLightLayer);
             if (GoalReached)
             {
                 _environment.Remove(Car);

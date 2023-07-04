@@ -1,5 +1,6 @@
 using Mars.Interfaces.Environments;
 using SOHDomain.Steering.Capables;
+using SOHDomain.TrafficLights;
 
 namespace SOHDomain.Steering.Handles
 {
@@ -30,7 +31,7 @@ namespace SOHDomain.Steering.Handles
 
         public double Velocity => 0d;
 
-        public void Move()
+        public void Move(TrafficLightLayer trafficLightLayer)
         {
             //do nothing, the vehicle is moving without the influence of the passengerCapable
         }

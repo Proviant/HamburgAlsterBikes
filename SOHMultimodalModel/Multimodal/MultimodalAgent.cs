@@ -8,6 +8,7 @@ using SOHDomain.Model;
 using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Common;
 using SOHDomain.Steering.Handles;
+using SOHDomain.TrafficLights;
 
 namespace SOHMultimodalModel.Multimodal
 {
@@ -42,6 +43,9 @@ namespace SOHMultimodalModel.Multimodal
         [PropertyDescription]
         public IMultimodalLayer MultimodalLayer { get; set; }
 
+        [PropertyDescription]
+        protected TrafficLightLayer trafficLightLayer { get; set; }
+
         public virtual void Init(TLayer layer)
         {
             if (layer == null)
@@ -60,7 +64,7 @@ namespace SOHMultimodalModel.Multimodal
             set => _position = value;
         }
 
-        public virtual void Move()
+        public virtual void Move(TrafficLightLayer trafficLightLayer)
         {
             if (MultimodalRoute == null || MultimodalRoute.GoalReached) return;
             if (EnterRequired) //start with current route
@@ -83,7 +87,7 @@ namespace SOHMultimodalModel.Multimodal
                 }
             }
 
-            ActiveSteering?.Move();
+            ActiveSteering?.Move(trafficLightLayer);
 
             if (MultimodalRoute.GoalReached)
             {

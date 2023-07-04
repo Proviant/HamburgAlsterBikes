@@ -100,7 +100,7 @@ namespace SOHFerryModel.Model
             {
                 Ferry.FerryStation?.Leave(Ferry);
 
-                _steeringHandle.Move();
+                _steeringHandle.Move(null);
 
                 if (GoalReached)
                 {

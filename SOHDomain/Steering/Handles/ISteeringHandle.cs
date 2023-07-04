@@ -1,4 +1,5 @@
 using Mars.Interfaces.Environments;
+using SOHDomain.TrafficLights;
 
 namespace SOHDomain.Steering.Handles
 {
@@ -31,6 +32,6 @@ namespace SOHDomain.Steering.Handles
         /// <summary>
         ///     Provides the possibility to tick the moving road user.
         /// </summary>
-        void Move();
+        void Move(TrafficLightLayer trafficLightLayer);
     }
 }

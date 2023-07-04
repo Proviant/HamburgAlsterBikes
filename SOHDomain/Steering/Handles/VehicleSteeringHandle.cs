@@ -24,9 +24,6 @@ namespace SOHDomain.Steering.Handles
         where TPassengerHandle : IPassengerHandle
     {
 
-        [PropertyDescription]
-        public TrafficLightLayer TrafficLightLayer { get; set; }
-
         protected const double MaximalDeceleration = 1000;
         private const int IntersectionAheadClearanceInM = 150;
         private const int FreeDrivingClearanceInM = 1000;
@@ -62,7 +59,7 @@ namespace SOHDomain.Steering.Handles
         public double Velocity => Vehicle.Velocity;
         public bool GoalReached => Route?.GoalReached ?? true;
 
-        public virtual void Move()
+        public virtual void Move(TrafficLightLayer trafficLightLayer)
         {
             if (GoalReached || Vehicle.CurrentEdge == null && !MoveFromNodeSuccessfully()) return;
 
@@ -73,7 +70,7 @@ namespace SOHDomain.Steering.Handles
             deceleration = HandleBraking(deceleration);
             deceleration = HandleIntersectionAhead(exploreResult, deceleration);
             deceleration = HandleVehiclesAhead(exploreResult, deceleration);
-            deceleration = HandleTrafficLights(exploreResult, deceleration);
+            deceleration = HandleTrafficLights(exploreResult, deceleration, trafficLightLayer);
             var drivingDistance = CalculateDrivingDistance(deceleration);
             PerformMoveAction(drivingDistance);
         }
@@ -293,10 +290,15 @@ namespace SOHDomain.Steering.Handles
             return Vehicle.Velocity + speedChange;
         }
 
-        protected virtual double HandleTrafficLights(SpatialGraphExploreResult exploreResult, double biggestDeceleration)
+        protected virtual double HandleTrafficLights(SpatialGraphExploreResult exploreResult, double biggestDeceleration, TrafficLightLayer trafficLightLayer)
         {
+            if (trafficLightLayer == null)
+            {
+                return 0;
+            }
+
             // If this vehicle is aimed towards a node containing a traffic light
-            TrafficLight lightSignal = TrafficLightLayer.TrafficLightsByPos[Vehicle.CurrentEdge.To.Position];
+            TrafficLight lightSignal = trafficLightLayer.TrafficLightsByPos[Vehicle.CurrentEdge.To.Position];
             if (lightSignal == null)
             {
                 return 0;

@@ -40,7 +40,7 @@ namespace SOHTrainModel.Model
         private long AmountOfTicksAtCurrentStation => Layer.Context.CurrentTick - _startTickForCurrentStation;
 
         public TrainRoute.TrainRouteEnumerator TrainRouteEnumerator =>
-            (TrainRoute.TrainRouteEnumerator) (_trainRouteEnumerator ??= TrainRoute.GetEnumerator());
+            (TrainRoute.TrainRouteEnumerator)(_trainRouteEnumerator ??= TrainRoute.GetEnumerator());
 
         public IEnumerable<TrainRouteEntry> RemainingStations => TrainRoute.Skip(TrainRouteEnumerator.CurrentIndex);
 
@@ -48,19 +48,19 @@ namespace SOHTrainModel.Model
 
         public int StationStops => TrainRoute.Entries.IndexOf(TrainRouteEnumerator.Current);
 
-        [PropertyDescription(Name = "line")] 
+        [PropertyDescription(Name = "line")]
         public string Line { get; set; }
 
         [PropertyDescription(Name = "waitingInSeconds")]
         public int MinimumBoardingTimeInSeconds { get; set; }
-        
+
         /// <summary>
         ///     The train route will be proceeded in the opposite direction.
         /// </summary>
         [PropertyDescription(Name = "reversedTrainRoute")]
         public bool ReversedTrainRoute { get; set; }
 
-        [PropertyDescription] 
+        [PropertyDescription]
         public TrainLayer Layer { get; }
 
         private Mars.Interfaces.Environments.Route Route
@@ -108,7 +108,7 @@ namespace SOHTrainModel.Model
             {
                 Train.TrainStation?.Leave(Train);
 
-                _steeringHandle.Move();
+                _steeringHandle.Move(null);
 
                 if (GoalReached)
                 {
@@ -144,7 +144,7 @@ namespace SOHTrainModel.Model
 
             if (ReversedTrainRoute)
                 TrainRoute = TrainRoute.Reversed();
-            
+
             FindNextRouteSection();
 
             var trainStation = TrainRouteEnumerator.Current?.From;
@@ -158,7 +158,7 @@ namespace SOHTrainModel.Model
 
             var source = Environment.NearestNode(TrainRouteEnumerator.Current?.From.Position, SpatialModalityType.TrainDriving);
             var target = Environment.NearestNode(TrainRouteEnumerator.Current?.To.Position, SpatialModalityType.TrainDriving);
-            
+
             Route = Environment.FindShortestRoute(source, target, edge => edge.Modalities.Contains(SpatialModalityType.TrainDriving));
 
             if (Route == null || Route.Count == 0)

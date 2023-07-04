@@ -24,7 +24,7 @@ namespace SOHTests.Commons.Agent
 
         public override void Tick()
         {
-            Move();
+            Move(null);
         }
     }
 }

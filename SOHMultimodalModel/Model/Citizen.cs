@@ -3,6 +3,7 @@ using Mars.Common.Core.Random;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
 using SOHDomain.Common;
+using SOHDomain.TrafficLights;
 using SOHMultimodalModel.Commons;
 using SOHMultimodalModel.Layers;
 using SOHMultimodalModel.Planning;
@@ -130,7 +131,7 @@ namespace SOHMultimodalModel.Model
                 MultimodalRoute = MultimodalLayer.Search(this, Position, goalPosition, Capabilities);
             }
 
-            base.Move();
+            base.Move(trafficLightLayer);
         }
 
         public void ChangeWork(Position position)

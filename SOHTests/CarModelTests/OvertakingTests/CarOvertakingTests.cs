@@ -64,10 +64,10 @@ namespace SOHTests.CarModelTests.OvertakingTests
             var startNode = environment.AddNode();
             var goalNode = environment.AddNode();
             var edgeCar = environment.AddEdge(startNode, goalNode, 100,
-                new Dictionary<string, object> {{"length", 100}, {"lanes", 2}}, SpatialModalityType.CarDriving);
+                new Dictionary<string, object> { { "length", 100 }, { "lanes", 2 } }, SpatialModalityType.CarDriving);
             var edgeCycling = environment.AddEdge(startNode, goalNode, 100,
-                new Dictionary<string, object> {{"length", 100}, {"lanes", 1}},
-                new[] {SpatialModalityType.CarDriving, SpatialModalityType.Cycling});
+                new Dictionary<string, object> { { "length", 100 }, { "lanes", 1 } },
+                new[] { SpatialModalityType.CarDriving, SpatialModalityType.Cycling });
             var edge = startNode.OutgoingEdges.First().Value;
             Assert.Equal(edgeCar, edge);
             Assert.Equal(edgeCycling, edge);
@@ -118,10 +118,10 @@ namespace SOHTests.CarModelTests.OvertakingTests
             var startNode = environment.AddNode();
             var goalNode = environment.AddNode();
             environment.AddEdge(startNode, goalNode, 100,
-                new Dictionary<string, object> {{"length", 100}, {"lanes", 1}}, SpatialModalityType.CarDriving);
+                new Dictionary<string, object> { { "length", 100 }, { "lanes", 1 } }, SpatialModalityType.CarDriving);
             environment.AddEdge(startNode, goalNode, 100,
-                new Dictionary<string, object> {{"length", 100}, {"lanes", 1}},
-                new[] {SpatialModalityType.CarDriving, SpatialModalityType.Cycling});
+                new Dictionary<string, object> { { "length", 100 }, { "lanes", 1 } },
+                new[] { SpatialModalityType.CarDriving, SpatialModalityType.Cycling });
             var edge = startNode.OutgoingEdges.First().Value;
 
             var car = new Car();
@@ -148,9 +148,9 @@ namespace SOHTests.CarModelTests.OvertakingTests
             var startNode = environment.AddNode();
             var goalNode = environment.AddNode();
             environment.AddEdge(startNode, goalNode, 100,
-                new Dictionary<string, object> {{"length", 100}, {"lanes", 1}}, SpatialModalityType.CarDriving);
+                new Dictionary<string, object> { { "length", 100 }, { "lanes", 1 } }, SpatialModalityType.CarDriving);
             environment.AddEdge(startNode, goalNode, 100,
-                new Dictionary<string, object> {{"length", 100}, {"lanes", 1}}, SpatialModalityType.Cycling);
+                new Dictionary<string, object> { { "length", 100 }, { "lanes", 1 } }, SpatialModalityType.Cycling);
             var edge = startNode.OutgoingEdges.First().Value;
 
             var car = new Car();
@@ -194,7 +194,7 @@ namespace SOHTests.CarModelTests.OvertakingTests
 
         public Guid ID { get; set; }
 
-        public void Tick() => _steering.Move();
+        public void Tick() => _steering.Move(null);
 
         public Position Position
         {

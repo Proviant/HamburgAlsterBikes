@@ -6,6 +6,7 @@ using SOHDomain.Graph;
 using SOHDomain.Model;
 using SOHDomain.Steering.Acceleration;
 using SOHDomain.Steering.Capables;
+using SOHDomain.TrafficLights;
 
 namespace SOHDomain.Steering.Handles
 {
@@ -45,7 +46,7 @@ namespace SOHDomain.Steering.Handles
 
         public double Velocity => WalkingShoes.Velocity;
 
-        public void Move()
+        public void Move(TrafficLightLayer trafficLightLayer)
         {
             if (GoalReached) return;
 
