@@ -194,7 +194,7 @@ namespace SOHTests.CarModelTests.OvertakingTests
 
         public Guid ID { get; set; }
 
-        public void Tick() => _steering.Move(null);
+        public void Tick() => _steering.Move();
 
         public Position Position
         {

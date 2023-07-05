@@ -131,7 +131,7 @@ namespace SOHMultimodalModel.Model
                 MultimodalRoute = MultimodalLayer.Search(this, Position, goalPosition, Capabilities);
             }
 
-            base.Move(trafficLightLayer);
+            base.Move();
         }
 
         public void ChangeWork(Position position)

@@ -66,8 +66,7 @@ namespace SOHMultimodalModel.Routing
         /// <param name="bicycle">The bicycle is located at a certain position.</param>
         /// <param name="start">Position where the route should start.</param>
         /// <param name="goal">Position where the route should end.</param>
-        public WalkingCyclingMultimodalRoute(SpatialGraphMediatorLayer envLayer, Bicycle bicycle,
-            Position start, Position goal)
+        public WalkingCyclingMultimodalRoute(SpatialGraphMediatorLayer envLayer, Bicycle bicycle, Position start, Position goal)
         {
             var env = envLayer.Environment;
             var startNode = env.NearestNode(start, SpatialModalityType.Walking);

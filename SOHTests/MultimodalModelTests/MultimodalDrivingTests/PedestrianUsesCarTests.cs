@@ -94,7 +94,7 @@ namespace SOHTests.MultimodalModelTests.MultimodalDrivingTests
             driver.Init(multimodalLayer);
             Assert.Equal(FourNodeGraphEnv.Node1Pos, driver.Position);
 
-            driver.Move(null); // nothing changes
+            driver.Move(); // nothing changes
             Assert.Equal(FourNodeGraphEnv.Node1Pos, driver.Position);
 
             var car = Golf.Create(environment);

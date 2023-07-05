@@ -46,7 +46,7 @@ namespace SOHDomain.Steering.Handles
 
         public double Velocity => WalkingShoes.Velocity;
 
-        public void Move(TrafficLightLayer trafficLightLayer)
+        public void Move()
         {
             if (GoalReached) return;
 

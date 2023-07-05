@@ -31,7 +31,7 @@ namespace SOHDomain.Steering.Handles
 
         public double Velocity => 0d;
 
-        public void Move(TrafficLightLayer trafficLightLayer)
+        public void Move()
         {
             //do nothing, the vehicle is moving without the influence of the passengerCapable
         }

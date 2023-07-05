@@ -112,7 +112,7 @@ namespace SOHTests.SimulationTests.DailyRoutineTests
         {
             if (GoalReached) MultimodalRoute = SearchMultimodalRoute();
 
-            Move(null);
+            Move();
         }
 
         private MultimodalRoute SearchMultimodalRoute()

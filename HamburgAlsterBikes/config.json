@@ -1,10 +1,11 @@
 {
-  "id": "dammtor_show_case_landuse_2022",
+  "id": "green-wave-alster-bicycles",
   "globals": {
     "deltaT": 1,
     "startPoint": "2023-06-29T00:00:00",
-    "endPoint": "2023-06-29T10:59:59",
+    "endPoint": "2023-06-29T01:59:59",
     "deltaTUnit": "seconds",
+    "output": "geojson",
     "console": false
   },
   "agents": [
@@ -23,10 +24,26 @@
       ]
     },
     {
+      "name": "BicycleLeader",
+      "file": "resources/human_traveler_bicycle.csv",
+      "outputs": [
+        {
+          "kind": "trips",
+          "outputConfiguration": {
+            "tripsFields": ["StableId"]
+          }
+        }
+      ],
+      "individual": [
+        {"value": true, "parameter": "ResultTrajectoryEnabled"}
+      ]
+    },
+    {
       "name": "TrafficLight",
       "output": "none",
       "file": "resources/trafficlights.csv"
-    }],
+    }
+  ],
   "layers": [
     {
       "name": "SpatialGraphMediatorLayer",
@@ -56,9 +73,11 @@
     },
     {"name": "BicycleParkingLayer", "file": "resources/kellinghusenstrasse_bike_and_ride.geojson"},
     {"name": "BicycleRentalLayer", "file": "resources/kellinghusenstrasse_bicycle_rental_stations.geojson", "outputFrequency":60, "output": "none"},
-    {"name": "CarRentalLayer", "file": "resources/kellinghusenstrasse_car_rental.geojson", "output": "geojson"},
+    {"name": "CarRentalLayer", "file": "resources/kellinghusenstrasse_car_rental.geojson"},
     {"name": "CarParkingLayer", "file": "resources/kellinghusenstrasse_car_parking.geojson"},
-    {"name": "TrafficSchedulingLayer", "file": "resources/human_traveler_dammtor.csv"},
+    {"name": "HumanTravelerLayer", "file": "resources/human_traveler_bicycle.csv", "output": "geojson"},
+    {"name": "CarSchedulingLayer", "file": "resources/human_traveler_car.csv", "output": "geojson"},
+    {"name": "BicycleSchedulingLayer", "file": "resources/human_traveler_bicycle.csv", "output": "geojson"},
     {"name": "TrafficLightLayer", "file": "resources/trafficlights.csv"}
   ],
   "entities": [

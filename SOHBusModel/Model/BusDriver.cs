@@ -102,7 +102,7 @@ namespace SOHBusModel.Model
             {
                 Bus.BusStation?.Leave(Bus);
 
-                _steeringHandle.Move(null);
+                _steeringHandle.Move();
 
                 if (GoalReached)
                 {

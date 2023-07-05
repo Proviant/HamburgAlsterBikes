@@ -108,7 +108,7 @@ namespace SOHTrainModel.Model
             {
                 Train.TrainStation?.Leave(Train);
 
-                _steeringHandle.Move(null);
+                _steeringHandle.Move();
 
                 if (GoalReached)
                 {

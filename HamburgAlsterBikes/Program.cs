@@ -51,11 +51,19 @@ namespace SOHTravellingBox
             description.AddLayer<CarRentalLayer>(new[] { typeof(ICarRentalLayer) });
 
             // All agent layers
-            description.AddLayer<HumanTravelerLayer>();
-            description.AddLayer<CarLayer>();
             description.AddLayer<TrafficLightLayer>("TrafficLightLayer");
-            description.AddLayer<TrafficSchedulingLayer>("TrafficSchedulingLayer");
+            description.AddLayer<HumanTravelerLayer>("HumanTravelerLayer");
+            // description.AddLayer<CarLayer>();
+            // description.AddLayer<CycleTravelerLayer>();
+            // description.AddLayer<CarTravelerLayer>();
 
+            // All scheduling layers
+            description.AddLayer<CarSchedulingLayer>("CarSchedulingLayer");
+            // description.AddLayer<BicycleSchedulingLayer>("BicycleSchedulingLayer");
+
+            // All agents and entities
+            // description.AddAgent<CycleTraveler, CycleTravelerLayer>();
+            // description.AddAgent<CarTraveler, CarTravelerLayer>();
             description.AddAgent<HumanTraveler, HumanTravelerLayer>();
             description.AddAgent<TrafficLight, TrafficLightLayer>();
             description.AddEntity<Bicycle>();

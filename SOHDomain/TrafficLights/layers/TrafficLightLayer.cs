@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Mars.Common.Collections.KNNGraph;
 using Mars.Common.Core.Collections;
 using Mars.Components.Environments;
 using Mars.Components.Layers;
@@ -21,14 +22,13 @@ namespace SOHDomain.TrafficLights
 {
     public class TrafficLightLayer : AbstractLayer, ISpatialGraphLayer, ITrafficLightLayer
     {
-        [PropertyDescription]
         public ISpatialGraphEnvironment Environment { get; set; }
 
         /// <summary>
         ///     All traffic light entities of this layer sorted by GUID
         /// </summary>
         public IDictionary<Guid, TrafficLight> TrafficLightsByGUID { get; private set; }
-        public IDictionary<Position, TrafficLight> TrafficLightsByPos { get; private set; }
+        public IDictionary<ISpatialNode, TrafficLight> TrafficLightsByNode { get; private set; }
 
         public TrafficLightLayer()
         {
@@ -40,7 +40,11 @@ namespace SOHDomain.TrafficLights
             UnregisterAgent unregisterAgent)
         {
             base.InitLayer(layerInitData, registerAgentHandle, unregisterAgent);
-            Environment = new SpatialGraphEnvironment(layerInitData.LayerInitConfig.File);
+
+            // Initialize the SpatialGraphEnvironment
+            string start = Directory.GetCurrentDirectory();
+            char sep = Path.DirectorySeparatorChar;
+            Environment = new SpatialGraphEnvironment($"{start}{sep}resources{sep}trafficlightslayer.geojson");
 
             // Retrieve AgentManager
             IAgentManager agentManager = layerInitData.Container.Resolve<IAgentManager>();
@@ -49,12 +53,25 @@ namespace SOHDomain.TrafficLights
 
             // Iterate over all elements in the config and add them to the dictionary.
             TrafficLightsByGUID = new Dictionary<Guid, TrafficLight>();
-            TrafficLightsByPos = new Dictionary<Position, TrafficLight>();
+            TrafficLightsByNode = new Dictionary<ISpatialNode, TrafficLight>();
             foreach (TrafficLight light in lights)
             {
                 TrafficLightsByGUID.Add(Guid.NewGuid(), light);
-                TrafficLightsByPos.Add(new Position(light.Longitude, light.Latidute), light);
+
+                Position trafficLightPos = Position.CreateGeoPosition(light.Longitude, light.Latidute);
+                ISpatialNode nearestNode = Environment.NearestNode(trafficLightPos);
+
+                // If there is no nearest node found, skip it since this traffic light might then be out of the simulation area
+                if (nearestNode == null)
+                {
+                    continue;
+                }
+
+                TrafficLightsByNode.Add(nearestNode, light);
             }
+
+            Console.WriteLine("Anzahl Nodes: " + Environment.Nodes.Count());
+            Console.WriteLine("Anzahl Ampeln: " + TrafficLightsByNode.Count());
             return true;
         }
 

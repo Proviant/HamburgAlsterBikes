@@ -9,6 +9,7 @@ using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Common;
 using SOHDomain.Steering.Handles;
 using SOHDomain.TrafficLights;
+using SOHTravellingBox.model;
 
 namespace SOHMultimodalModel.Multimodal
 {
@@ -44,7 +45,7 @@ namespace SOHMultimodalModel.Multimodal
         public IMultimodalLayer MultimodalLayer { get; set; }
 
         [PropertyDescription]
-        protected TrafficLightLayer trafficLightLayer { get; set; }
+        public TrafficLightLayer trafficLightLayer { get; set; }
 
         public virtual void Init(TLayer layer)
         {
@@ -64,7 +65,7 @@ namespace SOHMultimodalModel.Multimodal
             set => _position = value;
         }
 
-        public virtual void Move(TrafficLightLayer trafficLightLayer)
+        public virtual void Move()
         {
             if (MultimodalRoute == null || MultimodalRoute.GoalReached) return;
             if (EnterRequired) //start with current route
@@ -87,16 +88,41 @@ namespace SOHMultimodalModel.Multimodal
                 }
             }
 
-            ActiveSteering?.Move(trafficLightLayer);
+            if (IsWaitingAtTrafficLight())
+            {
+                ActiveSteering?.Move();
+            }
 
             if (MultimodalRoute.GoalReached)
             {
-                if (InVehicle &&
-                    !LeaveModalType(MultimodalRoute
-                        .CurrentModalChoice)) // goal reached but vehicle cannot be parked here
+                if (InVehicle && !LeaveModalType(MultimodalRoute.CurrentModalChoice)) // goal reached but vehicle cannot be parked here
                     ReRouteToGoal();
                 if (OnSidewalk) LeaveModalType(MultimodalRoute.CurrentModalChoice);
             }
+        }
+
+        protected virtual bool IsWaitingAtTrafficLight()
+        {
+            // If this vehicle is aimed towards a node containing a traffic light
+            ISpatialNode trafficLightNode = trafficLightLayer.Environment.NearestNode(Position, null, null, 3);
+            if (trafficLightNode == null)
+            {
+                return false;
+            }
+
+            TrafficLight lightSignal = trafficLightLayer.TrafficLightsByNode[trafficLightNode];
+            if (lightSignal == null)
+            {
+                return false;
+            }
+
+            // Come to a hold, if the vehicle is queued up.
+            if (lightSignal.Enter(this) || lightSignal.IsQueued(this))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

@@ -57,8 +57,7 @@ namespace SOHCarModel.Model
 
         public override void Tick()
         {
-            Console.WriteLine("Bewegt ein Auto");
-            _steeringHandle.Move(trafficLightLayer);
+            _steeringHandle.Move();
             if (GoalReached)
             {
                 _environment.Remove(Car);

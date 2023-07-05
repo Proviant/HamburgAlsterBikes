@@ -35,7 +35,7 @@ namespace SOHTravellingBox.model
         CarLightSignalPhase CurrPhase { get; set; }
 
         // The currently waiting agents in front of the signal.
-        Queue<RoadUser> WaitingRoadUsers { get; set; }
+        Queue<IAgent> WaitingRoadUsers { get; set; }
 
         public TrafficLight()
         {
@@ -45,7 +45,7 @@ namespace SOHTravellingBox.model
         {
             this.CurrTime = 0;
             this.CurrPhase = CarLightSignalPhase.GREEN;
-            this.WaitingRoadUsers = new Queue<RoadUser>();
+            this.WaitingRoadUsers = new Queue<IAgent>();
             this.TrafficLightLayer = layer;
         }
 
@@ -54,6 +54,16 @@ namespace SOHTravellingBox.model
         ///  Advances the clock inside the light signal and allows it to switch to green or red over time.
         /// </summary>
         public void Tick()
+        {
+            UpdateTime();
+            CheckQueue();
+        }
+
+        ///
+        /// <summary>
+        ///  Method which is called to advance the traffic light clock.
+        /// </summary>
+        private void UpdateTime()
         {
             CurrTime++;
 
@@ -69,21 +79,25 @@ namespace SOHTravellingBox.model
                     CurrPhase = CarLightSignalPhase.GREEN;
                 }
             }
+        }
 
-            // Retrieve RoadUser at the front of the queue
-            RoadUser roadUser = null;
+        ///
+        /// <summary>
+        ///  Updates the 
+        /// </summary>
+        private void CheckQueue()
+        {
+            // Retrieve IAgent at the front of the queue
+            IAgent IAgent = null;
             if (WaitingRoadUsers.Count > 0)
             {
-                roadUser = WaitingRoadUsers.Peek();
+                IAgent = WaitingRoadUsers.Peek();
             }
 
-            // If the leading RoadUser is not on this road anymore, dequeue.
-            if (IsQueued(roadUser) && !IsOnSameRoad(roadUser))
+            // If the leading IAgent is not on this road anymore, dequeue.
+            if (IsQueued(IAgent))
             {
-                if (WaitingRoadUsers.Count > 0)
-                {
-                    WaitingRoadUsers.Dequeue();
-                }
+                WaitingRoadUsers.Dequeue();
             }
         }
 
@@ -91,12 +105,12 @@ namespace SOHTravellingBox.model
         /// <summary>
         ///  Enters the LightSignal queue if possible - Meaning a red light, too many cars or not in queue already. Returns true if possible, false otherwise.
         /// </summary>
-        public Boolean Enter(RoadUser RoadUser)
+        public Boolean Enter(IAgent IAgent)
         {
             // If there is a queue in front of the light signal OR there is a non-passable signal being displayed, then queue the agent.
-            if (IsOnSameRoad(RoadUser) && !CanPass(RoadUser) && !IsQueued(RoadUser))
+            if (!CanPass(IAgent) && !IsQueued(IAgent))
             {
-                this.WaitingRoadUsers.Enqueue(RoadUser);
+                this.WaitingRoadUsers.Enqueue(IAgent);
                 return true;
             }
 
@@ -105,48 +119,22 @@ namespace SOHTravellingBox.model
 
         ///
         /// <summary>
-        ///  Checks, if the RoadUser can pass this light signal. Yes if: The light signal is on the opposite side of the street or the current phase is green and
-        ///  the RoadUser is the only one in queue OR at the head of the queue.
+        ///  Checks, if the IAgent can pass this light signal. Yes if: The light signal is on the opposite side of the street or the current phase is green and
+        ///  the IAgent is the only one in queue OR at the head of the queue.
         /// </summary>
-        public Boolean CanPass(RoadUser RoadUser)
+        public Boolean CanPass(IAgent IAgent)
         {
-            return (Convert.ToBoolean(this.CurrPhase) && (WaitingRoadUsers.Count == 0 || WaitingRoadUsers.Peek().Equals(RoadUser)));
+            return ((this.CurrPhase.Equals(TrafficLightPhase.Green) || this.CurrPhase.Equals(TrafficLightPhase.Yellow))
+            && (WaitingRoadUsers.Count == 0 || WaitingRoadUsers.Peek().Equals(IAgent)));
         }
 
         ///
         /// <summary>
-        ///  Checks, if the RoadUser is on the same road as the lightsignal.
+        ///  Checks, if the IAgent is already waiting.
         /// </summary>
-        public Boolean IsOnSameRoad(RoadUser RoadUser)
+        public Boolean IsQueued(IAgent IAgent)
         {
-            if (RoadUser == null)
-            {
-                return false;
-            }
-
-            ISpatialEdge EdgeRoadUser = RoadUser.CurrentEdge;
-            ISpatialNode OwnNearestNode = TrafficLightLayer.Environment.NearestNode(new Position(Longitude, Latidute));
-
-            // Iterate over all streets towards the node / traffic light. 
-            foreach (KeyValuePair<int, ISpatialEdge> Pair in OwnNearestNode.IncomingEdges)
-            {
-                // If any incoming edge / street matches, then this traffic signal is on the same road.
-                if (Pair.Value.Equals(EdgeRoadUser))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        ///
-        /// <summary>
-        ///  Checks, if the RoadUser is already waiting.
-        /// </summary>
-        public Boolean IsQueued(RoadUser RoadUser)
-        {
-            return WaitingRoadUsers.Contains(RoadUser);
+            return WaitingRoadUsers.Contains(IAgent);
         }
     }
 }

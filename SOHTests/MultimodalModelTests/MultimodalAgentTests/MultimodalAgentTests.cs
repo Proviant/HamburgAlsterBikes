@@ -112,7 +112,7 @@ namespace SOHTests.MultimodalModelTests.MultimodalAgentTests
 
             var route = environment.FindRoute(fourNodeGraphEnv.Node1, fourNodeGraphEnv.Node2);
             _agent.MultimodalRoute = new MultimodalRoute(route, ModalChoice.Walking);
-            _agent.Move(null);
+            _agent.Move();
             Assert.Equal(Whereabouts.Sidewalk, _agent.Whereabouts);
 
             var car = new TestCarWithoutRangeCheck(environment);

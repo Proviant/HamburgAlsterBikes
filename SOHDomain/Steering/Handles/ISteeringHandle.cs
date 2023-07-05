@@ -32,6 +32,6 @@ namespace SOHDomain.Steering.Handles
         /// <summary>
         ///     Provides the possibility to tick the moving road user.
         /// </summary>
-        void Move(TrafficLightLayer trafficLightLayer);
+        void Move();
     }
 }

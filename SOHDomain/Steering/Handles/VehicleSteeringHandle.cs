@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using Mars.Common;
 using Mars.Components.Environments;
@@ -59,7 +60,7 @@ namespace SOHDomain.Steering.Handles
         public double Velocity => Vehicle.Velocity;
         public bool GoalReached => Route?.GoalReached ?? true;
 
-        public virtual void Move(TrafficLightLayer trafficLightLayer)
+        public virtual void Move()
         {
             if (GoalReached || Vehicle.CurrentEdge == null && !MoveFromNodeSuccessfully()) return;
 
@@ -70,7 +71,6 @@ namespace SOHDomain.Steering.Handles
             deceleration = HandleBraking(deceleration);
             deceleration = HandleIntersectionAhead(exploreResult, deceleration);
             deceleration = HandleVehiclesAhead(exploreResult, deceleration);
-            deceleration = HandleTrafficLights(exploreResult, deceleration, trafficLightLayer);
             var drivingDistance = CalculateDrivingDistance(deceleration);
             PerformMoveAction(drivingDistance);
         }
@@ -288,28 +288,6 @@ namespace SOHDomain.Steering.Handles
             var speedChange = CalculateSpeedChange(Vehicle.Velocity, MaxSpeed,
                 FreeDrivingClearanceInM, SpeedLimit, 0);
             return Vehicle.Velocity + speedChange;
-        }
-
-        protected virtual double HandleTrafficLights(SpatialGraphExploreResult exploreResult, double biggestDeceleration, TrafficLightLayer trafficLightLayer)
-        {
-            if (trafficLightLayer == null)
-            {
-                return 0;
-            }
-
-            // If this vehicle is aimed towards a node containing a traffic light
-            TrafficLight lightSignal = trafficLightLayer.TrafficLightsByPos[Vehicle.CurrentEdge.To.Position];
-            if (lightSignal == null)
-            {
-                return 0;
-            }
-
-            // And the traffic light queue is not occupied OR there is no traffic light
-            Boolean canPass = lightSignal != null && !lightSignal.Enter(Vehicle) && !lightSignal.IsQueued(Vehicle);
-            // Then continue on or start decelerating
-
-            Console.WriteLine("Tested it!");
-            return canPass ? 0 : biggestDeceleration;
         }
 
         private void PerformMoveAction(double distance)

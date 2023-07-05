@@ -4,6 +4,8 @@ using Mars.Common.Core.Random;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
 using SOHBicycleModel.Parking;
+using SOHDomain.TrafficLights;
+using SOHMultimodalModel.Layers.TrafficLight;
 
 namespace SOHMultimodalModel.Model
 {
@@ -12,7 +14,7 @@ namespace SOHMultimodalModel.Model
     /// </summary>
     public class HumanTraveler : Traveler<HumanTravelerLayer>
     {
-        private ISet<ModalChoice> _choices;
+        protected ISet<ModalChoice> _choices;
 
         [PropertyDescription]
         public IBicycleParkingLayer BicycleParkingLayer { get; set; }

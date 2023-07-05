@@ -24,6 +24,7 @@ using SOHMultimodalModel.Multimodal;
 using SOHMultimodalModel.Routing;
 using SOHTrainModel.Station;
 using SOHTrainModel.Steering;
+using SOHTravellingBox.model;
 
 namespace SOHMultimodalModel.Model
 {
@@ -228,9 +229,9 @@ namespace SOHMultimodalModel.Model
             }
         }
 
-        public override void Move(TrafficLightLayer trafficLightLayer)
+        public override void Move()
         {
-            base.Move(trafficLightLayer);
+            base.Move();
             StoreRouteResultIfNecessary();
         }
 

@@ -52,7 +52,7 @@ namespace SOHTests.Commons.Agent
 
         public override void Tick()
         {
-            Move(null);
+            Move();
             TripsCollection.Add(ModalChoice, Position);
         }
 
