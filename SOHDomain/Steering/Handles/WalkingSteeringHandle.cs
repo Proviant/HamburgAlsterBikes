@@ -106,5 +106,10 @@ namespace SOHDomain.Steering.Handles
             var distanceToGoal = Route.RemainingRouteDistanceToGoal;
             return Math.Min(distanceToMove, distanceToGoal);
         }
+
+        public void Break()
+        {
+            WalkingShoes.Driver.BrakingActivated = true;
+        }
     }
 }

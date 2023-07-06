@@ -5,6 +5,7 @@ using Mars.Components.Agents;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
 using Mars.Interfaces.Layers;
+using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Common;
 using SOHFerryModel.Route;
 using SOHFerryModel.Steering;
@@ -170,6 +171,12 @@ namespace SOHFerryModel.Model
         private readonly UnregisterAgent _unregister;
         private long _departureTick;
         private ISpatialGraphEnvironment Environment => Layer.GraphEnvironment;
+
+        bool ISteeringCapable.BrakingActivated
+        {
+            get { return Ferry.Driver.BrakingActivated; }
+            set { Ferry.Driver.BrakingActivated = value; }
+        }
 
         private IEnumerator<FerryRouteEntry> _ferryRouteEnumerator;
 

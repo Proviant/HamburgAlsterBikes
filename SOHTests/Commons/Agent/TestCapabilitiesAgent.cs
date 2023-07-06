@@ -9,6 +9,7 @@ using SOHBicycleModel.Model;
 using SOHBicycleModel.Steering;
 using SOHCarModel.Model;
 using SOHCarModel.Steering;
+using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Common;
 
 namespace SOHTests.Commons.Agent
@@ -50,5 +51,6 @@ namespace SOHTests.Commons.Agent
 
         public Guid ID { get; set; }
         public ISet<ModalChoice> ModalChoices { get; }
+        bool ISteeringCapable.BrakingActivated { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

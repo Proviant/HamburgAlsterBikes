@@ -33,5 +33,11 @@ namespace SOHDomain.Steering.Handles
         ///     Provides the possibility to tick the moving road user.
         /// </summary>
         void Move();
+
+
+        /// <summary>
+        ///     Provides the possibility to break / slow down.
+        /// </summary>
+        void Break();
     }
 }

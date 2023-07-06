@@ -5,6 +5,7 @@ using Mars.Components.Agents;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
 using Mars.Interfaces.Layers;
+using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Common;
 using SOHTrainModel.Route;
 using SOHTrainModel.Steering;
@@ -178,6 +179,8 @@ namespace SOHTrainModel.Model
         private readonly UnregisterAgent _unregister;
         private long _departureTick;
         private ISpatialGraphEnvironment Environment => Layer.GraphEnvironment;
+
+        bool ISteeringCapable.BrakingActivated { get; set; }
 
         private IEnumerator<TrainRouteEntry> _trainRouteEnumerator;
 

@@ -8,6 +8,7 @@ using Mars.Interfaces.Model.Options;
 using SOHBicycleModel.Model;
 using SOHCarModel.Model;
 using SOHCarModel.Steering;
+using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Common;
 using Xunit;
 
@@ -211,5 +212,6 @@ namespace SOHTests.CarModelTests.OvertakingTests
         public bool BrakingActivated => false;
         public bool CurrentlyCarDriving => true;
         public Car Car { get; }
+        bool ISteeringCapable.BrakingActivated { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

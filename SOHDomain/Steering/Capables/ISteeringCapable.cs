@@ -14,6 +14,6 @@ namespace SOHDomain.Steering.Capables
         /// <summary>
         ///     Determines if the driver did a brake. So the Vehicle comes to a stop.
         /// </summary>
-        bool BrakingActivated { get; }
+        bool BrakingActivated { get; set; }
     }
 }

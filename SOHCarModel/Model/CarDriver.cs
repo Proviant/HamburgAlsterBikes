@@ -6,6 +6,7 @@ using Mars.Interfaces.Environments;
 using Mars.Interfaces.Layers;
 using SOHCarModel.Common;
 using SOHCarModel.Steering;
+using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Common;
 using SOHDomain.TrafficLights;
 
@@ -147,6 +148,11 @@ namespace SOHCarModel.Model
         {
             get => Car.TrafficCode;
             set => Car.TrafficCode = value;
+        }
+        bool ISteeringCapable.BrakingActivated
+        {
+            get { return Car.Driver.BrakingActivated; }
+            set { Car.Driver.BrakingActivated = value; }
         }
 
         #endregion

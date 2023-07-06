@@ -88,10 +88,7 @@ namespace SOHMultimodalModel.Multimodal
                 }
             }
 
-            if (IsWaitingAtTrafficLight())
-            {
-                ActiveSteering?.Move();
-            }
+            ActiveSteering?.Move();
 
             if (MultimodalRoute.GoalReached)
             {

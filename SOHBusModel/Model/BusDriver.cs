@@ -7,6 +7,7 @@ using Mars.Interfaces.Environments;
 using Mars.Interfaces.Layers;
 using SOHBusModel.Route;
 using SOHBusModel.Steering;
+using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Common;
 
 namespace SOHBusModel.Model
@@ -170,6 +171,12 @@ namespace SOHBusModel.Model
         private readonly UnregisterAgent _unregister;
         private long _departureTick;
         private ISpatialGraphEnvironment Environment => Layer.GraphEnvironment;
+
+        bool ISteeringCapable.BrakingActivated
+        {
+            get { return Bus.Driver.BrakingActivated; }
+            set { Bus.Driver.BrakingActivated = value; }
+        }
 
         private IEnumerator<BusRouteEntry> _busRouteEnumerator;
 

@@ -58,6 +58,8 @@ namespace SOHTests.DomainTests.VehicleTests
         public bool OvertakingActivated => false;
         public bool BrakingActivated => false;
         public bool CurrentlyCarDriving => Car?.Driver.Equals(this) ?? false;
+
+        bool ISteeringCapable.BrakingActivated { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
     }
 
     internal sealed class TestCarWithoutRangeCheck : Car

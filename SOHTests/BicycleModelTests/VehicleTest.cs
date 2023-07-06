@@ -14,6 +14,7 @@ using SOHBicycleModel.Model;
 using SOHBicycleModel.Rental;
 using SOHBicycleModel.Steering;
 using SOHDomain.Graph;
+using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Common;
 using Xunit;
 using Position = Mars.Interfaces.Environments.Position;
@@ -76,7 +77,7 @@ namespace SOHTests.BicycleModelTests
             if (Bicycle != null && passengerMessage.Equals(PassengerMessage.NoDriver))
             {
                 //todo
-//                Assert.Null(Vehicle. Driver);
+                //                Assert.Null(Vehicle. Driver);
             }
         }
 
@@ -88,6 +89,7 @@ namespace SOHTests.BicycleModelTests
 
         public double Mass { get; } = 80;
         public double Gradient { get; } = 0;
+        bool ISteeringCapable.BrakingActivated { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
     }
 
     internal class TestBicycle : Bicycle

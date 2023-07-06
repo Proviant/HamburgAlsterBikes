@@ -231,6 +231,35 @@ namespace SOHMultimodalModel.Model
 
         public override void Move()
         {
+            if (IsWaitingAtTrafficLight())
+            {
+                switch (MultimodalRoute.CurrentModalChoice)
+                {
+                    case ModalChoice.Walking:
+                        if (_walkingShoes == null || _walkingShoes.Driver == null) break;
+                        _walkingShoes.Driver.BrakingActivated = true;
+                        break;
+                    case ModalChoice.CarDriving:
+                    case ModalChoice.CarRentalDriving:
+                        if (Car == null || Car.Driver == null) break;
+                        Car.Driver.BrakingActivated = true;
+                        break;
+                    case ModalChoice.CyclingOwnBike:
+                        if (Bicycle == null || Bicycle.Driver == null) break;
+                        Bicycle.Driver.BrakingActivated = true;
+                        break;
+                    case ModalChoice.CyclingRentalBike:
+                        if (RentalBicycle == null || RentalBicycle.Driver == null) break;
+                        RentalBicycle.Driver.BrakingActivated = true;
+                        break;
+                    case ModalChoice.Ferry:
+                    case ModalChoice.Train:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+
             base.Move();
             StoreRouteResultIfNecessary();
         }
@@ -521,7 +550,7 @@ namespace SOHMultimodalModel.Model
 
 
         [PropertyDescription(Ignore = true)] public bool OvertakingActivated { get; set; }
-        public bool BrakingActivated { get; }
+        public bool BrakingActivated { get; set; }
 
         [PropertyDescription] public bool CurrentlyCarDriving => Car?.Driver?.Equals(this) ?? false;
 
