@@ -35,10 +35,5 @@ namespace SOHDomain.Steering.Handles
         {
             //do nothing, the vehicle is moving without the influence of the passengerCapable
         }
-
-        public void Break()
-        {
-            // do nothing, the vehicle is braking without the intereference of the passencerCapable.
-        }
     }
 }

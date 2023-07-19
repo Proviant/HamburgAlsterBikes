@@ -4,6 +4,7 @@ using Mars.Common.Core.Random;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
 using SOHBicycleModel.Parking;
+using SOHBicycleModel.Rental;
 using SOHDomain.TrafficLights;
 using SOHMultimodalModel.Layers.TrafficLight;
 
@@ -14,7 +15,7 @@ namespace SOHMultimodalModel.Model
     /// </summary>
     public class HumanTraveler : Traveler<HumanTravelerLayer>
     {
-        protected ISet<ModalChoice> _choices;
+        private ISet<ModalChoice> _choices;
 
         [PropertyDescription]
         public IBicycleParkingLayer BicycleParkingLayer { get; set; }
@@ -30,18 +31,44 @@ namespace SOHMultimodalModel.Model
             _choices.Add(ModalChoice.Walking);
 
             const int radiusInM = 100;
-            if (_choices.Contains(ModalChoice.CyclingOwnBike) && BicycleParkingLayer != null)
-                Bicycle = BicycleParkingLayer.CreateOwnBicycleNear(StartPosition, radiusInM, UsesBikeAndRide);
-
-            if (_choices.Contains(ModalChoice.CarDriving) && CarParkingLayer != null)
-            {
-                Car = CarParkingLayer.CreateOwnCarNear(StartPosition, radiusInM);
-            }
+            Bicycle = BicycleParkingLayer.CreateOwnBicycleNear(StartPosition, radiusInM, UsesBikeAndRide);
+            Car = CarParkingLayer.CreateOwnCarNear(StartPosition, radiusInM);
         }
 
         protected override IEnumerable<ModalChoice> ModalChoices()
         {
             return _choices;
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+
+            if (IsWaitingAtTrafficLight())
+            {
+                BrakingActivated = true;
+                switch (MultimodalRoute.CurrentModalChoice)
+                {
+                    case ModalChoice.Walking:
+                        BrakingActivated = true;
+                        break;
+                    case ModalChoice.CarDriving:
+                    case ModalChoice.CarRentalDriving:
+                        Car.Driver.BrakingActivated = true;
+                        break;
+                    case ModalChoice.CyclingOwnBike:
+                        Bicycle.Driver.BrakingActivated = true;
+                        break;
+                    case ModalChoice.CyclingRentalBike:
+                        RentalBicycle.Driver.BrakingActivated = true;
+                        break;
+                    case ModalChoice.Ferry:
+                    case ModalChoice.Train:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
         }
 
         #region input

@@ -35,7 +35,7 @@ namespace SOHTravellingBox
         public static void Main(string[] args)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("EN-US");
-            LoggerFactory.SetLogLevel(LogLevel.Warning);
+            LoggerFactory.SetLogLevel(LogLevel.Info);
 
             var description = new ModelDescription();
 
@@ -65,6 +65,7 @@ namespace SOHTravellingBox
             // description.AddAgent<CycleTraveler, CycleTravelerLayer>();
             // description.AddAgent<CarTraveler, CarTravelerLayer>();
             description.AddAgent<HumanTraveler, HumanTravelerLayer>();
+            description.AddAgent<BicycleLeader, HumanTravelerLayer>();
             description.AddAgent<TrafficLight, TrafficLightLayer>();
             description.AddEntity<Bicycle>();
             description.AddEntity<RentalBicycle>();

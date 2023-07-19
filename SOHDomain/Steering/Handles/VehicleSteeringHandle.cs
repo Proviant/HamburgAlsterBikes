@@ -439,11 +439,6 @@ namespace SOHDomain.Steering.Handles
                 }
             }
         }
-
-        public void Break()
-        {
-            Vehicle.Driver.BrakingActivated = true;
-        }
     }
 
     internal sealed class RoadBlocker : RoadUser
