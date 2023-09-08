@@ -101,7 +101,7 @@ namespace SOHMultimodalModel.Multimodal
         protected virtual bool IsWaitingAtTrafficLight()
         {
             // If this vehicle is aimed towards a node containing a traffic light
-            ISpatialNode trafficLightNode = trafficLightLayer.Environment.NearestNode(Position, null, null, 3);
+            ISpatialNode trafficLightNode = trafficLightLayer.Environment.NearestNode(Position, null, null, 1);
             if (trafficLightNode == null)
             {
                 return false;

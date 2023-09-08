@@ -42,33 +42,40 @@ namespace SOHMultimodalModel.Model
 
         public override void Tick()
         {
-            base.Tick();
-
             if (IsWaitingAtTrafficLight())
             {
                 BrakingActivated = true;
-                switch (MultimodalRoute.CurrentModalChoice)
+
+                if (MultimodalRoute != null)
                 {
-                    case ModalChoice.Walking:
-                        BrakingActivated = true;
-                        break;
-                    case ModalChoice.CarDriving:
-                    case ModalChoice.CarRentalDriving:
-                        Car.Driver.BrakingActivated = true;
-                        break;
-                    case ModalChoice.CyclingOwnBike:
-                        Bicycle.Driver.BrakingActivated = true;
-                        break;
-                    case ModalChoice.CyclingRentalBike:
-                        RentalBicycle.Driver.BrakingActivated = true;
-                        break;
-                    case ModalChoice.Ferry:
-                    case ModalChoice.Train:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
+                    switch (MultimodalRoute.CurrentModalChoice)
+                    {
+                        case ModalChoice.Walking:
+                            BrakingActivated = true;
+                            break;
+                        case ModalChoice.CarDriving:
+                        case ModalChoice.CarRentalDriving:
+                            if (Car.Driver == null) break;
+                            Car.Driver.BrakingActivated = true;
+                            break;
+                        case ModalChoice.CyclingOwnBike:
+                            if (Bicycle.Driver == null) break;
+                            Bicycle.Driver.BrakingActivated = true;
+                            break;
+                        case ModalChoice.CyclingRentalBike:
+                            if (RentalBicycle.Driver == null) break;
+                            RentalBicycle.Driver.BrakingActivated = true;
+                            break;
+                        case ModalChoice.Ferry:
+                        case ModalChoice.Train:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
                 }
             }
+
+            base.Tick();
         }
 
         #region input

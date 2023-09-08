@@ -12,6 +12,22 @@ namespace SOHMultimodalModel.Model
         {
             Queue<Position> stops = new Queue<Position>();
 
+            stops.Enqueue(new Position(9.992039, 53.553669));
+            stops.Enqueue(new Position(9.987881, 53.555613));
+            stops.Enqueue(new Position(9.990386, 53.559870));
+            stops.Enqueue(new Position(9.994812, 53.565207));
+            stops.Enqueue(new Position(10.002708, 53.587041));
+            stops.Enqueue(new Position(10.016785, 53.565280));
+            stops.Enqueue(new Position(10.000632, 53.555887));
+            stops.Enqueue(new Position(9.992103, 53.553624));
+
+            return stops;
+        }
+
+        public static Queue<Position> GetOldRoute()
+        {
+            Queue<Position> stops = new Queue<Position>();
+
             stops.Enqueue(new Position(9.99175, 53.55397));
             stops.Enqueue(new Position(9.99121, 53.55428));
             stops.Enqueue(new Position(9.9911, 53.55433));

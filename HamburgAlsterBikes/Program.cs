@@ -53,6 +53,7 @@ namespace SOHTravellingBox
             // All agent layers
             description.AddLayer<TrafficLightLayer>("TrafficLightLayer");
             description.AddLayer<HumanTravelerLayer>("HumanTravelerLayer");
+            description.AddLayer<BicycleLeaderLayer>("BicycleLeaderLayer");
             // description.AddLayer<CarLayer>();
             // description.AddLayer<CycleTravelerLayer>();
             // description.AddLayer<CarTravelerLayer>();
@@ -65,7 +66,7 @@ namespace SOHTravellingBox
             // description.AddAgent<CycleTraveler, CycleTravelerLayer>();
             // description.AddAgent<CarTraveler, CarTravelerLayer>();
             description.AddAgent<HumanTraveler, HumanTravelerLayer>();
-            description.AddAgent<BicycleLeader, HumanTravelerLayer>();
+            description.AddAgent<BicycleLeader, BicycleLeaderLayer>();
             description.AddAgent<TrafficLight, TrafficLightLayer>();
             description.AddEntity<Bicycle>();
             description.AddEntity<RentalBicycle>();

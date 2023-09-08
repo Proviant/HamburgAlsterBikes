@@ -8,94 +8,66 @@ using SOHMultimodalModel.Model;
 
 namespace SOHBicycleModel.Model
 {
-    public class BicycleLeader : Traveler<HumanTravelerLayer>
+    public class BicycleLeader : HumanTraveler
     {
-        #region input
-        [PropertyDescription(Name = "hasBike")]
-        public double HasBike { get; set; }
-
-        [PropertyDescription(Name = "hasCar")]
-        public double HasCar
-        {
-            get { return 0.0; }
-            set { }
-        }
-
-        [PropertyDescription(Name = "prefersBike")]
-        public double PrefersBike { get; set; }
-
-        [PropertyDescription(Name = "prefersCar")]
-        public double PrefersCar
-        {
-            get { return 0.0; }
-            set { }
-        }
-
-        [PropertyDescription(Name = "usesBikeAndRide")]
-        public double UsesBikeAndRide { get; set; }
-
-        [PropertyDescription(Name = "usesOwnBikeOutside")]
-        public double UsesOwnBikeOutside { get; set; }
-
-        [PropertyDescription(Name = "usesOwnCar")]
-        public double UsesOwnCar
-        {
-            get { return 0.0; }
-            set { }
-        }
-        #endregion
-
-
         protected ISet<ModalChoice> _choices;
         private Queue<Position> stops { get; set; }
-
-        [PropertyDescription]
-        public IBicycleParkingLayer BicycleParkingLayer { get; set; }
-
-        private List<Position> GoalPositions { get; set; }
 
         public override void Init(HumanTravelerLayer layer)
         {
             base.Init(layer);
-            Console.WriteLine("Initialisiert zumindest.");
 
             Gender = (GenderType)RandomHelper.Random.Next(0, 2);
-            GoalPositions = new List<Position>();
             OvertakingActivated = false;
 
             _choices = new ModalityChooser().Evaluate(this);
-            _choices.Add(ModalChoice.Walking);
 
             stops = BicycleLeaderRoute.GetRoute();
 
             StartPosition = stops.Dequeue();
             GoalPosition = stops.Dequeue();
 
-            const int radiusInM = 100;
+            const int radiusInM = 1;
             if (_choices.Contains(ModalChoice.CyclingOwnBike) && BicycleParkingLayer != null)
-                Bicycle = BicycleParkingLayer.CreateOwnBicycleNear(StartPosition, radiusInM, UsesBikeAndRide);
+                Bicycle = BicycleParkingLayer.CreateOwnBicycleNear(StartPosition, radiusInM, 1.0);
 
         }
 
         public override void Tick()
         {
-            MultimodalRoute ??= FindMultimodalRoute();
-
+            getNextRoute();
             base.Move();
+
+            if (IsWaitingAtTrafficLight())
+            {
+                Console.WriteLine(MultimodalLayer.GetCurrentTick() + " - Angehalten.");
+                MultimodalLayer.UnregisterAgent(MultimodalLayer, this);
+            }
 
             if (GoalReached)
             {
                 if (stops.Count == 0)
                 {
+                    Console.WriteLine(MultimodalLayer.GetCurrentTick() + " - Grüne Welle!");
                     MultimodalLayer.UnregisterAgent(MultimodalLayer, this);
                 }
                 else
                 {
-                    StartPosition = GoalPosition;
-                    GoalPosition = stops.Dequeue();
-                    MultimodalRoute = FindMultimodalRoute();
+                    getNextStopAndRoute();
                 }
             }
+        }
+
+        private void getNextStopAndRoute()
+        {
+            StartPosition = GoalPosition;
+            GoalPosition = stops.Dequeue();
+            getNextRoute();
+        }
+
+        private void getNextRoute()
+        {
+            MultimodalRoute ??= MultimodalLayer.Search(this, StartPosition, GoalPosition, _choices);
         }
     }
 
@@ -103,13 +75,7 @@ namespace SOHBicycleModel.Model
     {
         public ISet<ModalChoice> Evaluate(BicycleLeader attributes)
         {
-            if (RandomHelper.Random.NextDouble() < attributes.HasBike)
-                return new HashSet<ModalChoice> { ModalChoice.CyclingOwnBike };
-
-            if (RandomHelper.Random.NextDouble() < attributes.PrefersBike)
-                return new HashSet<ModalChoice> { ModalChoice.CyclingRentalBike };
-
-            return new HashSet<ModalChoice> { ModalChoice.Walking };
+            return new HashSet<ModalChoice> { ModalChoice.CyclingOwnBike, ModalChoice.CyclingRentalBike };
         }
     }
 }

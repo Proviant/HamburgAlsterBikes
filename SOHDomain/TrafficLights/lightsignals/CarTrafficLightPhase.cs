@@ -12,6 +12,6 @@ namespace SOHTravellingBox.model.Data
     {
         RED = 0,
         YELLOW = 1,
-        GREEN = 1
+        GREEN = 2
     }
 }

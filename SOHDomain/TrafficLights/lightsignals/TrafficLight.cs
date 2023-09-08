@@ -7,6 +7,8 @@ using SOHDomain.Model;
 using Mars.Interfaces.Annotations;
 using SOHDomain.TrafficLights.layers;
 using SOHDomain.TrafficLights;
+using System.Collections;
+using Mars.Numerics;
 
 namespace SOHTravellingBox.model
 {
@@ -24,10 +26,8 @@ namespace SOHTravellingBox.model
         Guid IEntity.ID { get; set; }
 
         // The waiting time in seconds, when the light signal is red / impassable
-        [PropertyDescription(Name = "LengthPhaseRed")]
         int LengthPhaseRed { get; set; }
         // The allowed-to-move time in seconds, when the light signal is green / passable.
-        [PropertyDescription(Name = "LengthPhaseGreen")]
         int LengthPhaseGreen { get; set; }
         // The already waited time in the current phase.
         int CurrTime { get; set; }
@@ -37,16 +37,23 @@ namespace SOHTravellingBox.model
         // The currently waiting agents in front of the signal.
         Queue<IAgent> WaitingRoadUsers { get; set; }
 
+        IDictionary<IAgent, int> WaitingTimes;
+
         public TrafficLight()
         {
         }
 
         public void Init(TrafficLightLayer layer)
         {
-            this.CurrTime = 0;
-            this.CurrPhase = CarLightSignalPhase.GREEN;
-            this.WaitingRoadUsers = new Queue<IAgent>();
-            this.TrafficLightLayer = layer;
+            Random r = new();
+            CurrPhase = CarLightSignalPhase.GREEN;
+            WaitingRoadUsers = new();
+            TrafficLightLayer = layer;
+            WaitingTimes = new Dictionary<IAgent, int>();
+
+            LengthPhaseGreen = 35;
+            LengthPhaseRed = 40;
+            CurrTime = r.Next(0, LengthPhaseGreen + LengthPhaseRed);
         }
 
         ///
@@ -71,13 +78,12 @@ namespace SOHTravellingBox.model
             if (CurrTime > LengthPhaseGreen)
             {
                 CurrPhase = CarLightSignalPhase.RED;
-
-                // But if the red phase time limit is also exceeded, turn time back to start (0).
-                if (CurrTime >= LengthPhaseGreen + LengthPhaseRed)
-                {
-                    CurrTime = 0;
-                    CurrPhase = CarLightSignalPhase.GREEN;
-                }
+            }
+            // But if the red phase time limit is also exceeded, turn time back to start (0).
+            if (CurrTime >= LengthPhaseGreen + LengthPhaseRed)
+            {
+                CurrTime = 0;
+                CurrPhase = CarLightSignalPhase.GREEN;
             }
         }
 
@@ -98,6 +104,7 @@ namespace SOHTravellingBox.model
             if (IsQueued(IAgent))
             {
                 WaitingRoadUsers.Dequeue();
+                WaitingTimes.Remove(IAgent);
             }
         }
 
@@ -124,8 +131,8 @@ namespace SOHTravellingBox.model
         /// </summary>
         public Boolean CanPass(IAgent IAgent)
         {
-            return ((this.CurrPhase.Equals(TrafficLightPhase.Green) || this.CurrPhase.Equals(TrafficLightPhase.Yellow))
-            && (WaitingRoadUsers.Count == 0 || WaitingRoadUsers.Peek().Equals(IAgent)));
+            return (this.CurrPhase.Equals(TrafficLightPhase.Green) || this.CurrPhase.Equals(TrafficLightPhase.Yellow))
+            && (WaitingRoadUsers.Count == 0 || WaitingRoadUsers.Peek().Equals(IAgent));
         }
 
         ///
@@ -134,6 +141,7 @@ namespace SOHTravellingBox.model
         /// </summary>
         public Boolean IsQueued(IAgent IAgent)
         {
+            if (IAgent == null) return false;
             return WaitingRoadUsers.Contains(IAgent);
         }
     }

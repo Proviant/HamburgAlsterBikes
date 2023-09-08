@@ -75,15 +75,6 @@ namespace SOHDomain.TrafficLights
             return true;
         }
 
-        ///
-        /// <summary>
-        ///    Retrieves the nearest traffic light at the given position.
-        /// </summary>
-        public TrafficLight GetNearestTrafficLight(Position position)
-        {
-            return null;
-        }
-
         public void Tick()
         {
             // Advance each traffic light by one second

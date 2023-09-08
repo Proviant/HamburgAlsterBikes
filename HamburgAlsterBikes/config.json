@@ -3,29 +3,23 @@
   "globals": {
     "deltaT": 1,
     "startPoint": "2023-06-29T00:00:00",
-    "endPoint": "2023-06-29T01:59:59",
+    "endPoint": "2023-06-29T05:59:59",
     "deltaTUnit": "seconds",
-    "output": "geojson",
     "console": false
   },
   "agents": [
     {
       "name": "HumanTraveler",
-      "outputs": [
-        {
-          "kind": "trips",
-          "outputConfiguration": {
-            "tripsFields": ["StableId"]
-          }
-        }
-      ],
       "individual": [
         {"value": true, "parameter": "ResultTrajectoryEnabled"}
       ]
     },
     {
       "name": "BicycleLeader",
-      "file": "resources/human_traveler_bicycle.csv",
+      "output": "csv",
+      "individual": [
+        {"value": true, "parameter": "ResultTrajectoryEnabled"}
+      ],
       "outputs": [
         {
           "kind": "trips",
@@ -33,9 +27,6 @@
             "tripsFields": ["StableId"]
           }
         }
-      ],
-      "individual": [
-        {"value": true, "parameter": "ResultTrajectoryEnabled"}
       ]
     },
     {
@@ -78,6 +69,7 @@
     {"name": "HumanTravelerLayer", "file": "resources/human_traveler_bicycle.csv", "output": "geojson"},
     {"name": "CarSchedulingLayer", "file": "resources/human_traveler_car.csv", "output": "geojson"},
     {"name": "BicycleSchedulingLayer", "file": "resources/human_traveler_bicycle.csv", "output": "geojson"},
+    {"name": "BicycleLeaderLayer", "file": "resources/bicycle-leader.csv", "output": "csv"},
     {"name": "TrafficLightLayer", "file": "resources/trafficlights.csv"}
   ],
   "entities": [
