@@ -1,3 +1,4 @@
+using Internal;
 using System.Collections.Generic;
 using Mars.Interfaces.Agents;
 using SOHTravellingBox.model.Data;
@@ -9,6 +10,7 @@ using SOHDomain.TrafficLights.layers;
 using SOHDomain.TrafficLights;
 using System.Collections;
 using Mars.Numerics;
+using ServiceStack;
 
 namespace SOHTravellingBox.model
 {
@@ -27,6 +29,8 @@ namespace SOHTravellingBox.model
 
         // The waiting time in seconds, when the light signal is red / impassable
         int LengthPhaseRed { get; set; }
+        // The allowed-to-move time in seconds, when the light signal is yellow / passable.
+        int LengthPhaseYellow { get; set; }
         // The allowed-to-move time in seconds, when the light signal is green / passable.
         int LengthPhaseGreen { get; set; }
         // The already waited time in the current phase.
@@ -37,10 +41,10 @@ namespace SOHTravellingBox.model
         // The currently waiting agents in front of the signal.
         Queue<IAgent> WaitingRoadUsers { get; set; }
 
-        IDictionary<IAgent, int> WaitingTimes;
-
         public TrafficLight()
         {
+            CurrPhase = CarLightSignalPhase.GREEN;
+            WaitingRoadUsers = new();
         }
 
         public void Init(TrafficLightLayer layer)
@@ -49,11 +53,12 @@ namespace SOHTravellingBox.model
             CurrPhase = CarLightSignalPhase.GREEN;
             WaitingRoadUsers = new();
             TrafficLightLayer = layer;
-            WaitingTimes = new Dictionary<IAgent, int>();
 
-            LengthPhaseGreen = 35;
-            LengthPhaseRed = 40;
-            CurrTime = r.Next(0, LengthPhaseGreen + LengthPhaseRed);
+            LengthPhaseGreen = 70;
+            LengthPhaseYellow = 1;
+            LengthPhaseRed = 15;
+
+            CurrTime = r.Next(0, LengthPhaseGreen + LengthPhaseYellow + LengthPhaseRed);
         }
 
         ///
@@ -74,13 +79,20 @@ namespace SOHTravellingBox.model
         {
             CurrTime++;
 
-            // If the current time exceeds the green phase time limit, then switch to red
-            if (CurrTime > LengthPhaseGreen)
+            // If the current time exceeds the green phase time limit, then switch to yellow
+            if (LengthPhaseYellow > 0 && (CurrTime > LengthPhaseGreen || CurrTime > LengthPhaseGreen + LengthPhaseYellow + LengthPhaseRed))
+            {
+                CurrPhase = CarLightSignalPhase.YELLOW;
+            }
+
+            // If the current time exceeds the green + yellow phase time limit, then switch to red
+            if (LengthPhaseRed > 0 && CurrTime > LengthPhaseGreen + LengthPhaseYellow)
             {
                 CurrPhase = CarLightSignalPhase.RED;
             }
+
             // But if the red phase time limit is also exceeded, turn time back to start (0).
-            if (CurrTime >= LengthPhaseGreen + LengthPhaseRed)
+            if (LengthPhaseGreen > 0 && CurrTime >= LengthPhaseGreen + LengthPhaseRed + 2 * LengthPhaseYellow)
             {
                 CurrTime = 0;
                 CurrPhase = CarLightSignalPhase.GREEN;
@@ -91,7 +103,7 @@ namespace SOHTravellingBox.model
         /// <summary>
         ///  Updates the 
         /// </summary>
-        private void CheckQueue()
+        public void CheckQueue()
         {
             // Retrieve IAgent at the front of the queue
             IAgent IAgent = null;
@@ -101,10 +113,9 @@ namespace SOHTravellingBox.model
             }
 
             // If the leading IAgent is not on this road anymore, dequeue.
-            if (IsQueued(IAgent))
+            if (IsQueued(IAgent) && CanPass(IAgent))
             {
-                WaitingRoadUsers.Dequeue();
-                WaitingTimes.Remove(IAgent);
+                RemoveFirstFromQueue();
             }
         }
 
@@ -114,14 +125,14 @@ namespace SOHTravellingBox.model
         /// </summary>
         public Boolean Enter(IAgent IAgent)
         {
-            // If there is a queue in front of the light signal OR there is a non-passable signal being displayed, then queue the agent.
-            if (!CanPass(IAgent) && !IsQueued(IAgent))
+            if (IsQueued(IAgent) || CanPass(IAgent))
             {
-                this.WaitingRoadUsers.Enqueue(IAgent);
-                return true;
+                return false;
             }
 
-            return false;
+            // If the agent itself isn't already queued, there is a queue in front of the light signal OR there is a non-passable signal being displayed, then queue the agent.
+            AddLastToQueue(IAgent);
+            return true;
         }
 
         ///
@@ -131,7 +142,7 @@ namespace SOHTravellingBox.model
         /// </summary>
         public Boolean CanPass(IAgent IAgent)
         {
-            return (this.CurrPhase.Equals(TrafficLightPhase.Green) || this.CurrPhase.Equals(TrafficLightPhase.Yellow))
+            return (this.CurrPhase.Equals(CarLightSignalPhase.GREEN) || this.CurrPhase.Equals(CarLightSignalPhase.YELLOW))
             && (WaitingRoadUsers.Count == 0 || WaitingRoadUsers.Peek().Equals(IAgent));
         }
 
@@ -143,6 +154,26 @@ namespace SOHTravellingBox.model
         {
             if (IAgent == null) return false;
             return WaitingRoadUsers.Contains(IAgent);
+        }
+
+        public int GetWaitingRoadUsers()
+        {
+            return WaitingRoadUsers.Count;
+        }
+
+        private void AddLastToQueue(IAgent agent)
+        {
+            WaitingRoadUsers.Enqueue(agent);
+        }
+
+        private void RemoveFirstFromQueue()
+        {
+            WaitingRoadUsers.Dequeue();
+        }
+
+        public String getName()
+        {
+            return "lat:" + Latidute + "-lon:" + Longitude;
         }
     }
 }

@@ -4,6 +4,7 @@ using Mars.Interfaces;
 using Mars.Interfaces.Agents;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
+using SOHBicycleModel.Model;
 using SOHDomain.Model;
 using SOHDomain.Steering.Capables;
 using SOHDomain.Steering.Common;
@@ -101,7 +102,7 @@ namespace SOHMultimodalModel.Multimodal
         protected virtual bool IsWaitingAtTrafficLight()
         {
             // If this vehicle is aimed towards a node containing a traffic light
-            ISpatialNode trafficLightNode = trafficLightLayer.Environment.NearestNode(Position, null, null, 1);
+            ISpatialNode trafficLightNode = trafficLightLayer.Environment.NearestNode(Position, null, null, 3);
             if (trafficLightNode == null)
             {
                 return false;
@@ -113,13 +114,8 @@ namespace SOHMultimodalModel.Multimodal
                 return false;
             }
 
-            // Come to a hold, if the vehicle is queued up.
-            if (lightSignal.Enter(this) || lightSignal.IsQueued(this))
-            {
-                return true;
-            }
-
-            return false;
+            // Enter the queue, if there is one present and the light signal is red.
+            return lightSignal.Enter(this) || lightSignal.IsQueued(this);
         }
 
         /// <summary>
@@ -260,9 +256,9 @@ namespace SOHMultimodalModel.Multimodal
             get => _multimodalRoute;
             set
             {
-                if (InVehicle) LeaveModalType(_multimodalRoute.CurrentModalChoice);
+                if (InVehicle && !(this is BicycleLeader)) LeaveModalType(_multimodalRoute.CurrentModalChoice);
 
-                if (OnSidewalk) LeaveModalType(ModalChoice.Walking);
+                if (OnSidewalk && !(this is BicycleLeader)) LeaveModalType(ModalChoice.Walking);
 
                 _multimodalRoute = value;
                 CurrentMultimodalRouteStartTime = SimulationTime.AddSeconds(0);

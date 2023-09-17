@@ -70,8 +70,6 @@ namespace SOHDomain.TrafficLights
                 TrafficLightsByNode.Add(nearestNode, light);
             }
 
-            Console.WriteLine("Anzahl Nodes: " + Environment.Nodes.Count());
-            Console.WriteLine("Anzahl Ampeln: " + TrafficLightsByNode.Count());
             return true;
         }
 

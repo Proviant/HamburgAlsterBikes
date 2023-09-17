@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Mars.Common.Core.Random;
 using Mars.Interfaces.Annotations;
 using Mars.Interfaces.Environments;
+using ServiceStack;
 using SOHBicycleModel.Parking;
 using SOHMultimodalModel.Model;
+using SOHTravellingBox.model;
 
 namespace SOHBicycleModel.Model
 {
@@ -29,7 +31,13 @@ namespace SOHBicycleModel.Model
 
             const int radiusInM = 1;
             if (_choices.Contains(ModalChoice.CyclingOwnBike) && BicycleParkingLayer != null)
-                Bicycle = BicycleParkingLayer.CreateOwnBicycleNear(StartPosition, radiusInM, 1.0);
+            {
+                Bicycle = BicycleParkingLayer.CreateOwnBicycleNear(StartPosition, radiusInM, 10.0);
+                if (Bicycle != null)
+                {
+                    TryEnterVehicleAsDriver(Bicycle, this);
+                }
+            }
 
         }
 
@@ -40,7 +48,8 @@ namespace SOHBicycleModel.Model
 
             if (IsWaitingAtTrafficLight())
             {
-                Console.WriteLine(MultimodalLayer.GetCurrentTick() + " - Angehalten.");
+                TrafficLight trafficLight = trafficLightLayer.TrafficLightsByNode[trafficLightLayer.Environment.NearestNode(Position, null, null, 3)];
+                Console.WriteLine(MultimodalLayer.GetCurrentTick() + ";" + (trafficLight.GetWaitingRoadUsers() < 2) + ";" + trafficLight.getName() + ";" + trafficLight.GetWaitingRoadUsers());
                 MultimodalLayer.UnregisterAgent(MultimodalLayer, this);
             }
 

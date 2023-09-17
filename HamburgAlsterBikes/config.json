@@ -2,8 +2,8 @@
   "id": "green-wave-alster-bicycles",
   "globals": {
     "deltaT": 1,
-    "startPoint": "2023-06-29T00:00:00",
-    "endPoint": "2023-06-29T05:59:59",
+    "startPoint": "2023-06-29T12:00:00",
+    "endPoint": "2023-06-29T17:59:59",
     "deltaTUnit": "seconds",
     "console": false
   },
@@ -12,6 +12,14 @@
       "name": "HumanTraveler",
       "individual": [
         {"value": true, "parameter": "ResultTrajectoryEnabled"}
+      ],
+      "outputs": [
+        {
+          "kind": "trips",
+          "outputConfiguration": {
+            "tripsFields": ["StableId"]
+          }
+        }
       ]
     },
     {
@@ -66,10 +74,9 @@
     {"name": "BicycleRentalLayer", "file": "resources/kellinghusenstrasse_bicycle_rental_stations.geojson", "outputFrequency":60, "output": "none"},
     {"name": "CarRentalLayer", "file": "resources/kellinghusenstrasse_car_rental.geojson"},
     {"name": "CarParkingLayer", "file": "resources/kellinghusenstrasse_car_parking.geojson"},
-    {"name": "HumanTravelerLayer", "file": "resources/human_traveler_bicycle.csv", "output": "geojson"},
-    {"name": "CarSchedulingLayer", "file": "resources/human_traveler_car.csv", "output": "geojson"},
-    {"name": "BicycleSchedulingLayer", "file": "resources/human_traveler_bicycle.csv", "output": "geojson"},
-    {"name": "BicycleLeaderLayer", "file": "resources/bicycle-leader.csv", "output": "csv"},
+    {"name": "HumanTravelerLayer", "file": "resources/human_traveler.csv"},
+    {"name": "HumanTravelerSchedulerLayer", "file": "resources/human_traveler.csv"},
+    {"name": "BicycleLeaderSchedulerLayer", "file": "resources/bicycle-leader.csv", "output": "csv"},
     {"name": "TrafficLightLayer", "file": "resources/trafficlights.csv"}
   ],
   "entities": [

@@ -53,28 +53,32 @@ namespace SOHTravellingBox
             // All agent layers
             description.AddLayer<TrafficLightLayer>("TrafficLightLayer");
             description.AddLayer<HumanTravelerLayer>("HumanTravelerLayer");
-            description.AddLayer<BicycleLeaderLayer>("BicycleLeaderLayer");
+            description.AddLayer<HumanTravelerSchedulerLayer>("HumanTravelerSchedulerLayer");
+            description.AddLayer<BicycleLeaderSchedulerLayer>("BicycleLeaderLayer");
             // description.AddLayer<CarLayer>();
             // description.AddLayer<CycleTravelerLayer>();
             // description.AddLayer<CarTravelerLayer>();
 
             // All scheduling layers
-            description.AddLayer<CarSchedulingLayer>("CarSchedulingLayer");
+            //description.AddLayer<CarSchedulingLayer>("CarSchedulingLayer");
             // description.AddLayer<BicycleSchedulingLayer>("BicycleSchedulingLayer");
 
             // All agents and entities
             // description.AddAgent<CycleTraveler, CycleTravelerLayer>();
             // description.AddAgent<CarTraveler, CarTravelerLayer>();
-            description.AddAgent<HumanTraveler, HumanTravelerLayer>();
-            description.AddAgent<BicycleLeader, BicycleLeaderLayer>();
+            description.AddAgent<HumanTraveler, HumanTravelerSchedulerLayer>();
+            description.AddAgent<BicycleLeader, BicycleLeaderSchedulerLayer>();
             description.AddAgent<TrafficLight, TrafficLightLayer>();
             description.AddEntity<Bicycle>();
             description.AddEntity<RentalBicycle>();
             description.AddEntity<Car>();
             description.AddEntity<RentalCar>();
 
-            for (int i = 1; i <= 1; i++)
+            for (int i = 1; i <= 10; i++)
             {
+                Console.WriteLine("---------------------");
+                Console.WriteLine("Simulation Nr. " + i);
+                Console.WriteLine("Tick;IsStoppedByRedLight;NameTrafficLight;PeopleAtTrafficLight");
                 ISimulationContainer application;
                 if (args != null && args.Any())
                 {

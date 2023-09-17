@@ -1,0 +1,12 @@
+% The section about the agents' modalities of the simulation itself
+% @author Kalvin Döge
+%
+
+\subsection{Modalitäten}\label{subsec:modalitaten}
+
+Die \code{HumanTraveler} haben drei Arten der Transportation zur Verfügung: zu Fuß, Pkws und Fahrräder.
+In dem MARS-Framework ist es Agenten ebenso gestattet, bei Autos und Fahrrädern diese zu Mieten und damit sogenannte ,,RentalCars'' oder ,,RentalBikes'' zu nutzen, jedoch hat es für diese Arbeit keinen großen Einfluss, ob sie ihr eigenes Transportmittel nehmen oder einen Umweg zu den mietbaren Äquivalenten einschlagen, da die Agenten in der Simulation nur als ,,Störfaktor`` über Ampeln und auf Straßen mit dem Hauptagenten interagieren.
+
+Für jede Modalität gibt es eine vorgesehene Straße zum Befahren: Pkws fahren auf Straßen, Fahrräder fahren auf Fahrradlinien und teilweise auch auf Straßen.
+Fußgänger können sich nur auf Fußgängerwegen bewegen, dafür können sie in andere Modalitäten wechseln.
+Jeder \code{HumanTraveler} als auch der \code{BicycleLeader} beginnt die Simulation als Fußgänger, bevor sie auf eine Modalität aufsteigen.
