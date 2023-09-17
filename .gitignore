@@ -746,3 +746,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+HamburgAlsterBikes/results/*
+HamburgAlsterBikes/HumanTraveler_trips.geojson
+HamburgAlsterBikes/BicycleLeader.csv
+HamburgAlsterBikes/BicycleLeader_trips.geojson
+HamburgAlsterBikes/output.txt
+HamburgAlsterBikes/resources/lightsignal-data/lightsignal-phases.mp4
