@@ -1,0 +1,13 @@
+% The section about the agents' modalities of the simulation itself
+% @author Kalvin Döge
+%
+
+\subsection{Interaktionen mit Agenten und Entitäten}\label{subsec:interactions}
+
+Interaktionen zwischen Agenten sind in dieser Simulation beschränkt auf zwei Arten: dem Verlangsamen und Blockieren auf Straßen als auch dem Aufhalten von anderen Agenten an Lichtsignalschaltungen.
+\code{HumanTraveler} und \code{BicycleLeader} können über ihre Pkws und Fahrräder an Ampeln einen Platz einnehmen und damit die Warteschlangen verlängern.
+Je länger sie wird, desto mehr Zeit benötigt die Simulation, um die Warteschlange bei einem grünen Signal zu leeren.
+
+Auf den Straßen und Fahrradwegen selbst haben die jeweiligen Modalitäten nur dann miteinander Interaktionen, wenn sie sich zu Nahe kommen.
+Damit es nicht zu Kollisionen kommt, wird überprüft, wie nahe sich zwei Agenten sind, um dann zu verlangsamen oder weiterzufahren.
+Eine detailliertere Abhandlung dazu wird im Kapitel ,,Implementierung`` angegangen.

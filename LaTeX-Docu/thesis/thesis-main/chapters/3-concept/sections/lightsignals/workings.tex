@@ -1,0 +1,15 @@
+% The inner workings of the light signals
+% @author Kalvin Döge
+%
+
+\subsection{Funktionsweise von Lichtsignalschaltungen}\label{subsec:workings}
+
+Die Funktionsweise der Lichtsignalschaltungen während der Simulation lässt sich in zwei Schritte zusammenfassen: 1.\ Timer fortsetzen und 2.\ die Warteschlange überprüfen.
+
+Der Timer wird im ersten Schritt um eine Sekunde fortgesetzt.
+Ist der aktuelle Timer-Wert über der Zeitgrenze von einer Rot-, Gelb- oder Grünphase, wird die Phase gewechselt.
+Ist der Timer-Wert über die Summe von Rot-, Gelb- und Grünphasenlänge hinaus, setzt sich der Timer wieder zurück auf 1 verstrichene Sekunde.
+
+Im zweiten Schritt wird die Warteschlange überprüft.
+Ist der Verkehrsteilnehmer nicht mehr an dieser Ampel, weil der Teilnehmer der erste in der Schlange ist und die derzeitige Ampelphase Grün ist, so wird dieser aus der Warteschlange entfernt.
+Das Wegfahren selbst unternimmt immer noch der Pkw-Fahrer selbst.

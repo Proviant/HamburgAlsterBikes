@@ -1,0 +1,21 @@
+%
+% @author Kalvin Döge
+%
+
+
+\section{Fokus der Arbeit}\label{sec:focus-of-thesis}
+
+Diese Arbeit beschäftigt sich mit der Bestimmung einer Zeitschaltung für Lichtsignalanlagen, die für alle Anlagen gleichermaßen gelten soll und mit einer hohen Wahrscheinlichkeit eine ,,grüne Welle`` aus der Sicht der Agenten bewirken soll.
+Dabei wird das MARS-Framework mit SmartOpenHamburg verwendet, um die Binnen- und Außenalster als Simulationsgebiet und Fokuspunkt des Verkehrs möglichst genau nachzustellen.
+Der Nutzen für die Bestimmung einer festen Zeitschaltung ist die einfache Änderung bestehender Lichtsignalanlagen in der echten Welt: Innerhalb von Hamburg gibt es mehrere hundert Lichtsignalanlagen, mit 1260 Anlagen bereits innerhalb des simulierten Bereiches.
+Das stetige Anpassen der Signalanlagen durch Verlängern oder Verkürzen von Phasen über, zum Beispiel, einer künstlichen Intelligenz hat nicht nur die typischen Synchronisationsprobleme eines verteilten Systemes als Schwierigkeit, sondern auch die Technik als Problem.
+Die Verkehrszentralstellen sind potenziell nicht ausgestattet für eine gut ausgearbeitete, künstliche Intelligenz oder können nur eine begrenzte Menge an Anlagen häufige Phasenänderungen mitteilen.
+Stattdessen ist ein einmaliges Einstellen aller Anlagen mit einer bestimmten Grün-, Gelb- und Rotphasenlänge lediglich eine Abänderung der Phasenlängen und benötigt weder Synchronisation noch stabile Kommunikationswege zu den Anlagen.
+
+Außerdem sind bisherige Forschungsarbeiten bei in Reihe geschalteten, ,,grünen Wellen`` stets nur auf Vehikel wie Pkws angeschaut worden, die keine flexiblen Ausweichmöglichkeiten wie ein Fahrrad einbeziehen in die Agentensimulation.
+Fahrräder können stets eine neue Route einschlagen oder, wenn plötzlich ein Fahrradweg aufkommt, auf diese wechseln und eine Lichtsignalanlage später oder früher erreichen.
+Ebenso haben Fahrräder nur auf Fahrradwegen die Sicherheit, dort fahren zu dürfen, was sie bei Straßen im Verkehr stark benachteiligt.
+Dadurch ist es erkennbar, dass sie teilweise auf anderen Routen als Autos fahren müssen und damit eine vorgeplante ,,grüne Welle`` über ein Straßennetzwerk potenziell nicht einhalten können.
+Spätestens dann ist eine Bindung der Lichtsignalphasen an die Distanz zu vorherliegenden Lichtsignalanlagen nicht mehr so nützlich und lässt den Fahrradfahrer anhalten.
+
+Entsprechend ist eine zeitlich festgelegte Lichtsignalschaltung bei allen Anlagen ein wirtschaftlicher und technisch einfacherer Lösungsweg, den es in dieser Arbeit zu ermitteln gibt.

@@ -1,0 +1,87 @@
+\begin{thebibliography}{9}
+% this bibliography was produced with the style dinat.bst v2.5
+\makeatletter
+\newcommand{\dinatlabel}[1]%
+{\ifNAT@numbers\else\NAT@biblabelnum{#1}\hspace{2\labelsep}\fi}
+\makeatother
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax\def\url#1{\texttt{#1}}\fi
+
+\bibitem[Baldwin(2010)]{Baldwin2010}
+\dinatlabel{Baldwin 2010} \textsc{Baldwin}, W.~C.:
+\newblock \emph{Procedia Computer Science}.
+\newblock 2010. --
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S1877050915002689/pdf}.
+  -- Zugriffsdatum: 2023-09-15
+
+\bibitem[{Freie und Hansestadt Hamburg, Behörde für Wirtschaft, Verkehr und
+  Innovation: Amt für Verkehr- und Straßenwesen}(2015)]{FHH2015}
+\dinatlabel{{Freie und Hansestadt Hamburg, Behörde für Wirtschaft, Verkehr
+  und Innovation: Amt für Verkehr- und Straßenwesen} 2015} \textsc{{Freie und
+  Hansestadt Hamburg, Behörde für Wirtschaft, Verkehr und Innovation: Amt
+  für Verkehr- und Straßenwesen}}:
+\newblock \emph{Vorabinformation zur beabsichtigten Direktvergabe eines
+  öffentlichen Dienstleistungsauftrags der Freien und Hansestadt Hamburg an
+  die Verkehrsbetriebe Hamburg-Holstein GmbH (VHH)}.
+\newblock 2015. --
+\newblock URL
+  \url{https://www.hamburg.de/contentblob/4648186/c282512c81cefae55d8cac95cb62569a/data/vhh-direktvergabe-ergaenzendes-dokument.pdf}.
+  -- Zugriffsdatum: 2023-09-14
+
+\bibitem[{Handelskammer Hamburg}(2014)]{HHH2014}
+\dinatlabel{{Handelskammer Hamburg} 2014} \textsc{{Handelskammer Hamburg}}:
+\newblock \emph{Stadtmobilität in Hamburg 2030}.
+\newblock 2014. --
+\newblock URL
+  \url{https://www.ihk.de/blueprint/servlet/resource/blob/1153060/150421f8a1dc1bb8bfc368d3197cc2e1/standpunkt-stadtmobilitaet-in-hamburg-2030-data.pdf}.
+  -- Zugriffsdatum: 2023-09-14
+
+\bibitem[{MARS Group}(2023{\natexlab{a}})]{Mars2023}
+\dinatlabel{{MARS Group} 2023{\natexlab{a}}} \textsc{{MARS Group}}:
+\newblock \emph{MARS - Multi-Agent Research and Simulation}.
+\newblock 2023. --
+\newblock URL \url{https://www.mars-group.org/}. -- Zugriffsdatum: 2023-09-15
+
+\bibitem[{MARS Group}(2023{\natexlab{b}})]{SOH2023}
+\dinatlabel{{MARS Group} 2023{\natexlab{b}}} \textsc{{MARS Group}}:
+\newblock \emph{SmartOpenHamburg}.
+\newblock 2023. --
+\newblock URL \url{https://www.mars-group.org/docs/tutorial/soh/}. --
+  Zugriffsdatum: 2023-09-15
+
+\bibitem[{Norddeutscher Rundfunk}(2022)]{NDR2022}
+\dinatlabel{{Norddeutscher Rundfunk} 2022} \textsc{{Norddeutscher Rundfunk}}:
+\newblock \emph{Neue Ampelschaltung: Vorfahrt für Fußgänger und Radfahrer}.
+\newblock 2022. --
+\newblock URL
+  \url{https://www.ndr.de/nachrichten/hamburg/Neue-Ampelschaltung-Vorfahrt-fuer-Fussgaenger-und-Radfahrer,ampelschaltung100.html}.
+  -- Zugriffsdatum: 2023-09-15
+
+\bibitem[{OpenStreetMap-Foundation}(2004)]{OSF2004}
+\dinatlabel{{OpenStreetMap-Foundation} 2004}
+  \textsc{{OpenStreetMap-Foundation}}:
+\newblock \emph{OpenStreetMap}.
+\newblock 2004. --
+\newblock URL \url{https://www.openstreetmap.org/#map=14/53.5695/10.0063}. --
+  Zugriffsdatum: 2023-09-14
+
+\bibitem[{Statistikamt Nord, Statistisches Amt für Hamburg und
+  Schleswig-Holstein}(2021)]{SAHHSH2021}
+\dinatlabel{{Statistikamt Nord, Statistisches Amt für Hamburg und
+  Schleswig-Holstein} 2021} \textsc{{Statistikamt Nord, Statistisches Amt für
+  Hamburg und Schleswig-Holstein}}:
+\newblock \emph{Hamburger Stadtteil-Profile - Berichtsjahr 2021}.
+\newblock 2021. --
+\newblock URL
+  \url{https://www.statistik-nord.de/fileadmin/Dokumente/NORD.regional/Stadtteil-Profile_HH-BJ-2021.pdf}.
+  -- Zugriffsdatum: 2023-09-14
+
+\bibitem[{Timo Denk}(2018)]{Denk2018}
+\dinatlabel{{Timo Denk} 2018} \textsc{{Timo Denk}}:
+\newblock \emph{Online Tools - Cubic spline interpolation}.
+\newblock 2018. --
+\newblock URL \url{https://tools.timodenk.com/cubic-spline-interpolation}. --
+  Zugriffsdatum: 2023-09-14
+
+\end{thebibliography}

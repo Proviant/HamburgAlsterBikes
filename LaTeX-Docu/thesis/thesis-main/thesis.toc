@@ -1,0 +1,33 @@
+\babel@toc {ngerman}{}\relax 
+\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{vi}{chapter*.2}%
+\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{vii}{chapter*.3}%
+\contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Struktur der Bachelorarbeit}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Inhalt der Arbeit}{2}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Methodik}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}MARS Arbeitsgruppe und MARS Framework}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}SmartOpenHamburg}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Simulationsmodelle}{4}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Konzept}{6}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Simulationstyp}{6}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Simulationsort}{6}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Agenten}{7}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Voraussetzungen}{7}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Modalitäten}{7}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Interaktionen mit Agenten und Entitäten}{8}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Anzahl aktiver Agenten}{8}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.5}Agentenrouten}{12}{subsection.3.3.5}%
+\contentsline {section}{\numberline {3.4}Lichtsignalschaltungen}{13}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Beschreibung der Lichtsignalanlagen}{13}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Funktionsweise von Lichtsignalschaltungen}{13}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Lichtsignalphasen}{14}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Lichtsignaltypen und Bezug zur Realität}{14}{subsection.3.4.4}%
+\contentsline {section}{\numberline {3.5}Projektarchitektur}{14}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Umfang der Arbeit}{16}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Implementierung}{18}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Evaluation}{19}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Zusammenfassung}{20}{chapter.6}%
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{21}{chapter*.4}%
+\contentsline {chapter}{\numberline {A}Anhang}{23}{appendix.A}%
+\contentsline {section}{Selbstständigkeitserklärung}{24}{appendix.A}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
