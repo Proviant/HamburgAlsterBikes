@@ -94,7 +94,7 @@ namespace SOHMultimodalModel.Multimodal
                         result = result.Append(modalChoice);
                         break;
                     case ModalChoice.CyclingOwnBike:
-                        if (agent is IBicycleSteeringCapable {Bicycle : { }} cyclist)
+                        if (agent is IBicycleSteeringCapable { Bicycle: { } } cyclist)
                         {
                             var parkingLot = cyclist.Bicycle.BicycleParkingLot;
                             var bicyclePosition = parkingLot != null ? parkingLot.Position : cyclist.Bicycle.Position;
@@ -107,7 +107,7 @@ namespace SOHMultimodalModel.Multimodal
                         result = result.Concat(ResolveModalChoice(source, modalChoice, BicycleRentalLayer));
                         break;
                     case ModalChoice.CarDriving:
-                        if (agent is ICarSteeringCapable {Car : { }} driver)
+                        if (agent is ICarSteeringCapable { Car: { } } driver)
                         {
                             var carParkingSpace = driver.Car.CarParkingSpace;
                             if (carParkingSpace == null) break;

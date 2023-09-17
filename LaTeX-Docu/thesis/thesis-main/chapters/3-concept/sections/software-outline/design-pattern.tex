@@ -1,0 +1,27 @@
+% The sub section about the simulations design pattern
+% @author Kalvin Döge
+%
+
+\subsection{Entwurfsmuster im System}\label{subsec:design-pattern}
+
+Damit die Umsetzung im Implementationskapitel mancher Konzepte ersichtlich wird, wird im Folgenden noch auf die genutzten Entwurfsmuster des Systems eingegangen:
+
+\textbf{Agent-Entität-Umwelt-Muster:}
+
+Wie im fachlichen Datenmodell~\ref{fig:class-diagramm} erwähnt, basiert diese Simulation auf dem Agent-Entität-Umwelt-Muster.
+Dabei wird eine Simulationsebene bereitgestellt, die Umwelt, die in dieser Arbeit der \code{HumanTravelerLayer} und der \code{TrafficLightLayer} ausmachen.
+Für die Agenten \code{HumanTraveler} und \code{BicycleLeader} sind die beiden Layer die Umwelt, in der sie sich bewegen und mit anderen Agenten sowie Entitäten, zum Beispiel den \code{TrafficLight}s, interagieren können.
+Agenten können selbst entscheiden, wie sie ihr Ziel erreichen, während sie dabei nur an die Regeln ihres Handels gebunden sind.
+In dem Fall dieser Arbeit wollen \code{HumanTraveler} zu einem zufällig festgelegten Ziel, suchen sich eine Route und nutzen dann die selbst ausgewählte Modalität zum Erreichen dieses Ziels.
+Die Entitäten sind in dem Rahmen dieser Arbeit die Lichtsignalanlagen, die \code{TrafficLight}s, aber ebenso auch die Fahrräder, Pkws oder mietbaren Äquivalente.
+Entitäten selbst sind nicht in der Lage, eigene Entscheidungen zu treffen und zu ,,handeln``.
+Pkws oder Fahrräder selbst lassen sich steuern, sind dabei aber immer gleich in ihrem Verhalten:
+Wird die Bremse eines Fahrrads betätigt, so wird das Fahrrad entschleunigen.
+Die Entscheidung zu Bremsen kommt aber von dem Agenten, zum Beispiel dem \code{BicycleLeader}.
+
+\textbf{Factory-Pattern zur Agentenerstellung in der Simulationsumgebung:}
+
+Für die Erstellung der Agenten und Entitäten innerhalb der Umwelt wird je ein Factory-Pattern eingesetzt, dass die Erstellung über Parameter vereinfacht.
+Die benötigten Daten werden ausgelesen, in der ,,Factory`` verarbeitet und ein neuer Agent oder eine neue Entität wird zurückgegeben, mit den eingegebenen Eigenschaften.
+Das Factory-Pattern ermöglicht es, eine zentrale Stelle der Erstellung zu haben, bei der mit sich ändernden Parametern dennoch im Kern ähnliches dabei herauskommt.
+Beispielsweise werden \code{HumanTraveler} sich von den Daten her untereinander unterscheiden: Manche nutzen ein Fahrrad, manche ein Pkw, was dennoch unter demselben Punkt zusammengefasst wird: ,,Vehikel``.

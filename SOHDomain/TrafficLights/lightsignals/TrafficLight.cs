@@ -62,9 +62,9 @@ namespace SOHTravellingBox.model
             WaitingRoadUsers = new();
             TrafficLightLayer = layer;
 
-            LengthPhaseGreen = 70;
+            LengthPhaseGreen = 140;
             LengthPhaseYellow = 1;
-            LengthPhaseRed = 20;
+            LengthPhaseRed = 10;
 
             CurrTime = r.Next(0, LengthPhaseGreen + LengthPhaseYellow + LengthPhaseRed);
         }
@@ -111,6 +111,7 @@ namespace SOHTravellingBox.model
         /// <summary>
         ///  Updates the 
         /// </summary>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void CheckQueue()
         {
             // Retrieve IAgent at the front of the queue
@@ -131,6 +132,7 @@ namespace SOHTravellingBox.model
         /// <summary>
         ///  Enters the LightSignal queue if possible - Meaning a red light, too many cars or not in queue already. Returns true if possible, false otherwise.
         /// </summary>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Boolean Enter(IAgent IAgent)
         {
             if (IsQueued(IAgent) || CanPass(IAgent))
@@ -148,6 +150,7 @@ namespace SOHTravellingBox.model
         ///  Checks, if the IAgent can pass this light signal. Yes if: The light signal is on the opposite side of the street or the current phase is green and
         ///  the IAgent is the only one in queue OR at the head of the queue.
         /// </summary>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Boolean CanPass(IAgent IAgent)
         {
             if (IAgent == null) return true;
@@ -167,22 +170,26 @@ namespace SOHTravellingBox.model
         /// <summary>
         ///  Checks, if the IAgent is already waiting.
         /// </summary>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Boolean IsQueued(IAgent IAgent)
         {
             if (IAgent == null) return false;
             return WaitingRoadUsers.Contains(IAgent);
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public int GetWaitingRoadUsers()
         {
             return WaitingRoadUsers.Count;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         private void AddLastToQueue(IAgent agent)
         {
             WaitingRoadUsers.Enqueue(agent);
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         private void RemoveFirstFromQueue()
         {
             WaitingRoadUsers.Dequeue();
