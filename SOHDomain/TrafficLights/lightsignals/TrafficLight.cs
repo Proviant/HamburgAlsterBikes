@@ -54,9 +54,9 @@ namespace SOHTravellingBox.model
             WaitingRoadUsers = new();
             TrafficLightLayer = layer;
 
-            LengthPhaseGreen = 35;
+            LengthPhaseGreen = 70;
             LengthPhaseYellow = 1;
-            LengthPhaseRed = 0;
+            LengthPhaseRed = 20;
 
             CurrTime = r.Next(0, LengthPhaseGreen + LengthPhaseYellow + LengthPhaseRed);
         }
@@ -142,8 +142,17 @@ namespace SOHTravellingBox.model
         /// </summary>
         public Boolean CanPass(IAgent IAgent)
         {
-            return (this.CurrPhase.Equals(CarLightSignalPhase.GREEN) || this.CurrPhase.Equals(CarLightSignalPhase.YELLOW))
-            && (WaitingRoadUsers.Count == 0 || WaitingRoadUsers.Peek().Equals(IAgent));
+            if (IAgent == null) return true;
+            try
+            {
+                return (this.CurrPhase.Equals(CarLightSignalPhase.GREEN) || this.CurrPhase.Equals(CarLightSignalPhase.YELLOW))
+                && (WaitingRoadUsers.Count == 0 || WaitingRoadUsers.Peek().Equals(IAgent));
+            }
+            catch (AggregateException)
+            {
+                // Sollte aufgrund von parrallelen Tasks die Queue plötzlich verändert werden, so wird eine AggregateException geworfen.
+                return WaitingRoadUsers.Count == 0;
+            }
         }
 
         ///

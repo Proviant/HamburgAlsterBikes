@@ -1,0 +1,32 @@
+% This subsection is about the technical and non technical requirements of the system
+% @author Kalvin Döge
+%
+
+\subsection{Funktionale und nichtfunktionale Anforderungen}\label{subsec:requirements}
+
+Im Folgenden wird auf die Aufgaben des entwickelten Systems eingegangen, die es einzuhalten hat.
+
+\textbf{Funktionale Anforderungen:}
+
+\begin{itemize}
+    \item \textbf{Digitaler Zwilling als Simulationsumgebung:} Das System soll als Infrastrukturreferenz für die Simulation die Stadt Hamburg, die Straßen und ihre Lichtsignale nehmen.
+    \item \textbf{Simulation eines ganzen Tages:} Das System soll für die Simulation die Zeit eines Wochentags von 0 Uhr morgens bis 23:59 Uhr simulieren.
+    \item \textbf{Einbindung der Verkehrsteilnehmer:} Das System bindet die vorher berechneten, aktiven Verkehrsteilnehmer in die Simulation ein.
+    \item \textbf{Zielsetzung der Verkehrsteilnehmer:} Das System lässt jeden Verkehrsteilnehmer ein Ziel haben, das sie mit beliebigen Modalitäten erreichen wollen.
+    \item \textbf{Einbindung des Haupt-Fahrradfahrers:} Das System erstellt für jede Stunde einen Fahrradfahrer.
+    \item \textbf{Zielsetzung des Haupt-Fahrradfahrers:} Das System lässt den Fahrradfahrer die acht Punkte der abzufahrenden Route nacheinander als Ziel haben.
+    \item \textbf{Einbindung der Lichtsignalanlagen:} Das System bindet die relevanten Lichtsignalanlagen an den zugehörigen Straßen, Spuren und Kreuzungen in die Simulation ein.
+    \item \textbf{Anhalten der Verkehrsteilnehmer:} Das System soll die Verkehrsteilnehmer im System an den Lichtsignalanlagen für die Rotphasen anhalten und für die Grün- sowie Gelbphasen weiterfahren lassen.
+    \item \textbf{Anhalten des Haupt-Fahrradfahrers:} Das System soll das Simulieren des stündlichen Fahrradfahrers stoppen, sofern dieser bei einer Lichtsignalanlage hält.
+    \item \textbf{Ausgabedaten des Verkehrsteilnehmers:} Das System soll die gefahrenen Strecken nach ihrer Simulierung der Verkehrsteilnehmer ausgeben.
+    \item \textbf{Abbruchausgabedaten des Haupt-Fahrradfahrers:} Das System soll beim Anhalten des Haupt-Fahrradfahrers die gefahrene Strecke, den aktuellen Zeitpunkt, die Position der Lichtsignalanlage und die an der Lichtsignalanlage wartenden Agentenanzahl ausgeben.
+    \item \textbf{Erfolgsausgabe des Haupt-Fahrradfahrers:} Das System soll beim Erreichen des Endziels vom Haupt-Fahrradfahrer den aktuellen Zeitpunkt sowie das erfolgreiche Ankommen ausgeben.
+\end{itemize}
+
+Darauf basierend lassen sich die nicht funktionalen Anforderungen formulieren:
+
+\textbf{Nicht-Funktionale Anforderungen:}
+
+\begin{itemize}
+    \item \textbf{10 Simulationen pro Szenario:} Das System soll für jede Änderung der Lichtsignalschaltung
+\end{itemize}

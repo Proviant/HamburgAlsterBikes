@@ -76,7 +76,7 @@ namespace SOHBicycleModel.Model
 
         private void getNextRoute()
         {
-            MultimodalRoute ??= MultimodalLayer.Search(this, StartPosition, GoalPosition, _choices);
+            MultimodalRoute ??= MultimodalLayer.Search(this, StartPosition, GoalPosition, new HashSet<ModalChoice> { ModalChoice.CyclingOwnBike, ModalChoice.CyclingRentalBike });
         }
     }
 
