@@ -11,6 +11,7 @@ using SOHDomain.TrafficLights;
 using System.Collections;
 using Mars.Numerics;
 using ServiceStack;
+using System.Runtime.CompilerServices;
 
 namespace SOHTravellingBox.model
 {
@@ -39,7 +40,14 @@ namespace SOHTravellingBox.model
         CarLightSignalPhase CurrPhase { get; set; }
 
         // The currently waiting agents in front of the signal.
-        Queue<IAgent> WaitingRoadUsers { get; set; }
+
+        Queue<IAgent> WaitingRoadUsers
+        {
+            [MethodImpl(MethodImplOptions.Synchronized)]
+            get;
+            [MethodImpl(MethodImplOptions.Synchronized)]
+            set;
+        }
 
         public TrafficLight()
         {

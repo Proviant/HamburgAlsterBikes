@@ -11,22 +11,25 @@ Im Folgenden wird auf die Aufgaben des entwickelten Systems eingegangen, die es 
 \begin{itemize}
     \item \textbf{Digitaler Zwilling als Simulationsumgebung:} Das System soll als Infrastrukturreferenz für die Simulation die Stadt Hamburg, die Straßen und ihre Lichtsignale nehmen.
     \item \textbf{Simulation eines ganzen Tages:} Das System soll für die Simulation die Zeit eines Wochentags von 0 Uhr morgens bis 23:59 Uhr simulieren.
-    \item \textbf{Einbindung der Verkehrsteilnehmer:} Das System bindet die vorher berechneten, aktiven Verkehrsteilnehmer in die Simulation ein.
-    \item \textbf{Zielsetzung der Verkehrsteilnehmer:} Das System lässt jeden Verkehrsteilnehmer ein Ziel haben, das sie mit beliebigen Modalitäten erreichen wollen.
-    \item \textbf{Einbindung des Haupt-Fahrradfahrers:} Das System erstellt für jede Stunde einen Fahrradfahrer.
-    \item \textbf{Zielsetzung des Haupt-Fahrradfahrers:} Das System lässt den Fahrradfahrer die acht Punkte der abzufahrenden Route nacheinander als Ziel haben.
-    \item \textbf{Einbindung der Lichtsignalanlagen:} Das System bindet die relevanten Lichtsignalanlagen an den zugehörigen Straßen, Spuren und Kreuzungen in die Simulation ein.
-    \item \textbf{Anhalten der Verkehrsteilnehmer:} Das System soll die Verkehrsteilnehmer im System an den Lichtsignalanlagen für die Rotphasen anhalten und für die Grün- sowie Gelbphasen weiterfahren lassen.
-    \item \textbf{Anhalten des Haupt-Fahrradfahrers:} Das System soll das Simulieren des stündlichen Fahrradfahrers stoppen, sofern dieser bei einer Lichtsignalanlage hält.
-    \item \textbf{Ausgabedaten des Verkehrsteilnehmers:} Das System soll die gefahrenen Strecken nach ihrer Simulierung der Verkehrsteilnehmer ausgeben.
-    \item \textbf{Abbruchausgabedaten des Haupt-Fahrradfahrers:} Das System soll beim Anhalten des Haupt-Fahrradfahrers die gefahrene Strecke, den aktuellen Zeitpunkt, die Position der Lichtsignalanlage und die an der Lichtsignalanlage wartenden Agentenanzahl ausgeben.
-    \item \textbf{Erfolgsausgabe des Haupt-Fahrradfahrers:} Das System soll beim Erreichen des Endziels vom Haupt-Fahrradfahrer den aktuellen Zeitpunkt sowie das erfolgreiche Ankommen ausgeben.
+    \item \textbf{Einbindung der HumanTraveler:} Das System bindet die vorher berechneten, aktiven HumanTraveler in die Simulation ein.
+    \item \textbf{Zielsetzung der HumanTraveler:} Das System lässt jeden HumanTraveler ein Ziel haben, das sie mit beliebigen Modalitäten erreichen wollen.
+    \item \textbf{Einbindung des BicycleLeaders:} Das System erstellt für jede Stunde einen BicycleLeader.
+    \item \textbf{Zielsetzung des BicycleLeaders:} Das System lässt den BicycleLeader die acht Punkte der abzufahrenden Route nacheinander als Ziel haben.
+    \item \textbf{Einbindung der HumanTraveler:} Das System bindet die relevanten Lichtsignalanlagen an den zugehörigen Straßen, Spuren und Kreuzungen in die Simulation ein.
+    \item \textbf{Anhalten der HumanTraveler:} Das System soll die HumanTraveler im System an den Lichtsignalanlagen für die Rotphasen anhalten und für die Grün- sowie Gelbphasen weiterfahren lassen.
+    \item \textbf{Anhalten des BicycleLeaders:} Das System soll das Simulieren des BicycleLeaders stoppen, sofern dieser bei einer Lichtsignalanlage hält.
+    \item \textbf{Ausgabedaten der HumanTraveler:} Das System soll die gefahrenen Strecken der HumanTraveler nach deren Simulierung ausgeben.
+    \item \textbf{Abbruchausgabedaten des BicycleLeaders:} Das System soll beim Anhalten des BicycleLeaders die gefahrene Strecke, den aktuellen Zeitpunkt, die Position der Lichtsignalanlage und die an der Lichtsignalanlage wartenden Agentenanzahl ausgeben.
+    \item \textbf{Erfolgsausgabe des BicycleLeaders:} Das System soll beim Erreichen des Endziels von dem BicycleLeader den aktuellen Zeitpunkt sowie das erfolgreiche Ankommen ausgeben.
 \end{itemize}
 
-Darauf basierend lassen sich die nicht funktionalen Anforderungen formulieren:
+Zu den funktionalen Anforderungen gehören noch die nicht-funktionalen:
 
 \textbf{Nicht-Funktionale Anforderungen:}
 
 \begin{itemize}
-    \item \textbf{10 Simulationen pro Szenario:} Das System soll für jede Änderung der Lichtsignalschaltung
+    \item \textbf{Grüne Welle für 90\% der Fahrten:} Das System soll so lange weiter simulieren, bis eine Lichtsignalschaltung gefunden wurde, die dem BicycleLeader in mindestens 90\% der Fälle eine ,,grüne Welle`` ermöglicht.~Bei 24 Einträgen pro Simulationsdurchgang sind das 3 oder weniger Einträge, die nicht eine ,,grüne Welle`` sein dürfen.
+    \item \textbf{10 Simulationen pro Szenario:} Das System soll für jede Änderung der Lichtsignalschaltung mindestens zehn Simulationen durchführen.
+    \item \textbf{Fahrtwege als GeoJSON:} Das System soll die Ausgabedaten der Fahrtwege als GeoJSON ausgeben, sei es von dem BicycleLeader oder von dem HumanTraveler.
+    \item \textbf{Abbruchsausgabedaten des BicycleLeaders als CSV:} Das System soll die Ausgabedaten beim Simulierungsabbruch des BicycleLeaders in einer CSV hinterlegen.
 \end{itemize}
