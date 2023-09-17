@@ -4,12 +4,11 @@ This repository contains an agent-based model written in [MARS](https://www.mars
 
 ## Software Requirements
 
-- [JetBrains Rider](https://www.jetbrains.com/rider/)
-- [.NET SDK](https://dotnet.microsoft.com/download/dotnet-core/)
+-   [JetBrains Rider](https://www.jetbrains.com/rider/)
+-   [.NET SDK](https://dotnet.microsoft.com/download/dotnet-core/)
 
 ## Getting Started
 
-0. For reference, read more here: `https://mars-group.org/wp-content/uploads/2020/10/modelling-handbook_mars-modelling-handbook.pdf`
 1. Open a terminal, that can run commands
 2. Change directory to code-repo: `C:\Users\User\Desktop\Vorlesungen\#Bachelorarbeit\Code\HamburgAlsterBikes`
 3. Execute the following command: `dotnet run -sm config.json -project HamburgAlsterBikes.csproj`
@@ -26,19 +25,19 @@ The SOH model provides urban mobility functionality for agents. Agents can there
 
 The SOH model provides two main types of [agents](https://www.mars-group.org/docs/tutorial/soh/agents.html) that have a mobility desire (beside pure driver agents that fulfill the role of public transport).
 
-- [`Traveller` agents](https://www.mars-group.org/docs/tutorial/soh/agents/traveler.html) have a start and a goal and they try to reach their goal by using available transportation devices, which we call their movement `capabilities`. They can be spawned randomly by an `AgentSchedulerLayer` within a given spawn area and find random goals within a given target area. They can be used to generate mobility demand.
-- [`Citizen` agents](https://www.mars-group.org/docs/tutorial/soh/agents/citizen.html) have a daily schedule that cause their mobility demand. The schedule is defined in terms on their employment status. They can also choose between the modalities that are generally provided in the respective scenario and that are available or reasonable for the particular agent and its current location.
+-   [`Traveller` agents](https://www.mars-group.org/docs/tutorial/soh/agents/traveler.html) have a start and a goal and they try to reach their goal by using available transportation devices, which we call their movement `capabilities`. They can be spawned randomly by an `AgentSchedulerLayer` within a given spawn area and find random goals within a given target area. They can be used to generate mobility demand.
+-   [`Citizen` agents](https://www.mars-group.org/docs/tutorial/soh/agents/citizen.html) have a daily schedule that cause their mobility demand. The schedule is defined in terms on their employment status. They can also choose between the modalities that are generally provided in the respective scenario and that are available or reasonable for the particular agent and its current location.
 
 ### Modalities
 
 The SOH model provides a variety of modalities that can be used. We call them `ModalChoice`s.
 
-- `Walking` is the main modality and always available.
-- `CarDriving` requires an own car for the agent (co-driving is not yet implemented) that has to be parked on a parking place. The agent moves to the car, drives to a parking place near by the goal, and then concludes the rest of the way by foot.
-- `CyclingOwnBike` is quite similar to walking, because the bike can either be parked at the node or in a bike station. Because it can be parked quite everywhere, agents can move from start to goal with the bike (if the bike is available at the start node).
-- `CyclingRentalBike` is using a rental bike. The agent walks to a near by rental station that has remaining bikes, takes a bike that needs to be returned at another rental station and then finishes the remaining route by foot.
-- `Train` can be used to drive as a passenger. Therefore the agents searches a reasonable train station near by and exits the train station near the goal. A transfer between lines is possible at stations that provide different lines.
-- `Ferry` is quite similar to using the train just with ships moving over water.
+-   `Walking` is the main modality and always available.
+-   `CarDriving` requires an own car for the agent (co-driving is not yet implemented) that has to be parked on a parking place. The agent moves to the car, drives to a parking place near by the goal, and then concludes the rest of the way by foot.
+-   `CyclingOwnBike` is quite similar to walking, because the bike can either be parked at the node or in a bike station. Because it can be parked quite everywhere, agents can move from start to goal with the bike (if the bike is available at the start node).
+-   `CyclingRentalBike` is using a rental bike. The agent walks to a near by rental station that has remaining bikes, takes a bike that needs to be returned at another rental station and then finishes the remaining route by foot.
+-   `Train` can be used to drive as a passenger. Therefore the agents searches a reasonable train station near by and exits the train station near the goal. A transfer between lines is possible at stations that provide different lines.
+-   `Ferry` is quite similar to using the train just with ships moving over water.
 
 ### Environment
 
@@ -60,4 +59,4 @@ Every vehicle type defines a steering handle that is provided by the respective 
 
 ## MARS Documentation
 
-For more information on the above and other topics related to modelling and simulating with MARS, please see the [MARS documentation](https://www.mars-group.org/docs).
+For more information on the above and other topics related to modelling and simulating with MARS, please see the [MARS documentation](https://www.mars-group.org/docs/tutorial/intro).
