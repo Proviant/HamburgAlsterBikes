@@ -62,9 +62,9 @@ namespace SOHTravellingBox.model
             WaitingRoadUsers = new();
             TrafficLightLayer = layer;
 
-            LengthPhaseGreen = 140;
+            LengthPhaseGreen = 280;
             LengthPhaseYellow = 1;
-            LengthPhaseRed = 10;
+            LengthPhaseRed = 5;
 
             CurrTime = r.Next(0, LengthPhaseGreen + LengthPhaseYellow + LengthPhaseRed);
         }

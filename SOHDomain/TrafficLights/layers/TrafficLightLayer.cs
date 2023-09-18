@@ -81,15 +81,5 @@ namespace SOHDomain.TrafficLights
                 light.Tick();
             }
         }
-
-        public void PreTick()
-        {
-            // Nothing
-        }
-
-        public void PostTick()
-        {
-            // Nothing
-        }
     }
 }

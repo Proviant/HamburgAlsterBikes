@@ -25,3 +25,11 @@ Für die Erstellung der Agenten und Entitäten innerhalb der Umwelt wird je ein 
 Die benötigten Daten werden ausgelesen, in der ,,Factory`` verarbeitet und ein neuer Agent oder eine neue Entität wird zurückgegeben, mit den eingegebenen Eigenschaften.
 Das Factory-Pattern ermöglicht es, eine zentrale Stelle der Erstellung zu haben, bei der mit sich ändernden Parametern dennoch im Kern ähnliches dabei herauskommt.
 Beispielsweise werden \code{HumanTraveler} sich von den Daten her untereinander unterscheiden: Manche nutzen ein Fahrrad, manche ein Pkw, was dennoch unter demselben Punkt zusammengefasst wird: ,,Vehikel``.
+
+\textbf{Facade-Entwurfsmuster bei mehreren Unterkomponenten:}
+
+In dieser Arbeit werden Facaden beziehungsweise Interfaces benutzt, um die Handhabung verschiedener Agent-, Entitäts- oder Umwelttypen zu vereinfachen.
+Mit dem Entwurfsmuster lass sich die Vielzahl an Untertypen vereinheitlichen, die einer Komponente angehören, während sie nach außen hin gleiche Schnittstellen anbieten.
+Beispielsweise ist für die \code{HumanTraveler} und \code{BicycleLeader} eine Facade nützlich, die nach außen die Tick()-Funktion anbietet.
+Da beide Agenten aktiv simuliert werden, sich bei den beiden Akteuren die eigentlichen Ziele aber unterscheiden, hilft die Facade da und versteckt die verschiedenen Funktionsweisen über eine gleiche Funktion und umfasst sie damit.
+Außerhalb der beiden Agenten kann mit der übergreifenden Agenten-Fassade gearbeitet werden, werden die beiden Implementationen ihre Funktion beibehalten in ihrem Kontext.
