@@ -24,9 +24,9 @@ Zu der Grafik~\ref{fig:class-diagramm} sind folgende Erläuterungen wichtig, um 
     \begin{itemize}
         \item Eine Referenz auf ein Fahrrad, dem \code{Bicycle}, sollten sie eines besitzen
         \item Eine Referenz auf einen Pkw, dem \code{Car}, sollten sie eines besitzen
-        \item Für alle Modalitäten und restlichen Modalitäten noch eine Prozentangabe, die die Chance zur Nutzung der jeweiligen Modalität anzeigt.
+        \item Für alle verfügbaren Modalitäten noch eine Prozentangabe, die die Nutzungswahrscheinlichkeit der jeweiligen Modalität darstellt.
     \end{itemize}
-    \code{HumanTraveler} haben dazu noch folgende Funktionen zum Nutzen:
+    \item \code{HumanTraveler} haben dazu noch folgende Funktionen zum Nutzen:
     \begin{itemize}
         \item \code{Tick()} setzt den nächsten Agentenschritt fort, dass auch die Bewegung des \code{HumanTraveler}s beinhält und dem Agenten die Entscheidung zum Abbiegen gibt, sollte die Route das vorschlagen.
         \item \code{IsWaitingAtTrafficLight()} gibt einen Wahrheitswert zurück, ob der \code{HumanTraveler} aktuell an einer Lichtsignalschaltung wartet.
@@ -38,17 +38,16 @@ Zu der Grafik~\ref{fig:class-diagramm} sind folgende Erläuterungen wichtig, um 
     \item \code{BicycleLeader} sind identisch zu den \code{HumanTraveler}s, bis auf die Einschränkung, dass sie nur \code{Bicycle} nutzen beziehungsweise zu Fuß zum \code{Bicycle} gehen können.
     \item Ein \code{BicycleLeader} besitzt die folgenden Eigenschaften:
     \begin{itemize}
-        \item Eine Referenz auf ein ihr Fahrrad, dem \code{Bicycle}, sollte der BicycleLeader selbst eines besitzen und nicht ein gemietetes nehmen
-        \item Für jede Fahrradmodalität eine Prozentangabe, die die Chance zur Nutzung der jeweiligen Modalität anzeigt.
+        \item Eine Referenz auf sein Fahrrad, dem \code{Bicycle}, sollte der BicycleLeader selbst eines besitzen und nicht ein gemietetes nehmen
     \end{itemize}
-    \code{BicycleLeader} haben dazu noch folgende Funktionen zum Nutzen:
+    \item \code{BicycleLeader} haben dazu noch folgende Funktionen zum Nutzen:
     \begin{itemize}
         \item \code{Tick()} setzt den nächsten Agentenschritt fort, dass auch die Bewegung des \code{BicycleLeader}s beinhält.
-        \item \code{IsWaitingAtTrafficLight()} gibt einen Wahrheitswert zurück, ob der \code{HumanTraveler} aktuell an einer Lichtsignalschaltung wartet.
+        \item \code{IsWaitingAtTrafficLight()} gibt einen Wahrheitswert zurück, ob der \code{BicycleLeader} aktuell an einer Lichtsignalschaltung wartet.
     \end{itemize}
 \end{itemize}
 
-\textbf{RouteFinder aus der SOHMultiModalKomponente:}
+\textbf{RouteFinder aus der SOHMultiModal-Komponente:}
 \begin{itemize}
     \item \code{HumanTraveler} und \code{BicycleLeader} nutzen für das Erreichen ihres Zieles den \code{RouteFinder}, mit der sie eine Route zum Abfahren berechnet bekommen.
     \item Der \code{RouteFinder} hat die folgende Funktion und bietet sie nach außen an:

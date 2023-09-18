@@ -15,12 +15,11 @@ using Mars.Interfaces.Environments;
 using Mars.Interfaces.Layers;
 using Mars.Interfaces.Model;
 using SOHDomain.Graph;
-using SOHDomain.TrafficLights.layers;
 using SOHTravellingBox.model;
 
 namespace SOHDomain.TrafficLights
 {
-    public class TrafficLightLayer : AbstractLayer, ISpatialGraphLayer, ITrafficLightLayer
+    public class TrafficLightLayer : AbstractLayer, ISpatialGraphLayer
     {
         public ISpatialGraphEnvironment Environment { get; set; }
 
@@ -69,7 +68,6 @@ namespace SOHDomain.TrafficLights
 
                 TrafficLightsByNode.Add(nearestNode, light);
             }
-
             return true;
         }
 

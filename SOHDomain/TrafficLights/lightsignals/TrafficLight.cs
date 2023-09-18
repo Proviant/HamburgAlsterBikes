@@ -6,7 +6,6 @@ using System;
 using Mars.Interfaces.Environments;
 using SOHDomain.Model;
 using Mars.Interfaces.Annotations;
-using SOHDomain.TrafficLights.layers;
 using SOHDomain.TrafficLights;
 using System.Collections;
 using Mars.Numerics;
@@ -62,9 +61,9 @@ namespace SOHTravellingBox.model
             WaitingRoadUsers = new();
             TrafficLightLayer = layer;
 
-            LengthPhaseGreen = 280;
+            LengthPhaseGreen = 350;
             LengthPhaseYellow = 1;
-            LengthPhaseRed = 5;
+            LengthPhaseRed = 4;
 
             CurrTime = r.Next(0, LengthPhaseGreen + LengthPhaseYellow + LengthPhaseRed);
         }
@@ -112,7 +111,7 @@ namespace SOHTravellingBox.model
         ///  Updates the 
         /// </summary>
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void CheckQueue()
+        private void CheckQueue()
         {
             // Retrieve IAgent at the front of the queue
             IAgent IAgent = null;
