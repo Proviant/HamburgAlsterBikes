@@ -5,19 +5,44 @@
 
 \section{Konfiguration der Ein- und Ausgabedaten}\label{sec:input-output-configuration}
 
-Nun folgen die Eingabedaten, die bei der Implementation in die Simulation eingegeben wurden:
-
+Nun folgen die Eingabedaten, die bei der Implementation in die Simulation benötigt werden:
 
 \begin{itemize}
-    \item \textbf{SpatialMediatorGraph-Konfiguration:} Für die Simulationsumgebung, auf der sich die Agenten physisch bewegen, ist eine \code{GeoJSON} vorgesehen, die über ein Polygon angibt, in welchem Bereich simuliert wird.
-    \item \textbf{HumanTraveler-Konfiguration:} Die aktiven \code{HumanTraveler} in der Simulation benötigen folgende Eingabedaten als \code{CSV}-Datei:
+    \item \textbf{SpatialMediatorGraph-Konfiguration:} Für die Simulationsumgebung ist eine \code{GeoJSON} vorgesehen, der den Simulations- und Bewegungsbereich der Agenten und Entitäten angibt.
+    \item \textbf{HumanTraveler-Konfiguration:} Die aktiven \code{HumanTraveler} und \code{BicycleLeader} in der Simulation benötigen folgende Eingabedaten als \code{CSV}-Datei:
     \begin{itemize}
         \item \code{startTime} als Startuhrzeit im Format ,,HH:mm``, sobald die Erstellungsphase für \code{HumanTraveler} beginnt
         \item \code{endTime} als Enduhrzeit im Format ,,HH:mm``, sobald die Erstellungsphase der \code{HumanTraveler} aufhört
-        \item \code{spawningIntervalInMinutes} als \code{Integer}-Angabe,
+        \item \code{spawningIntervalInMinutes} als Ganzzahlangabe für die Wiederholungen der Erstellungen pro angegebener Minuten
+        \item \code{spawningAmount} als Anzahl der zu erstellenden Agenten
+        \item \code{Wahrscheinlichkeiten im Bereich \code{0 <= hasBike <= 1} für:}
+        \begin{itemize}
+            \item \code{hasBike} zum Besitz eines eigenen Fahrrads
+            \item \code{hasCar} zum Besitz eines eigenen Pkws
+            \item \code{prefersBike} zum Bevorzugen eines Fahrrads
+            \item \code{prefersCar} zum Bevorzugen eines Pkws
+            \item \code{usesBikeAndride} zum Nutzen von \code{RentalBicycle}s
+            \item \code{usesOwnBikeOutside} zum Nutzen von dem eigenen Fahrrad
+            \item \code{usesOwnCar} zum Nutzen eines eigenen Pkws
+        \end{itemize}
+        \item \code{source} als Startbereich, in dem der \code{HumanTraveler} erstellt wird
+        \item \code{destination} als Zielbereich, in dem der \code{HumanTraveler} ein Ziel auswählen kann
+        \item \code{discriminator} als Unterscheidungszahl für interne Darstellungen
     \end{itemize}
-    \item \textbf{BicycleLeader-Konfiguration:}
-    \item \textbf{TrafficLight-Konfiguration:}
+    \item \textbf{TrafficLight-Konfiguration:} Die zu erschaffenden \code{TrafficLight}s benötigen zur Erstellung folgende Eingabedaten als \code{CSV}-Datei:
+    \begin{itemize}
+        \item \code{Longitude} als Longitude auf einer Weltkarte oder Simulationsumgebung
+        \item \code{Latitude} als Latitude auf einer Weltkarte oder Simulationsumgebung
+        \item \code{LengthPhaseRed} als Phasenlänge für die Lichtphase Rot
+        \item \code{LengthPhaseGreen} als Phasenlänge für die Lichtphase Grün
+    \end{itemize}
+    \item \textbf{Simulations-Konfiguration:} Eine \code{JSON}, die alle für die Simulation relevanten Layer, Entitäten und Agenten angegeben braucht.
 \end{itemize}
 
-Die Ausgabedaten von den Klassen lässt sich nach folgendem Werten definieren:
+Zudem werden noch folgende Ausgabedaten bei der Simulation erstellt:
+
+\begin{itemize}
+    \item \textbf{\code{HumanTraveler}s Strecken-GeoJSON:} Die gefahrenen Strecken der \code{HumanTraveler} mit \code{Longitude-Latitude}-Positionsangaben
+    \item \textbf{\code{Bicycle-Leader}s Strecken-GeoJSON:} Die gefahrenen Strecken der \code{BicycleLeader} mit \code{Longitude-Latitude}-Positionsangaben
+    \item \textbf{Erfolgsausgabe des \code{Bicycle-Leader}s:} Wenn eine erfolgreiche ,,grüne Welle`` stattfand oder ob er durch eine Lichtsignalanlage aufgehalten wurde mit der jeweiligen Stunde der Simulation
+\end{itemize}
