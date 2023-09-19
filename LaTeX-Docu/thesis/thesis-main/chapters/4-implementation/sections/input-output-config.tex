@@ -1,6 +1,23 @@
-% The section about the used in- and outputconfiguration for the simulation
+% The section about the used in- and output configuration for the simulation
 % @author Kalvin Döge
 %
 
 
 \section{Konfiguration der Ein- und Ausgabedaten}\label{sec:input-output-configuration}
+
+Nun folgen die Eingabedaten, die bei der Implementation in die Simulation eingegeben wurden:
+
+
+\begin{itemize}
+    \item \textbf{SpatialMediatorGraph-Konfiguration:} Für die Simulationsumgebung, auf der sich die Agenten physisch bewegen, ist eine \code{GeoJSON} vorgesehen, die über ein Polygon angibt, in welchem Bereich simuliert wird.
+    \item \textbf{HumanTraveler-Konfiguration:} Die aktiven \code{HumanTraveler} in der Simulation benötigen folgende Eingabedaten als \code{CSV}-Datei:
+    \begin{itemize}
+        \item \code{startTime} als Startuhrzeit im Format ,,HH:mm``, sobald die Erstellungsphase für \code{HumanTraveler} beginnt
+        \item \code{endTime} als Enduhrzeit im Format ,,HH:mm``, sobald die Erstellungsphase der \code{HumanTraveler} aufhört
+        \item \code{spawningIntervalInMinutes} als \code{Integer}-Angabe,
+    \end{itemize}
+    \item \textbf{BicycleLeader-Konfiguration:}
+    \item \textbf{TrafficLight-Konfiguration:}
+\end{itemize}
+
+Die Ausgabedaten von den Klassen lässt sich nach folgendem Werten definieren:

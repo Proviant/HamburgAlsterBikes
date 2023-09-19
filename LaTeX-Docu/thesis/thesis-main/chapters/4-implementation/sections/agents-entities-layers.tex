@@ -6,7 +6,7 @@
 \section{Agententen, Entitäten und Layer}\label{sec:agents-entities-layers}
 
 In diesem Abschnitt wird über das Verhältnis der Agenten, Entitäten und Layer zueinander genauer eingegangen.
-Zu der Grafik~\ref{fig:agents-entities-layer} sind außerdem die jeweiligen Äquivalente aus dem fachlichen Datenmodell angeführt, wie sie im Quelltext repräsentiert sind und, wenn sie dabei eine Anforderung erfüllen, welche diese ist:
+Alle Klassen aus der Grafik~\ref{fig:agents-entities-layer} sind gleichbedeutend vom Namen her mit den Komponenten aus dem fachlichen Datenmodell:
 
 \begin{figure}[h]
     \centering
@@ -30,8 +30,8 @@ In der Grafik~\ref{fig:agents-entities-layer} wurden einige überflüssige Eigen
 
 \textbf{Agent \code{HumanTraveler}:}
 \begin{itemize}
-    \item Der \code{HumanTraveler} hat alle Modalitäten zur Auswahl: \code{Car}, \code{Bicycle},\code{RentalCar}, \code{RentalBicycle} und \code{WalkingShoes}.
-    \item Die zu fahrende Route ist beim \code{HumanTraveler} durch die Funktion \code{Init(HumanTravelerLayer)} gegeben.~Diese ruft die \code{Init(TLayer)}-Funktion der Elternklasse \code{Traveler} auf, in der zwei zufällige Punkte aus der Start- und Zielgeometrie genommen und als Start- und Zielposition festgelegt werden.~Über ein Aufruf der \code{Tick()}-Funktion wird dann die Route berechnet zwischen den Punkten.
+    \item Der \code{HumanTraveler} hat alle Modalitäten zur Auswahl: \code{Car}, \code{Bicycle}, \code{RentalCar}, \code{RentalBicycle} und \code{WalkingShoes}.
+    \item Die zu fahrende Route ist beim \code{HumanTraveler} durch die Funktion \linebreak\code{Init(HumanTravelerLayer)} gegeben.~Diese ruft die \code{Init(TLayer)}-Funktion der Elternklasse \code{Traveler} auf, in der zwei zufällige Punkte aus der Start- und Zielgeometrie genommen und als Start- und Zielposition festgelegt werden.~Über ein Aufruf der \code{Tick()}-Funktion wird dann die Route berechnet zwischen den Punkten.
     \item \code{HumanTraveler} benutzen ebenfalls die \code{Search(...)}-Funktion des \code{HumanTravelerLayer}s, um die Route berechnen zu lassen.
     \item \code{Tick()} setzt auch beim \code{HumanTraveler} über den Aufruf von \code{Move()} die Bewegung fort.
     \item Der \code{HumanTraveler} prüft ebenfalls mithilfe \code{IsWaitingAtTrafficLight()} vor dem Bewegen, ob er an einer \code{TrafficLight} steht.~Wenn ja, betritt er die Warteschlange von ihr.~Wechselt die \code{TrafficLight} die \code{CurrPhase} zu \code{CarLightSignalPhase.YELLOW} oder \code{CarLightSignalPhase.GREEN}, so fährt er weiter.
@@ -47,4 +47,30 @@ In der Grafik~\ref{fig:agents-entities-layer} wurden einige überflüssige Eigen
     \item Der Name des \code{TrafficLight}s setzt sich aus der \code{Longitude} und \code{Latitude} zusammen und wird für die Erkennung genutzt bei der Ausgabe.
 \end{itemize}
 
+\textbf{Layer \code{HumanTravelerLayer}:}
+\begin{itemize}
+    \item Alle \code{HumanTraveler} und \code{BicycleLeader} werden im \code{HumanTravelerLayer} festgehalten und ihre Position über den \code{SpatialGraphMediatorLayer} zusammengefasst.
+    \item Der \code{HumanTravelerLayer} implementiert \code{AbstractMultiModalLayer} und stellt damit die verschiedenen Modalitäts-Layer \code{HumanTraveler}n und \code{BicycleLeader}n bereit zum Interagieren.
+\end{itemize}
 
+\textbf{Layer \code{TrafficLightLayer}:}
+\begin{itemize}
+    \item Alle \code{TrafficLight}s werden im \code{TrafficLightLayer} festgehalten über zwei \code{Dictionary}s:
+    \begin{itemize}
+        \item \code{TrafficLightsByGUID}, wenn eine \code{GUID} vorliegt und mit der die zugehörige \code{TrafficLight} entnommen werden kann
+        \item \code{TrafficLightsByNode}, die über einen \code{SpatialNode}, also über \code{Longitude} und \code{Latitude}-Verortung, abgespeichert werden
+    \end{itemize}
+    \item Die \code{ISpatialNode}s selbst sind in der \code{Environment} vermerkt und sind befüllt mit Eingabedaten bei der Erstellung über die \code{InitLayer(LayerInitData, RegisterAgent, UnregisterAgent)}-Funktion.~Die \code{LayerInitData} stellt dabei die einzelnen Einträge aus der Konfiguration dar.
+\end{itemize}
+
+\textbf{Layer \code{BicycleLeaderSchedulerLayer}:}
+\begin{itemize}
+    \item Dieser \code{Layer} erhält Eingabedaten mit zeitgebunden Einträgen.~Diese Einträge werden dann über die Funktion \code{Schedule(SchedulerEntry)} der Elternklasse \code{AgentSchedulerLayer} hinzugefügt und erstellen den \code{BicycleLeader} mit den eingegebenen Eigenschaften.
+    \item Der \code{BicycleLeaderSchedulerLayer} stellt damit das Factory-Pattern dar: Die Funktion \code{Schedule(SchedulerEntry)} wird mit Eingabedaten aufgerufen, um zu einem bestimmten Zeitpunkt einen \code{BicycleLeader} zu erstellen.
+\end{itemize}
+
+\textbf{Layer \code{HumanTravelerSchedulerLayer}:}
+\begin{itemize}
+    \item Identisch zu dem BicycleLeaderSchedulerLayer erhält dieser \code{Layer} Eingabedaten mit zeitgebunden Einträgen.~Diese Einträge werden dann über die Funktion \code{Schedule(SchedulerEntry)} der Elternklasse \code{AgentSchedulerLayer} hinzugefügt und erstellen den \code{HumanTraveler} mit den eingegebenen Eigenschaften.
+    \item Der \code{HumanTravelerSchedulerLayer} stellt damit ebenso das Factory-Pattern dar: Er wird mit Eingabedaten aufgerufen, um zu einem bestimmten Zeitpunkt einen \code{HumanTraveler} zu erstellen.
+\end{itemize}
