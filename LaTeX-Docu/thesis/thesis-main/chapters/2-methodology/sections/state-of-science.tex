@@ -124,16 +124,16 @@ Dies macht diese Masterarbeit zu einer geeigneten Quelle für detailreiche Verha
 \textbf{Thomas Clemen, Nima Ahmady-Moghaddam, Ulfia A. Lenfers, Florian Ocker, Daniel Osterholz und Jonathan Ströbele:}
 \textit{Multi-Agent Systems and Digital Twins for Smarter Cities}
 
-In der Forschungsarbeit aus dem Jahr 2021 beschäftigen sich Clemen und andere mit dem ,,Internet of Things``, fortan als IoT abgekürzt, welches eine Großzahl an (Echtzeit-)Daten über die Stadt Hamburg via Sensoren anbietet, und entwickeln dazu ein digitales Zwillingsmodell der Stadt selbst, zur Überführung der Daten in das MARS-Framework.
-Im Zentrum dabei steht nicht nur die Nutzungsermöglichung IoT-Daten, sondern ebenfalls die Frage: Wie baut man ort- und zeitlich gebundene Daten in ein Echtzeitmodell, in der sich die Simulationen und Experimente anschaulich darstellen und kontrollieren lassen sollen~\cite{Clemen2021}?
+In der Forschungsarbeit aus dem Jahr 2021 beschäftigen sich Clemen und andere mit dem ,,Internet of Things``, fortan als IoT abgekürzt, welches eine Großzahl an (Echtzeit-) Daten über die Stadt Hamburg via Sensoren anbietet, und entwickeln dazu ein digitales Zwillingsmodell der Stadt selbst, zur Überführung der Daten in das MARS-Framework.
+Im Zentrum dabei steht nicht nur die Nutzungsermöglichung der IoT-Daten, sondern ebenfalls die Frage: Wie baut man ort- und zeitlich gebundene Daten in ein Echtzeitmodell, in der sich die Simulationen und Experimente anschaulich darstellen und kontrollieren lassen sollen~\cite{Clemen2021}?
 
 Ihr Lösungsweg: Das Herunterbrechen der Akteure in der echten Welt auf Agenten und Entitäten, die damit als eine digitale Zwillingsinstanz~\cite{Clemen2021} fungieren und das Verhalten der Akteure oder Simulationsflächen imitieren.
 Dabei wird zudem noch ein Fokus darauf gelegt, zwischen passiven, aktiven und interagierbaren Zwillingsinstanzen zu unterscheiden, da der Verhaltens- und Implementationsaufwand durch die Entscheid- und Bewegungsfreiheit steigt.
-Entsprechend entscheiden sie sich, in ihrer Forschung vorerst die Echtzeitdaten nur bei passiven Zwillingsinstanzen zu bleiben, damit ein Datenaustausch zwischen diesen und der echten Welt ermöglicht wird.
-Als Grundlage dafür wird das SmartOpenHamburg-Projekt erweitert, was bereits die physische Repräsentation der Stadt sowie eine Reihe der städtischen Modalitäten implementiert hat, und implementieren den Zugang zu den IoT-Daten~\cite{Clemen2021}.
+Entsprechend entscheiden sie sich, in ihrer Forschung vorerst die Echtzeitdaten nur bei passiven Zwillingsinstanzen zu implementieren.
+Als Grundlage dafür wird das SmartOpenHamburg-Projekt genommen, was bereits die physische Repräsentation der Stadt sowie eine Reihe der städtischen Modalitäten implementiert hat, und erweitern dieses um den Zugang zu den IoT-Daten~\cite{Clemen2021}.
 
 Dadurch, dass in der Forschungsarbeit von Clemen und andere nur die passiven, digitalen Zwillinge mit Daten angereichert werden, fehlt für die Arbeit hier die Echtzeitdaten von Lichtsignalschaltungen sowie einem Echtzeitverkehrssensor.
-Da in dieser Arbeit sich auf den Verkehrsfluss und explizit auf die Simulation einzelner Agenten fokussiert wird, müssen diese aktiven Agenten sein, die Entscheidungen über Modalitäten, Wege und Interaktion mit Entitäten unternehmen.
+Da in der Arbeit von diesem Papier hier sich auf den Verkehrsfluss und explizit auf die Simulation einzelner Agenten fokussiert wird, müssen diese aktiven Agenten sein, die Entscheidungen über Modalitäten, Wege und Interaktion mit Entitäten unternehmen.
 Damit würden sie unter die interagierbaren, digitalen Zwillinge fallen, die mit Eingabedaten bestückt werden müssten und sind entsprechend mit einem großen Mehraufwand beim Implementieren verbunden.
 
 Entsprechend ist die Forschung der Arbeit von Clemen und andere zwar eine gute Grundlage für zukünftige Ausblicke dieser Arbeit, sollten Echtzeitdaten bereitgestellt werden für aktuellen Verkehr an Lichtsignalanlagen oder generell auf Straßen.
@@ -165,4 +165,40 @@ Dennoch wären für zukünfitge Arbeiten das Papier von Glake und andere ein gut
 \textbf{Ulfia A. Lenfers, Nima Ahmady-Moghaddam, Daniel Glake, Florian Ocker, Daniel Osterholz, Jonathan Ströbele und Thomas Clemen:}
 \textit{Improving Model Predictions—Integration of Real-Time Sensor Data into a Running Simulation of an Agent-Based Model}
 
-In einem weiteren Forschungsartikel über das MARS-Framework des Jahres 2021 beschäftigen sich Ulfia A. Lenfers und andere mit der Einbindung von Echtzeitdaten und zeigen das Potenzial ihrer Implementation anhand von Fahrradverleihstationen und wie anhand der Modellierung und Daten Vorhersagungen zu Fahrradverleihs getroffen werden können.
+In einem weiteren Forschungsartikel über das MARS-Framework im SmartOpenHamburg-Projekt des Jahres 2021 beschäftigen sich Ulfia A. Lenfers und andere mit der Verbesserung der Einbindungsimplementation von Echtzeitdaten und zeigen das Potenzial anhand von Fahrradverleihstationen, wie mit der Modellierung und Daten genauere Vorhersagungen zu Fahrradverleihs getroffen werden können.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{lenfers-workflow}~\caption{Beispielworkflow, der Daten aus den Sesnsoren und von der Stadt Hamburg bereitgestellten Daten einbaut in ein abstraktes Simulationsmodell~\cite{Lenfers-MP-2021}}
+    \label{fig:lenfers-workflow-sensors}
+\end{figure}
+
+Wie aus dem Workflow von~\ref{fig:lenfers-workflow-sensors} zu entnehmen ist, fokussiert sich der Kern der Arbeit aus dem Zusammenspiel von Datenfluss des Smart-City-Data-Hub und die Dateneinbindung von Fahrradverleihstationen in die SmartOpenHamburg-Komponente.
+Echtzeitdaten werden bei ihrer Implementation von der ,,Smart City`` über ein zeitlichen Vektor-Layer in die Simulation konstant eingelesen und anhand ihrer Lebenszeit entsprechend simuliert\cite{Lenfers-MP-2021}.
+Die Daten selbst werden dabei über eine URI von den externen Endpunkten abgefragt und mit zusätzlichen Argumenten auf die relevanten Daten reduziert~.
+Mit diesem Datenstrom werden die derzeitigen Zustände der Fahrradverleihstationen abgefragt und in die Simulation eingebaut, wie viele Fahrräder derzeit aktuell aktiv genutzt werden und wie viele Agenten in der Simulation agieren\cite{Lenfers-MP-2021}.
+
+Der Forschungsbeitrag von Lenfers und andere ist aber, wie bei der vorherigen, für diese Arbeit nur begrenzt relevant: Die statische Implementation von Fahrradverleihstationen ist relevant, da Verkehrsteilenhmer an den Stationen sich ein Fahrrad leihen können, doch ist dabei kein Echtzeitstrom vonnöten und passiert passiv nebenbei.
+
+Dennoch bietet die Arbeit Anknüpfmöglichkeit, sollten relevanten Echtzeitdaten von der Stadt Hamburg zum Verkehr oder zu Lichtsignalanlagen über die nächste Zeit aufkommen und damit den Kern einer anderen Arbeit darstellen.
+
+
+\textbf{Daniel Glake, Fabian Panse, Norbert Ritter, Thomas Clemen und Ulfia Lenfers:}
+\textit{Incorporating Multi-Modal Travel Planning into an Agent-Based Model: A Case Study at the Train Station Kellinghusenstraße in Hamburg}
+
+Der Forschungsartikel von Lenfers und andere aus dem Jahr 2021 erweitert ebenfalls das MARS-Framework und das SmartOpenHamburg-Projekt um nachhaltige Modalitäten wie die mietbaren Äquivalente zu Pkws und Fahrrädern oder das Zu-Fuß-Gehen.
+Dabei untersuchen sie, wie effizient das Wechseln der Modalitäten in einem Beispielszenario ist und ob die Optimierungsstrategien hinsichtlich der Klimaneutralität, aus finanziellen Gründen oder persönlichen Präferenzen korrekt annähern~\cite{Lenfers-MMT-2021}.
+
+Das Beispielszenario, welches sie zur Demonstrierung der implementierten Modalitäten verwenden, umfasst dabei die Bahnhofsstation Kelinghusenstraße in Hamburg, von der aus die Agenten mit den Modalitäten in einem Kreis-Bereich zu ihrem Ziel gelangen können.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{lenfers-kelinghusen}~\caption{Karte der Fahrradverleihstationen, mit dem Simulationsbereich der Agenten hellblau hinterlegt, den Interessenspunkten rot markiert und Fahrradverleihstation als blaue Markierungen~\cite{Lenfers-MMT-2021}}
+    \label{fig:lenfers-kelinghusen-area}
+\end{figure}
+
+Auf dem Weg zu ihrem Endziel innerhalb des simulierbaren Bereichs aus~\ref{fig:lenfers-kelinghusen-area} kommen manche Agenten durch angestrebtes Nutzen der Modalitäten erst zur nächsten Fahrrad- oder Pkwverleihstation, bevor sie ihre Reise zum Interessenspunkt fortsetzen können.
+Dieses angestrebte Nutzen wird in den Eingabedaten durch zum Beispiel die Variablen ,,hasCar`` und ,,usesBikeAndRide`` versinnbildlicht, wie hoch die Wahrscheinlichkeit zum Nutzen oder Besitzen einer eigenen oder gemieteten Modalität ist~\cite{Lenfers-MMT-2021}.
+
+Auf den implementierten Modalitäten und Verleihstationen aus der Forschungsarbeit von Lenfers und andere knüpft diese Arbeit hier an und untersucht nun mithilfe der Auswahl an Modalitäten eine mögliche Lichtsignalschaltung.
+Damit bietet diese Arbeit eine sehr gute Grundlage, auf der nun aufgesetzt und das hier in dieser Arbeit beschriebenen Szenario aufgesetzt wird.
