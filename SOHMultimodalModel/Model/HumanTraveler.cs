@@ -40,10 +40,12 @@ namespace SOHMultimodalModel.Model
             return _choices;
         }
 
+        private int waitingTimer = 0;
         public override void Tick()
         {
             if (IsWaitingAtTrafficLight())
             {
+                waitingTimer++;
                 BrakingActivated = true;
 
                 if (MultimodalRoute != null)
@@ -74,11 +76,21 @@ namespace SOHMultimodalModel.Model
                     }
                 }
             }
+            else
+            {
+                waitingTimer = 0;
+            }
+
+            if (waitingTimer > 5)
+            {
+                // Outputs the current velocity after waiting for 5 seconds
+                // Console.WriteLine("Aktuelle Geschwindigkeit nach 5 Sekunden Wartezeit: " + Velocity);
+            }
 
             if (GoalReached)
             {
-                // Checks, if the goal was actually reached with the current position
-                // Console.WriteLine(MultimodalRoute.Goal.DistanceInMTo(Position) < 10);
+                // Current distance to last point in the given route, that is expected to be 0
+                // Console.WriteLine("Distanz zum Endpunkt: " + (MultimodalRoute.Goal.DistanceInMTo(Position)) + " m");
             }
 
             base.Tick();

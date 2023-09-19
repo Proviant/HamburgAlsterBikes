@@ -68,6 +68,11 @@ namespace SOHDomain.TrafficLights
 
                 TrafficLightsByNode.Add(nearestNode, light);
             }
+
+            // Display if all 1260 traffic lights have been added
+            // Console.WriteLine("Anzahl Ampeln nach GUIDs:  " + TrafficLightsByGUID.Count);
+            // Console.WriteLine("Anzahl Ampeln nach Knoten: " + TrafficLightsByNode.Count);
+
             return true;
         }
 

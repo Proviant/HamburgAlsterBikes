@@ -78,7 +78,6 @@ namespace SOHTravellingBox
             {
                 Console.WriteLine("---------------------");
                 Console.WriteLine("Simulation Nr. " + i);
-                Console.WriteLine("Tick;IsStoppedByRedLight;NameTrafficLight;PeopleAtTrafficLight");
                 ISimulationContainer application;
                 if (args != null && args.Any())
                 {

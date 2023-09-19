@@ -186,6 +186,10 @@ namespace SOHTravellingBox.model
         private void AddLastToQueue(IAgent agent)
         {
             WaitingRoadUsers.Enqueue(agent);
+
+            // Currently waiting RoadUsers
+            // if (GetWaitingRoadUsers() > 5) Console.WriteLine("Wartende Agenten bei " + getName() + ": " + GetWaitingRoadUsers());
+
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]

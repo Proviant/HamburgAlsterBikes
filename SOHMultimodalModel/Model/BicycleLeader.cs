@@ -49,7 +49,7 @@ namespace SOHBicycleModel.Model
             if (IsWaitingAtTrafficLight())
             {
                 TrafficLight trafficLight = trafficLightLayer.TrafficLightsByNode[trafficLightLayer.Environment.NearestNode(Position, null, null, 3)];
-                Console.WriteLine(MultimodalLayer.GetCurrentTick() + ";" + (trafficLight.GetWaitingRoadUsers() < 2) + ";" + trafficLight.getName() + ";" + trafficLight.GetWaitingRoadUsers());
+                Console.WriteLine("Angehalten bei der Ampel " + trafficLight.getName());
                 MultimodalLayer.UnregisterAgent(MultimodalLayer, this);
             }
 
@@ -57,9 +57,9 @@ namespace SOHBicycleModel.Model
             {
                 if (stops.Count == 0)
                 {
-                    Console.WriteLine(MultimodalLayer.GetCurrentTick() + " - Grüne Welle!");
-                    // Checks, if the last stop was actually reached with the current position
-                    // Console.WriteLine(MultimodalRoute.Goal.DistanceInMTo(Position) < 10);
+                    Console.WriteLine("Grüne Welle erreicht. Angekommen am Endpunkt: " + (MultimodalRoute.Goal.DistanceInMTo(Position) == 0));
+                    // Current distance to last point in the given route, that is expected to be 0
+                    // Console.WriteLine("Distanz zum Endpunkt: " + (MultimodalRoute.Goal.DistanceInMTo(Position)) + " m");
                     MultimodalLayer.UnregisterAgent(MultimodalLayer, this);
                 }
                 else
