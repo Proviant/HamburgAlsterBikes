@@ -1,0 +1,32 @@
+\babel@toc {ngerman}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Das von Kuang und andere bei einer 3-spurigen Kreuzung dargelegte 8-Phasen Modell~\cite {Zheng2019}\relax }}{8}{figure.caption.4}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces die von Kurtc und Treiber berechneten, durchschnittlichen Kalbirierungsfehler der beiden Modelle in \%~\cite {Kurtc2020}\relax }}{9}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Eine Momentaufnahme aus dem zellulären Automatenmodell~\cite {Bouderba2019}\relax }}{10}{figure.caption.6}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Die durchschnittliche Geschwindigkeit und Wartezeit nach Durchführunge~\cite {Bouderba2019}\relax }}{11}{figure.caption.7}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Beispielworkflow, der Daten aus den Sesnsoren und von der Stadt Hamburg bereitgestellten Daten einbaut in ein abstraktes Simulationsmodell~\cite {Lenfers-MP-2021}\relax }}{16}{figure.caption.8}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Karte der Fahrradverleihstationen, mit dem Simulationsbereich der Agenten hellblau hinterlegt, den Interessenspunkten rot markiert und Fahrradverleihstation als blaue Markierungen~\cite {Lenfers-MMT-2021}\relax }}{18}{figure.caption.9}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Simulationsumgebung\relax }}{20}{figure.caption.10}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Polynomialfunktion des 4. Grades zur Annäherung\relax }}{23}{figure.caption.11}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Grobe Flächenberechnung der bewohnbaren Bereiche\relax }}{26}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Route der Bicycle-Leader mit den 8 Zwischenpunkten\relax }}{27}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Klassendiagramm der Agenten und Entitäten\relax }}{32}{figure.caption.14}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Das technische Datenmodell aller Agenten, Entitäten und Layer\relax }}{40}{figure.caption.15}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Die Anbindung an bestehenden Fassaden des MARS-Frameworks\relax }}{44}{figure.caption.16}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Der Export von OpenStreetMap in kepler.gl eingefügt\relax }}{47}{figure.caption.17}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Lichtsignalanlagen an der Kreuzung der Hallerstraße, links in OpenStreetMap, rechts in kepler.gl eingefügt\relax }}{48}{figure.caption.18}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Die Konsolenausgabe der aktuell eingebauten \texttt {TrafficLight}s\relax }}{48}{figure.caption.19}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Der Erstellbereich der \texttt {HumanTraveler}, links von 4 Uhr und rechts von 5 Uhr morgens\relax }}{49}{figure.caption.20}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Die Erschaffung des \texttt {BicycleLeader}, links um 8 Uhr, rechts um 9 uhr morgens\relax }}{49}{figure.caption.21}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Hier wird eine Ausgabe an Lichtsignalanlagen gegeben, sobald mehr als 5 Agenten in der Warteschlange einer \texttt {TrafficLight} sind.\relax }}{50}{figure.caption.22}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Konsolenausgabe, bei der \texttt {BicycleLeader} alle 3 Stunden in Folge wegen der zu langen Rot-Signalphase die Abbruchbedingung erreicht.\relax }}{50}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Distanzangabe über die Konsole vom letzten, zu erreichenden Punkt, bis zum \texttt {BicycleLeader}.\relax }}{51}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Konsolenausgabe, bei der \texttt {HumantTraveler} nach 5 Sekunden warten an einer \texttt {TrafficLight} ihre Geschwindigkeit ausgeben.\relax }}{51}{figure.caption.25}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

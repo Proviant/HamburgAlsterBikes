@@ -41,3 +41,14 @@ Dennoch versucht er dann die nächste Modalität oder das Interessenziel aufzusu
 Da aber mit dem angegebenen Startpunkt keine andere Möglichkeit vorliegt, außer eben das Befahren der Straße, wirft der \code{RouteFinder} einen Fehler und die Simulation bricht ab.
 
 Die Lösung für das Problem war in dem Fall die Simulation neuzustarten und einer der Entwickler das Problem aufzuzeigen, auch wenn der Fehler bisher noch nicht behoben werden konnte.
+
+\textbf{Probleme in der Haupt-Konfigurationsdatei:}
+
+In der Simulation werden Agenten erschaffen, die durch eine vorher eingegebene \code{CSV} die Start- und Endzeitpunkte angeben.
+Diese Variablen geben den Zeitraum an, wann die Erstellphase von Agenten- oder beginnt und endet.
+Wenn man zu Beginn der Simulation bei 0:00 Uhr einen Agenten erschaffen und die Simulation zum selben Zeitpunkt beginnen möchte, also an einem Tag um 0:00 Uhr startet, so würde man erwarten, dass direkt zu Beginn die angegebenen Agenten erstellt werden.
+Das werden sie aber nicht, da die angegebene Zeit überschritten werden muss, damit die Agentenerstellung ausgelöst wird.
+
+Um dieses Problem anhand des Beispieles mit 0:00 Uhr zu lösen, muss am vorherigen Tag die Simulation begonnen und am besten ein ,,Puffer`` von 10 Sekunden eingebaut werden.
+Beispielsweise ist das Startdatum und die Uhrzeit der Simulation nicht der 29.06.2023 um 00:00:00 Uhr, sondern der 28.06.2023 um 23:59:50 Uhr.
+Damit schafft die Simulation es, in der angegebenen Zeit von 0:00 Uhr der \code{CSV} die Agenten zu erschaffen.

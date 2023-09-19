@@ -1,11 +1,52 @@
 % The subsection about the results of the upper and lower bound experiments
 % @author Kalvin Döge
+% 35g 40r up
+% 35g  0r low
 %
 
 \subsection{Ober- und Untergrenze der Simulation}\label{subsec:lower-upper-bound}
 
-\begin{tabular}{r|c|l}
-    A & B & C                   \\\hline
-    1 & 2 & 3                   \\\hline
-    x & y & \cellcolor{red!25}z
-\end{tabular}
+Im Folgenden werden die Ober- und Untergrenzen der Simulation evaluiert.
+Die Obergrenze stellt hierbei die Schaltung \code{35 g | 40 r} das dar, was der Realität angenähert ist.
+
+Damit die Spalten übersichtlich bleiben, werden folgende Abkürzungen verwendet:
+\begin{itemize}
+    \item \code{Stunde} stellt hier die Stunde am Tag dar.
+    \item \code{\#NHT} meint die Anzahl der zu dieser Stunde neu hinzugefügten \code{HumanTraveler} - ,,(N)eue (H)uman(T)raveler``.
+    \item \code{E1, E2 ... E10} meint hier, ob das Experiment 1, 2 und so weiter erfolgreich war, eine grüne Welle für den BicycleLeader zu simulieren.
+\end{itemize}
+
+\begin{table}
+    \centering
+    \begin{tabular}{||c|c|c|c|c|c|c|c|c|c|c|c||}
+        \hline
+        Stunde  & \#NHT  & E1 & E2 & E4 & E5 & E6 & E7 & E8 & E9 & E10 \\\hline\hline
+        0       & 14     &    &    &    &    &    &    &    &    &     \\\hline
+        1       & 51     &    &    &    &    &    &    &    &    &     \\\hline
+        2       & 130    &    &    &    &    &    &    &    &    &     \\\hline
+        3       & 274    &    &    &    &    &    &    &    &    &     \\\hline
+        4       & 487    &    &    &    &    &    &    &    &    &     \\\hline
+        5       & 707    &    &    &    &    &    &    &    &    &     \\\hline
+        6       & 857    &    &    &    &    &    &    &    &    &     \\\hline
+        7       & 879    &    &    &    &    &    &    &    &    &     \\\hline
+        8       & 804    &    &    &    &    &    &    &    &    &     \\\hline
+        9       & 684    &    &    &    &    &    &    &    &    &     \\\hline
+        10      & 570    &    &    &    &    &    &    &    &    &     \\\hline
+        11      & 514    &    &    &    &    &    &    &    &    &     \\\hline
+        12      & 550    &    &    &    &    &    &    &    &    &     \\\hline
+        13      & 650    &    &    &    &    &    &    &    &    &     \\\hline
+        14      & 765    &    &    &    &    &    &    &    &    &     \\\hline
+        15      & 850    &    &    &    &    &    &    &    &    &     \\\hline
+        16      & 857    &    &    &    &    &    &    &    &    &     \\\hline
+        17      & 755    &    &    &    &    &    &    &    &    &     \\\hline
+        18      & 579    &    &    &    &    &    &    &    &    &     \\\hline
+        19      & 379    &    &    &    &    &    &    &    &    &     \\\hline
+        20      & 205    &    &    &    &    &    &    &    &    &     \\\hline
+        21      & 94     &    &    &    &    &    &    &    &    &     \\\hline
+        22      & 34     &    &    &    &    &    &    &    &    &     \\\hline
+        23      & 14     &    &    &    &    &    &    &    &    &     \\\hline\hline
+        Gesamt: & 11.703 &    &    &    &    &    &    &    &    &
+    \end{tabular}
+    \caption{""}
+    \label{tab:upper-bound-table}
+\end{table}
