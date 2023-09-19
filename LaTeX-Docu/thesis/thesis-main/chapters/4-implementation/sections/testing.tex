@@ -72,11 +72,21 @@ Die Konsolenausgabe~\ref{fig:waiting-at-traffic-light-humantraveler} sind alle v
     \label{fig:waiting-at-traffic-light-bicycleleader}
 \end{figure}
 
+Hat der \code{BicycleLeader} erfolgreich den letzten Punkt erreicht, so wird dann nur noch geprüft, ob der letzte Punkt der zu fahrenden Route identisch zu der aktuellen Position des Agenten ist.
+Dies wird bewerkstelligt, wie man in der Konsolenausgabe aus~\ref{fig:testing-successful-trip} indem die Distanz zwischen den beiden Punkten 0 sein muss.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{testing-distance}~\caption{Distanzangabe über die Konsole vom letzten, zu erreichenden Punkt, bis zum \code{BicycleLeader}.}
+    \label{fig:testing-successful-trip}
+\end{figure}
+
+
 Zuletzt wird noch geprüft, ob die \code{HumanTraveler} anhalten, sobald sie in die Warteschlange einer \code{TrafficLight} hinzugefügt werden.
 Dafür wird, wie in der Konsolenausgabe~\ref{fig:human-traveler-slowing-down} sichtbar, die Geschwindigkeit nach einer Wartezeit von 5 Sekunden beziehungsweise 5 Ticks ausgegeben, um dem \code{HumanTraveler} Zeit zu geben, die Bremsen zu aktivieren und zu entschleunigen.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.75\textwidth]{testing-velocity-after-stopping}~\caption{Konsolenausgabe, bei der \code{HumantTraveler} nach 5 Sekunden warten an einer \code{TrafficLight} ihre Geschwindigkeit ausgeben.}
+    \includegraphics[width=0.5\textwidth]{testing-velocity-after-stopping}~\caption{Konsolenausgabe, bei der \code{HumantTraveler} nach 5 Sekunden warten an einer \code{TrafficLight} ihre Geschwindigkeit ausgeben.}
     \label{fig:human-traveler-slowing-down}
 \end{figure}

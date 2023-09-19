@@ -2,6 +2,42 @@
 % @author Kalvin Döge
 %
 
+\newpage
+
 
 \section{Bekannte Probleme und Einschränkungen}\label{sec:limitations}
 
+In dieser Arbeit sind ebenfalls Probleme beim Simulieren aufgetreten, die im folgenden mit möglichen Gründen beziehungsweise Ansätzen näher erläutert werden:
+
+\textbf{Limitationen der Hardware}
+
+Während der Simulationen ist es zu erheblichen Performance-Problemen gekommen.
+Die Anzahl der aktiven Agenten ist dabei ausschlaggebend gewesen für die Verlangsamung der Simulation.
+Aufgefallen ist dies während der Entwicklung, als 24 Stunden am Stück mit den jeweiligen Mengen an Agenten simuliert werden sollten.
+Die Simulation wollte nicht enden und die vom MARS-Framework bereitgestellt Fortschrittsleiste schritt ebenfalls nur sehr langsam voran.
+
+Durch den Hacking-Vorfall der HAW Hamburg ist ebenfalls der Zugriff auf die Cluster seit Anfang des Jahres 2023 für die Studenten verwehrt, sodass das Ausweichen auf die Rechencluster keine Alternative war für die Simulationsergebnisse.
+Stattdessen wurden die 24 zu simulierenden Stunden geviertelt und dann so simuliert.
+Das ließ die Hardware des genutzten Computers zu und so konnten die Daten dennoch entnommen werden.
+
+\textbf{Probleme mit GeoJSON-Ausgaben}
+
+Die exportierten GeoJSONs aus dem MARS-Framework haben ebenfalls Probleme bei den Simulationen aufgezeigt.
+Die \code{HumanTraveler}-GeoJSON, die die Rundfahrten anzeigen sollte sowie das Anhalten an den Lichtsignalanlagen, zeigt lediglich den gefahrenen Pfad und endet beim Antreffen auf das jeweilige Ziel.
+
+Zudem hat die GeoJSON das Setzen eines neuen Routenziels ebenfalls nicht in der \code{BicycleLeader.geojson} inkludieren können.
+Das Simulieren des \code{BicycleLeaders} ist bis zum Ziel des ersten Punktes korrekt, jedoch wird ab dann eine neue Route berechnet und damit ein neues Start- und Endziel festgelegt.
+Dies wird aber nicht in der GeoJSON abgelegt und lässt sich nicht darüber erkennen.
+Dieses Problem wurde auch mit Entwicklern von dem MARS-Framework besprochen, jedoch konnte es leider bisher nicht behoben werden.
+Stattdessen wird die im Testing-Kapitel und mit der Grafik~\ref{fig:testing-successful-trip} angeführte Erfolgsüberprüfung für die \code{BicycleLeader} genommen und damit getestet, ob eine grüne Welle erreicht wurde.
+
+\textbf{Probleme bei Modalitäten mit dem RouteFinder:}
+
+In manchen Simulationsläufen kommt es zu einem Problem mit dem \code{RouteFinder}: Dieser versucht bei einem Agenten eine Route mit den möglichen Modalitäten zu finden.
+Dabei gibt er manchmal aber nur einen Weg an, der über genau eine Modalität nur erreicht werden kann, die der Agent genau nicht besitzt.
+Ein möglicher Grund könnte die Startposition mancher \code{HumanTraveler} sein, die am Anfang zufällig geschehen.
+Beispielsweise befindet sich der Agent nach seiner Erschaffung auf einer Autostraße, die nur von Pkws befahren werden darf.
+Dennoch versucht er dann die nächste Modalität oder das Interessenziel aufzusuchen und ruft den \code{RouteFinder} auf für eine passende Route.
+Da aber mit dem angegebenen Startpunkt keine andere Möglichkeit vorliegt, außer eben das Befahren der Straße, wirft der \code{RouteFinder} einen Fehler und die Simulation bricht ab.
+
+Die Lösung für das Problem war in dem Fall die Simulation neuzustarten und einer der Entwickler das Problem aufzuzeigen, auch wenn der Fehler bisher noch nicht behoben werden konnte.
