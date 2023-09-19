@@ -13,40 +13,89 @@ Damit die Spalten übersichtlich bleiben, werden folgende Abkürzungen verwendet
 \begin{itemize}
     \item \code{Stunde} stellt hier die Stunde am Tag dar.
     \item \code{\#NHT} meint die Anzahl der zu dieser Stunde neu hinzugefügten \code{HumanTraveler} - ,,(N)eue (H)uman(T)raveler``.
-    \item \code{E1, E2 ... E10} meint hier, ob das Experiment 1, 2 und so weiter erfolgreich war, eine grüne Welle für den BicycleLeader zu simulieren.
+    \item \code{E1, E2 ... E10} meint hier, ob das Experiment 1, 2 und so weiter erfolgreich war, eine grüne Welle für den BicycleLeader zu simulieren.~Ein grüner Hintergrund meint dabei Erfolg, ein roter Hintergrund kein Erfolg.
+    \item \code{Gesamt} meint die Gesamtbilanz am Ende, also die Gesamtmenge an erstellten \code{HumanTraveler} und ob die 90\%-Erfolgsquote eingehalten wurde mit einem dunkleren, grünen Hintergrund oder nicht mit einem dunkleren, roten Hintergrund.
 \end{itemize}
 
 \begin{table}
     \centering
     \begin{tabular}{||c|c|c|c|c|c|c|c|c|c|c|c||}
         \hline
-        Stunde  & \#NHT  & E1 & E2 & E4 & E5 & E6 & E7 & E8 & E9 & E10 \\\hline\hline
-        0       & 14     &    &    &    &    &    &    &    &    &     \\\hline
-        1       & 51     &    &    &    &    &    &    &    &    &     \\\hline
-        2       & 130    &    &    &    &    &    &    &    &    &     \\\hline
-        3       & 274    &    &    &    &    &    &    &    &    &     \\\hline
-        4       & 487    &    &    &    &    &    &    &    &    &     \\\hline
-        5       & 707    &    &    &    &    &    &    &    &    &     \\\hline
-        6       & 857    &    &    &    &    &    &    &    &    &     \\\hline
-        7       & 879    &    &    &    &    &    &    &    &    &     \\\hline
-        8       & 804    &    &    &    &    &    &    &    &    &     \\\hline
-        9       & 684    &    &    &    &    &    &    &    &    &     \\\hline
-        10      & 570    &    &    &    &    &    &    &    &    &     \\\hline
-        11      & 514    &    &    &    &    &    &    &    &    &     \\\hline
-        12      & 550    &    &    &    &    &    &    &    &    &     \\\hline
-        13      & 650    &    &    &    &    &    &    &    &    &     \\\hline
-        14      & 765    &    &    &    &    &    &    &    &    &     \\\hline
-        15      & 850    &    &    &    &    &    &    &    &    &     \\\hline
-        16      & 857    &    &    &    &    &    &    &    &    &     \\\hline
-        17      & 755    &    &    &    &    &    &    &    &    &     \\\hline
-        18      & 579    &    &    &    &    &    &    &    &    &     \\\hline
-        19      & 379    &    &    &    &    &    &    &    &    &     \\\hline
-        20      & 205    &    &    &    &    &    &    &    &    &     \\\hline
-        21      & 94     &    &    &    &    &    &    &    &    &     \\\hline
-        22      & 34     &    &    &    &    &    &    &    &    &     \\\hline
-        23      & 14     &    &    &    &    &    &    &    &    &     \\\hline\hline
-        Gesamt: & 11.703 &    &    &    &    &    &    &    &    &
+        Stunde  & \#NHT  & E1  & E2  & E3  & E4  & E5  & E6  & E7  & E8  & E9  & E10 \\\hline\hline
+        0       & 14     & \qr & \qr & \qg & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        1       & 51     & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qg & \qr & \qr \\\hline
+        2       & 130    & \qr & \qr & \qr & \qg & \qg & \qg & \qr & \qg & \qg & \qr \\\hline
+        3       & 274    & \qr & \qg & \qr & \qg & \qr & \qg & \qr & \qr & \qr & \qr \\\hline
+        4       & 487    & \qr & \qg & \qr & \qr & \qr & \qg & \qr & \qr & \qr & \qg \\\hline
+        5       & 707    & \qr & \qr & \qg & \qr & \qr & \qr & \qr & \qr & \qg & \qr \\\hline
+        6       & 857    & \qr & \qr & \qr & \qg & \qr & \qr & \qg & \qr & \qr & \qg \\\hline
+        7       & 879    & \qg & \qr & \qg & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        8       & 804    & \qg & \qr & \qg & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        9       & 684    & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qg & \qr \\\hline
+        10      & 570    & \qr & \qr & \qg & \qr & \qr & \qr & \qr & \qr & \qr & \qg \\\hline
+        11      & 514    & \qg & \qr & \qr & \qr & \qr & \qg & \qg & \qr & \qr & \qr \\\hline
+        12      & 550    & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        13      & 650    & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        14      & 765    & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        15      & 850    & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        16      & 857    & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        17      & 755    & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        18      & 579    & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        19      & 379    & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        20      & 205    & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        21      & 94     & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        22      & 34     & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline
+        23      & 14     & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline\hline
+        Gesamt: & 11.703 & \qf & \qf & \qf & \qf & \qf & \qf & \qf & \qf & \qf & \qf
     \end{tabular}
-    \caption{""}
+    \caption{"Die Erfolgstabelle der Obergrenze für die Simulation mit 35 g | 40 r."}
     \label{tab:upper-bound-table}
+    \centering
 \end{table}
+
+Wie zu erwarten ist die Erfolgschance des \code{BicycleLeader} sehr gering.
+Die Ergebnisse der Tabelle~\ref{tab:upper-bound-table} stellen damit die zu verbesserne Ausgangslage, wie sie für die nachfolgenden Experimente verbessert werden soll.
+Im folgenden wird nun die Untergrenze angeführt, die es dabei nicht zu unterschreiten gilt:
+
+\newpage
+
+\begin{table}
+    \centering
+    \begin{tabular}{||c|c|c|c|c|c|c|c|c|c|c|c||}
+        \hline
+        Stunde  & \#NHT  & E1  & E2  & E3  & E4  & E5  & E6  & E7  & E8  & E9  & E10 \\\hline\hline
+        0       & 14     & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        1       & 51     & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        2       & 130    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        3       & 274    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        4       & 487    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        5       & 707    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        6       & 857    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        7       & 879    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        8       & 804    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        9       & 684    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        10      & 570    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        11      & 514    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        12      & 550    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        13      & 650    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        14      & 765    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        15      & 850    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        16      & 857    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        17      & 755    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        18      & 579    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        19      & 379    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        20      & 205    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        21      & 94     & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        22      & 34     & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        23      & 14     & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline\hline
+        Gesamt: & 11.703 & \qs & \qs & \qs & \qs & \qs & \qs & \qs & \qs & \qs & \qs
+    \end{tabular}
+    \caption{"Die Erfolgstabelle der Obergrenze für die Simulation mit 35 g | 0 r."}
+    \label{tab:lower-bound-table}
+    \centering
+\end{table}
+
+Wie sich logisch ableiten ließ, ist die Untergrenze mit \code{35 g | 0 r} perfekt, wenn lediglich die ,,grüne Welle`` fokussiert wird.
+Da dies aber nicht der Realität entspricht und es bei Lichtsignalanlagen Rotphasen geben muss für die andere Seite der Kreuzung, soll eine Lichtsignalschaltung gefunden werden mit einer längeren Rotphase als 0 Sekunden.
+
+Die nun folgenden Experimente sollen also mit der Antiproportionalität bei den Grün- und Rotphasen eine solche, ideale Schaltung annähern.
