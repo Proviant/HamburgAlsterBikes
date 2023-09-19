@@ -24,7 +24,6 @@
     },
     {
       "name": "BicycleLeader",
-      "output": "csv",
       "individual": [
         {"value": true, "parameter": "ResultTrajectoryEnabled"}
       ],
