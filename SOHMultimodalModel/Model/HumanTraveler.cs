@@ -75,6 +75,12 @@ namespace SOHMultimodalModel.Model
                 }
             }
 
+            if (GoalReached)
+            {
+                // Checks, if the goal was actually reached with the current position
+                // Console.WriteLine(MultimodalRoute.Goal.DistanceInMTo(Position) < 10);
+            }
+
             base.Tick();
         }
 

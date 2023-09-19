@@ -119,3 +119,50 @@ Zwar wird in dieser Arbeit ebenfalls auf einzelne Agenten benutzt, die mit ihrer
 
 Auch beschäftigt sich die Arbeit mehr mit dem Verhalten der Fahrradfahrer selbst innerhalb des MARS-Frameworks, nicht mit der Entwicklung einer optimalen Lichtsignalschaltung.
 Dies macht diese Masterarbeit zu einer geeigneten Quelle für detailreiche Verhaltensweisen von Fahrrädern, weniger aber zu einem vergleichbaren Ansatz für diese Arbeit.
+
+
+\textbf{Thomas Clemen, Nima Ahmady-Moghaddam, Ulfia A. Lenfers, Florian Ocker, Daniel Osterholz und Jonathan Ströbele:}
+\textit{Multi-Agent Systems and Digital Twins for Smarter Cities}
+
+In der Forschungsarbeit aus dem Jahr 2021 beschäftigen sich Clemen und andere mit dem ,,Internet of Things``, fortan als IoT abgekürzt, welches eine Großzahl an (Echtzeit-)Daten über die Stadt Hamburg via Sensoren anbietet, und entwickeln dazu ein digitales Zwillingsmodell der Stadt selbst, zur Überführung der Daten in das MARS-Framework.
+Im Zentrum dabei steht nicht nur die Nutzungsermöglichung IoT-Daten, sondern ebenfalls die Frage: Wie baut man ort- und zeitlich gebundene Daten in ein Echtzeitmodell, in der sich die Simulationen und Experimente anschaulich darstellen und kontrollieren lassen sollen~\cite{Clemen2021}?
+
+Ihr Lösungsweg: Das Herunterbrechen der Akteure in der echten Welt auf Agenten und Entitäten, die damit als eine digitale Zwillingsinstanz~\cite{Clemen2021} fungieren und das Verhalten der Akteure oder Simulationsflächen imitieren.
+Dabei wird zudem noch ein Fokus darauf gelegt, zwischen passiven, aktiven und interagierbaren Zwillingsinstanzen zu unterscheiden, da der Verhaltens- und Implementationsaufwand durch die Entscheid- und Bewegungsfreiheit steigt.
+Entsprechend entscheiden sie sich, in ihrer Forschung vorerst die Echtzeitdaten nur bei passiven Zwillingsinstanzen zu bleiben, damit ein Datenaustausch zwischen diesen und der echten Welt ermöglicht wird.
+Als Grundlage dafür wird das SmartOpenHamburg-Projekt erweitert, was bereits die physische Repräsentation der Stadt sowie eine Reihe der städtischen Modalitäten implementiert hat, und implementieren den Zugang zu den IoT-Daten~\cite{Clemen2021}.
+
+Dadurch, dass in der Forschungsarbeit von Clemen und andere nur die passiven, digitalen Zwillinge mit Daten angereichert werden, fehlt für die Arbeit hier die Echtzeitdaten von Lichtsignalschaltungen sowie einem Echtzeitverkehrssensor.
+Da in dieser Arbeit sich auf den Verkehrsfluss und explizit auf die Simulation einzelner Agenten fokussiert wird, müssen diese aktiven Agenten sein, die Entscheidungen über Modalitäten, Wege und Interaktion mit Entitäten unternehmen.
+Damit würden sie unter die interagierbaren, digitalen Zwillinge fallen, die mit Eingabedaten bestückt werden müssten und sind entsprechend mit einem großen Mehraufwand beim Implementieren verbunden.
+
+Entsprechend ist die Forschung der Arbeit von Clemen und andere zwar eine gute Grundlage für zukünftige Ausblicke dieser Arbeit, sollten Echtzeitdaten bereitgestellt werden für aktuellen Verkehr an Lichtsignalanlagen oder generell auf Straßen.
+Jedoch ist der Nutzen für diese Arbeit beschränkt auf das SmartOpenHamburg-Projekt, dass die Grundlagen zur agentenbasierten Simulation bereits bereitstellt.
+
+
+\textbf{Daniel Glake, Fabian Panse, Norbert Ritter, Thomas Clemen und Ulfia Lenfers:}
+\textit{Data Management in Multi-Agent Simulation Systems}
+
+Daniel Glake und andere beschäftigten sich im Jahr 2021 in ihrem Forschungsbeitrag mit den Problemen des Einbauens von unterschiedlichen Daten in einem sehr groß skalierten Simulationsszenario und präsentieren dabei Lösungen für die Herausforderungen mithilfe des MARS-Frameworks.
+Dabei fokussieren sie sich auf fünf großen Eingabedatenkategorien, die in der MARs-Simulationsumgebung eingebaut werden und mit großskalierten Projekten zu Herausforderungen kommen können:
+\begin{itemize}
+    \item Eingabedaten für Simulationen, die zum Beispiel bei einem Ortstransfer zu Kompabilitätskomplikationen führen, wie etwa mit geografischen Karten, den lokalen Infrastrukturnetzwerken oder weitere, nicht-ortsgebundene Daten wie zeitliche Busfahrpläne~\cite{Glake2021}.
+    \item Ausgabedaten von großen Simulationen, die beim Simulieren eine Großzahlan Agenten und Entitäten nutzen, blockieren beziehungsweise verzögern beim Exportieren von Zwischenständen die aktive Simulation deutlich und schränken damit die Fähigkeit diese in Echtzeit zu analysieren ein~\cite{Glake2021}.
+    \item Eingabedaten über Streams werden beim Vorhersagen von Simulationszuständen, wie etwa den Agentattributen oder Umweltinformationen, immer ungenauer je weiter in die Zukunft berechnet wird.~Dafür bieten Schnittstellen und angebundenen Systeme Möglichkeiten zum vermindern dieser Ungenauigkeit.~Das Korrigieren benötigen aber dennoch bei einer großen Anzahl von Agenten einem Moment zum Überreichen, was zeitlich ebenfalls zu Verzögerungen führen und auch die Echtzeitanalysefähigkeit erschwert~\cite{Glake2021}.
+    \item Bei Schnittstellen für räumlich-zeitliche Abfragen wird stets der jeweilige Raum benötigt und zum Beispiel in MARS als Polygon angegeben.~Operationen wie ,,beinhält``, ,,überlappt`` oder ,,ist adjazent von`` sind dabei häufig genutzt, was bei einer Vielzahl von Agenten, die dies gleichzeitig durchführen und sich dabei bewegen, zu zeitlichen sowie geographischen Unterschieden führt~\cite{Glake2021}.
+    \item Beim Planen dieser räumlich-zeitlichen Abfragen, wie das System die echte Welt auf die Modellrepräsentation abzubilden hat, darf die Migrationszeit nicht die Datenverarbeitungszeit überschreiten, damit es nicht zu Inkonsistenzen in der Simulation führt.~Strategien, die das verhindern, sind aber nur Annäherungen, da die Optimierung der Migrationszeit einem NP-Problem entspricht und somit nicht mit einer konstanten Anzahl an Operationen berechnet werden kann~\cite{Glake2021}.
+\end{itemize}
+
+Danach gehen Glake und andere genauer darauf ein, wie sie diese Problematiken im MARS-Framework mit Lösungsansätzen vermindert oder gelöst bekommen haben.
+Für diese Arbeit hat die Forschungsarbeit von Glake und andere aber keinen relevanten Bezug:
+Das System hier ist kein Echtzeitsystem auf einem großskalierten Bereich.
+Der Simulationsraum beschränkt sich auf die Binnen- und Außenaslter und zur Ergebnissermittlung genügt es bereits, wenn die Simulation nebenbei berechnet wird.
+Eine Verzögerung aufgrund von groß skalierten Bereichen oder zu vielen Agenten affektiert nicht die Korrektheit des Systems und ist sich also nicht von den kategorisierten Problemen affektiert.
+
+Dennoch wären für zukünfitge Arbeiten das Papier von Glake und andere ein guter Ansatz, um Echtzeitdaten mit der gesamten Stadt Hamburg zu verbinden und damit den gesamten Raum zu simulieren, nicht nur wie hier um die Binnen- und Außenalster.
+
+
+\textbf{Ulfia A. Lenfers, Nima Ahmady-Moghaddam, Daniel Glake, Florian Ocker, Daniel Osterholz, Jonathan Ströbele und Thomas Clemen:}
+\textit{Improving Model Predictions—Integration of Real-Time Sensor Data into a Running Simulation of an Agent-Based Model}
+
+In einem weiteren Forschungsartikel über das MARS-Framework des Jahres 2021 beschäftigen sich Ulfia A. Lenfers und andere mit der Einbindung von Echtzeitdaten und zeigen das Potenzial ihrer Implementation anhand von Fahrradverleihstationen und wie anhand der Modellierung und Daten Vorhersagungen zu Fahrradverleihs getroffen werden können.

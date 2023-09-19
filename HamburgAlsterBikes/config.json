@@ -2,8 +2,8 @@
   "id": "green-wave-alster-bicycles",
   "globals": {
     "deltaT": 1,
-    "startPoint": "2023-06-29T00:00:00",
-    "endPoint": "2023-06-29T05:59:59",
+    "startPoint": "2023-06-28T23:59:50",
+    "endPoint": "2023-06-29T23:59:59",
     "deltaTUnit": "seconds",
     "console": false
   },

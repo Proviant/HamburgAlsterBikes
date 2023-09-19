@@ -58,6 +58,8 @@ namespace SOHBicycleModel.Model
                 if (stops.Count == 0)
                 {
                     Console.WriteLine(MultimodalLayer.GetCurrentTick() + " - Grüne Welle!");
+                    // Checks, if the last stop was actually reached with the current position
+                    // Console.WriteLine(MultimodalRoute.Goal.DistanceInMTo(Position) < 10);
                     MultimodalLayer.UnregisterAgent(MultimodalLayer, this);
                 }
                 else
