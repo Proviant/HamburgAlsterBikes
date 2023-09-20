@@ -3,3 +3,55 @@
 %
 
 \subsection{Experiment 4: 467 g | 3 r}\label{subsec:experiment-4}
+
+Im vierten Experiment wird die 90\% Grenze beziehungsweise maximal 2 fehlgeschlagene ,,grüne Wellen`` pro Tag das erste mal erreicht.
+Mit den Phasenlängen aus dem dritten Experiment, der Schaltung \code{280 g | 5 r}, werden erneut die neuen Phasenlängen berechnet: \code{560 g | 2,5 r}.
+Dadurch, dass aber die Simulation und damit auch die Phasenlängen nur in Ganzzahlen angegeben werden können, wird auf \code{467 g | 3 r} gerundet.
+Die Berechnung der Grünphasenlänge ergibt sich aus dem Dreisatz~\ref{fig:dreisatz}, bei dem die Rotphasenlänge mit 3 Sekunden bekannt ist.
+Die folgenden Werte ergeben sich aus der Simulation des Experiments, wenn die neuen Zeiten als Eingabedaten genutzt werden:
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{||c|c|c|c|c|c|c|c|c|c|c|c||}
+        \hline
+        Stunde  & \#NHT  & E1  & E2  & E3  & E4  & E5  & E6  & E7  & E8  & E9  & E10 \\\hline\hline
+        0       & 14     & \qg & \qg & \qg & \qg & \qg & \qg & \qr & \qg & \qg & \qg \\\hline
+        1       & 51     & \qg & \qg & \qg & \qg & \qr & \qg & \qg & \qg & \qg & \qg \\\hline
+        2       & 130    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        3       & 274    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        4       & 487    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        5       & 707    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        6       & 857    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        7       & 879    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        8       & 804    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        9       & 684    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        10      & 570    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        11      & 514    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        12      & 550    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qr \\\hline
+        13      & 650    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        14      & 765    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        15      & 850    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        16      & 857    & \qg & \qg & \qr & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        17      & 755    & \qr & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        18      & 579    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        19      & 379    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        20      & 205    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        21      & 94     & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        22      & 34     & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        23      & 14     & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qr & \qg \\\hline\hline
+        Gesamt: & 11.703 & \qs & \qs & \qs & \qs & \qs & \qs & \qs & \qs & \qs & \qs
+    \end{tabular}
+    \caption{Erfolgstabelle des 4. Experimentes}
+    \label{tab:experiment-4-table}
+    \centering
+\end{table}
+
+Die Tabelle~\ref{tab:experiment-4-table} zeigt auf, dass bei 240 Simulationen lediglich 6 fehlgeschlagen und 234 erfolgreich sind.
+Durchschnittlich sind an allen Tagen ungefähr 1 Simulation auf eine rote Lichtsignalphase gestoßen:
+
+\[(1 + 0 + 1 + 0 + 1 + 0 + 1 + 0 + 1 + 1) / 10 = 0,6\]
+
+Die Erfolgswahrscheinlichkeit des schlechtesten Tages, zum Beispiel von der Spalte E1 oder E3, ist damit nicht nur bei 90\%, sondern sogar bei 95,83\%:
+
+\[23 / 24 = 0.958\overline{3}\]
+
+Dadurch, dass eine passende Zeitschaltung mit den Phasenlängen {467 g | 3 r} gefunden wurde, muss nur noch überprüft werden, ob die Rotphasenlänge noch vergrößert werden kann.

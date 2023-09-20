@@ -18,7 +18,7 @@ Innerhalb dieser Zeit ist die Dichte an Verkehrsteilnehmern geringer als in der 
 Die Schwachverkehrszeit ist von 20 Uhr bis 5 Uhr am nächsten Tag~\cite{FHH2015}, in der der Verkehr am geringsten ist, die Straßen leer und der Stau am seltensten auftritt.
 
 
-Um den Verlauf über einen Tag nun mit zwei Hochpunkten und drei Tiefpunkten darzustellen, während dabei der zweite Tiefpunkt höher als der erste und dritte ist, könnte man eine negierte Funktion 4.\ Grades benutzen.
+Um den Verlauf über einen Tag nun mit zwei Hochpunkten und drei Tiefpunkten darzustellen, während dabei der zweite Tiefpunkt höher als der erste und dritte ist, lässt sich der grobe Verlauf über eine negierte Funktion 4.\ Grades darstellen.
 
 \begin{figure}[h]
     \centering
@@ -82,7 +82,7 @@ $f(x) = \begin{cases}
 \end{tikzpicture}
 
 
-Nun muss nur noch die Einwohnerdichte pro km\textsuperscript{2} angenähert werden, damit man eine grobe Gesamtanzahl an Agenten ableiten kann.
+Nun muss nur noch die Einwohnerdichte pro km\textsuperscript{2} angenähert werden, damit eine grobe Gesamtanzahl an Agenten sich ableiten lässt.
 Das Statistikamt Nord, das für Schleswig-Holstein und Stadtteile Hamburgs Statistiken sammelt, hat in ihrem Bericht aus dem Jahr 2021 die Einwohnerdichte aller Stadtteile Hamburgs aufgelistet~\cite{SAHHSH2022}.
 Der Simulationsort dieser Arbeit umfasst die folgenden Stadtteile: Neustadt, St. Georg, Hohenfelde, Uhlenhorst, Winterhude, Eppendorf, Harvestehude und Rotherbaum.
 Für diese Stadtteile wird die Einwohnerdichte pro km\textsuperscript{2} ausgelesen:
@@ -135,10 +135,11 @@ Zuletzt wird noch die Multiplikation der durchschnittlichen Einwohnerdichte mit 
 \begin{align}
     Gesamtanzahl Agenten &= 7,06~\unit{~km}^2 * ((60.541~\unit{~Einw~je~km}^2) / 8) \\
     &= 7,06~\unit{~km}^2 * (7.567,625~\unit{~Einw~je~km}^2) \\
-    &= 53.427,4325~\unit{~Einw.~je~km}^2 \\
-    &\approx 53.427~\unit{~Einw.~je~km}^2
+    &= 53.427,4325~\unit{~Einw.} \\
+    &\approx 53.427~\unit{~Einw.}
 \end{align}
 
+Angenäherte 53.427 Einwohner leben also in dem Gebiet um die Alster und sind täglich am Verkehr beteiligt.
 Mit den Voraussetzungen lässt sich für jeden beliebigen Zeitpunkt an einem Arbeitstag eine Annäherung mit der Interpolationsgleichung~\ref{fig:interpolation} berechnen.
 In der Simulation wird für jede Stunde, die neu angefangen wird, ein neuer Wert aus der Gleichung mit der durchschnittliche Einwohnerdichte multipliziert und damit als für diese Stunde, aktive Anzahl an Agenten festgelegt.
 In dieser Simulation werden nur Daten für jede Stunde genommen, da der \code{BicycleLeader} ebenfalls nur jede Stunde einmal die Route fährt.

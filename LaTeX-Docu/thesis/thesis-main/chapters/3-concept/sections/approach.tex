@@ -7,7 +7,7 @@
 
 Um die optimale Lichtsignalschaltung zu ermitteln, wird experimentell vorgegangen und die Lichtsignalphasen angenähert.
 Mit den gegebenen Daten aus den vorherigen Kapiteln lässt sich eine Ober- und Untergrenze etablieren.
-Die Obergrenze stellt hierbei den ungenügenden aber der Realität entsprechenden Zustand dar, den wir verbessern wollen.
+Die Obergrenze stellt hierbei den ungenügenden aber der Realität entsprechenden Zustand dar, der zu verbessern gilt.
 Dieser ist nach den Messungen an der Lichtsignalanlage mit 35 Sekunden für die Grün-, 1 Sekunde für die Gelb- und 40 Sekunden für die Rotphase ausgestattet.
 
 Fortan wird das Format für die Phasenlängen zwischen Grün, Gelb und Rot in diesem Format angegeben, mit der eben genannten Obergrenze als Beispiel: \code{35 g | 40 r}.
@@ -16,7 +16,7 @@ Entsprechend wird sich nur auf die Veränderung der Grün- und Rotphase in diese
 
 Die Untergrenze ist festgelegt als \code{35 g | 0 r}.
 Dieser Fall wäre nur in einer perfekten, realen Welt nützlich, in der bei Kreuzungen Fahrzeuge autonom sich sortieren und Straßen befahren.
-Dadurch, dass wir aber heutzutage Staus und Unfälle mitbekommen, ist diese Schaltung nicht wirklich praktikabel, also stellt sie damit die untere Grenze dar.
+Dadurch, dass heutzutage Staus und Unfälle mitbekommen werden, ist diese Schaltung nicht wirklich praktikabel, also stellt sie damit die untere Grenze dar.
 Technisch hat die Länge der Grünphase bei einer Rotphase von 0 Sekunden keine Relevanz mehr, da es in der Simulation nie zu Rot beziehungsweise der Abbruchbedingung für die \code{BicycleLeader} kommen kann, weshalb der Einfachheit halber der Wert der Obergrenze übernommen wurde.
 
 
@@ -33,5 +33,5 @@ Stattdessen wird die Rotphase mit 1.5 beziehungsweise 3/2 und die Grünphase mit
     \label{fig:dreisatz}
 \end{align}
 
-Mit dem Ergebnis aus dem Dreisatz~\ref{fig:dreisatz} hat man dann die neuen Phasenlängen: \code{47 g | 30 r}.
+Mit dem Ergebnis aus dem Dreisatz~\ref{fig:dreisatz} liegen dann die neuen Phasenlängen vor: \code{47 g | 30 r}.
 Wichtig dabei ist zu beachten, dass Sekunden die kleinste Zeiteinheit in der Simulation sind, weshalb auf ganze Zahlen gerundet werden muss.

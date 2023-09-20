@@ -15,7 +15,7 @@ Um die Funktionalität des Modells zu bestätigen, sind die folgenden Kernelemen
     \label{fig:traffic-light-spawns}
 \end{figure}
 
-Die Verteilung der Lichtsignalanlagen auf Kreuzungen und Straßen, wie man sie in der Abbildung~\ref{fig:traffic-light-spawns} sehen kann, entspricht der Position in OpenStreetMap, wie man anhand des Vergleichs in~\ref{fig:traffic-light-spawns-comparison} erkennen kann.
+Die Verteilung der Lichtsignalanlagen auf Kreuzungen und Straßen, wie in der Abbildung~\ref{fig:traffic-light-spawns} sichtbar, entspricht der Position in OpenStreetMap, wie anhand des Vergleichs in~\ref{fig:traffic-light-spawns-comparison} zu erkennen ist.
 
 \begin{figure}[h]
     \centering
@@ -32,7 +32,7 @@ Zur Überprüfung, ob bei der Initialisierung des \code{TrafficLightLayer}s alle
 \end{figure}
 
 Die Überprüfung, ob die GeoJSON in OpenStreetMap korrekt und vollständig ist im Vergleich zur Realität, lässt sich nur mit einem großen Aufwand überprüfen.
-Dafür müsste man bei jeder Schaltung selbst physisch vor Ort sein und die Position bestätigen.
+Dafür müsste bei jeder Schaltung selbst physisch vor Ort geprüft und dessen Position bestätigt werden.
 Dahingehend wird die Ausgabe von OpenStreetMap so hingenommen und als ausreichend für diese Simulation festgelegt.
 
 \textbf{Einbindung und Verifikation der \code{HumanTraveler} und {BicycleLeader}:}
@@ -73,7 +73,7 @@ Die Konsolenausgabe~\ref{fig:waiting-at-traffic-light-humantraveler} sind alle v
 \end{figure}
 
 Hat der \code{BicycleLeader} erfolgreich den letzten Punkt erreicht, so wird dann nur noch geprüft, ob der letzte Punkt der zu fahrenden Route identisch zu der aktuellen Position des Agenten ist.
-Dies wird bewerkstelligt, wie man in der Konsolenausgabe aus~\ref{fig:testing-successful-trip} indem die Distanz zwischen den beiden Punkten 0 sein muss.
+Dies wird bewerkstelligt, wie in der Konsolenausgabe aus~\ref{fig:testing-successful-trip} erkennbar, indem die Distanz zwischen den beiden Punkten 0 sein muss.
 
 \begin{figure}[h]
     \centering

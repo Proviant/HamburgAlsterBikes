@@ -17,7 +17,7 @@ Damit die Spalten übersichtlich bleiben, werden folgende Abkürzungen verwendet
     \item \code{Gesamt} meint die Gesamtbilanz am Ende, also die Gesamtmenge an erstellten \code{HumanTraveler} und ob die 90\%-Erfolgsquote eingehalten wurde mit einem dunkleren, grünen Hintergrund oder nicht mit einem dunkleren, roten Hintergrund.
 \end{itemize}
 
-\begin{table}
+\begin{table}[htb]
     \centering
     \begin{tabular}{||c|c|c|c|c|c|c|c|c|c|c|c||}
         \hline
@@ -48,18 +48,19 @@ Damit die Spalten übersichtlich bleiben, werden folgende Abkürzungen verwendet
         23      & 14     & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr & \qr \\\hline\hline
         Gesamt: & 11.703 & \qf & \qf & \qf & \qf & \qf & \qf & \qf & \qf & \qf & \qf
     \end{tabular}
-    \caption{"Die Erfolgstabelle der Obergrenze für die Simulation mit 35 g | 40 r."}
+    \caption{Die Erfolgstabelle der Obergrenze für die Simulation mit 35 g | 40 r.}
     \label{tab:upper-bound-table}
     \centering
 \end{table}
 
 Wie zu erwarten ist die Erfolgschance des \code{BicycleLeader} sehr gering.
+Von 240 Versuchen, eine ,,grüne Welle`` zu erreichen, schlugen 212 fehl.
+Die durchschnittliche Anzahl an fehlgeschlagenen ,,grünen Wellen`` beträgt bei der Obergrenze 21,2:
+\[(21 + 22 + 19 + 21 + 23 + 20 + 22 + 22 + 21 + 21) / 10 = 21,2 \]
 Die Ergebnisse der Tabelle~\ref{tab:upper-bound-table} stellen damit die zu verbesserne Ausgangslage, wie sie für die nachfolgenden Experimente verbessert werden soll.
-Im folgenden wird nun die Untergrenze angeführt, die es dabei nicht zu unterschreiten gilt:
+Im folgenden wird nun die Untergrenze angeführt, die es von den Phasenlängen \code{35 g | 0 r} dabei nicht zu unterschreiten gilt:
 
-\newpage
-
-\begin{table}
+\begin{table}[htb]
     \centering
     \begin{tabular}{||c|c|c|c|c|c|c|c|c|c|c|c||}
         \hline
@@ -90,12 +91,13 @@ Im folgenden wird nun die Untergrenze angeführt, die es dabei nicht zu untersch
         23      & 14     & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline\hline
         Gesamt: & 11.703 & \qs & \qs & \qs & \qs & \qs & \qs & \qs & \qs & \qs & \qs
     \end{tabular}
-    \caption{"Die Erfolgstabelle der Obergrenze für die Simulation mit 35 g | 0 r."}
+    \caption{Die Erfolgstabelle der Obergrenze für die Simulation mit 35 g | 0 r.}
     \label{tab:lower-bound-table}
     \centering
 \end{table}
 
-Wie sich logisch ableiten ließ, ist die Untergrenze mit \code{35 g | 0 r} perfekt, wenn lediglich die ,,grüne Welle`` fokussiert wird.
+Wie sich logisch ableiten lässt, ist die Untergrenze mit \code{35 g | 0 r} stets funktionierend, wenn lediglich die ,,grüne Welle`` fokussiert wird.
+Gibt es keine Rotphase, so tritt auch nicht die Abbruchbedingung des \code{BicycleLeader}s ein.
 Da dies aber nicht der Realität entspricht und es bei Lichtsignalanlagen Rotphasen geben muss für die andere Seite der Kreuzung, soll eine Lichtsignalschaltung gefunden werden mit einer längeren Rotphase als 0 Sekunden.
 
 Die nun folgenden Experimente sollen also mit der Antiproportionalität bei den Grün- und Rotphasen eine solche, ideale Schaltung annähern.

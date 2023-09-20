@@ -3,3 +3,47 @@
 %
 
 \subsection{Experiment 3: 280 g | 5 r}\label{subsec:experiment-3}
+
+Das dritte Experiment halbiert aufgrund des Nicht-Erreichens der 90\% ebenfalls wieder die Rotphase und verdoppelt die Grünphasenlänge der vorangegangenen Schaltung von \code{140 g | 10 r} auf \code{280 g | 5 r}.
+Mit den neuen Zeiten werden die Simulationen wieder ausgeführt und geben dabei diese Werte aus:
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{||c|c|c|c|c|c|c|c|c|c|c|c||}
+        \hline
+        Stunde  & \#NHT  & E1  & E2  & E3  & E4  & E5  & E6  & E7  & E8  & E9  & E10 \\\hline\hline
+        0       & 14     & \qr & \qg & \qg & \qr & \qg & \qg & \qg & \qg & \qg & \qr \\\hline
+        1       & 51     & \qg & \qr & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qr \\\hline
+        2       & 130    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qr & \qg & \qg \\\hline
+        3       & 274    & \qg & \qg & \qg & \qg & \qr & \qg & \qg & \qg & \qr & \qg \\\hline
+        4       & 487    & \qg & \qr & \qg & \qg & \qg & \qg & \qr & \qg & \qg & \qg \\\hline
+        5       & 707    & \qg & \qg & \qr & \qr & \qr & \qr & \qg & \qg & \qg & \qg \\\hline
+        6       & 857    & \qg & \qg & \qr & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        7       & 879    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        8       & 804    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        9       & 684    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        10      & 570    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qr & \qr & \qr \\\hline
+        11      & 514    & \qr & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        12      & 550    & \qg & \qg & \qg & \qr & \qr & \qr & \qg & \qg & \qg & \qg \\\hline
+        13      & 650    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qr & \qg & \qg \\\hline
+        14      & 765    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        15      & 850    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        16      & 857    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qr & \qg \\\hline
+        17      & 755    & \qg & \qg & \qg & \qg & \qg & \qg & \qr & \qg & \qg & \qg \\\hline
+        18      & 579    & \qg & \qr & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qr \\\hline
+        19      & 379    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        20      & 205    & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        21      & 94     & \qg & \qg & \qg & \qr & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        22      & 34     & \qr & \qg & \qr & \qg & \qg & \qg & \qg & \qg & \qg & \qg \\\hline
+        23      & 14     & \qg & \qg & \qg & \qr & \qg & \qg & \qg & \qg & \qg & \qg \\\hline\hline
+        Gesamt: & 11.703 & \qf & \qf & \qf & \qf & \qf & \qs & \qs & \qf & \qf & \qf
+    \end{tabular}
+    \caption{Erfolgstabelle des 3. Experimentes}
+    \label{tab:experiment-3-table}
+    \centering
+\end{table}
+
+Aus der Erfolgstabelle~\ref{tab:experiment-3-table} lässt sich ablesen, dass von 240 Stundensimulationen 31 keine ,,grüne Welle`` und 209 eine ,,grüne Welle`` simulieren konnten.
+Die Durchschnittsanzahl an fehlgeschlagenen Simulationen beträgt ungefähr 3:
+\[(3 + 3 + 3 + 5 + 3 + 2 + 2 + 3 + 3 + 4) / 10 = 3,1\]
+Weiterhin scheint die Verteilung der fehlgeschlagenen Simulationen über die Tabelle~\ref{tab:experiment-3-table} zufällig verteilt zu sein, während mehr als 2 Einträge im Durchschnitt pro Simulation noch immer fehlschlagen und damit die 90\% Erfolgswahrscheinlichkeit nicht erfüllen.
