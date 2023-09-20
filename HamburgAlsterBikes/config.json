@@ -10,6 +10,7 @@
   "agents": [
     {
       "name": "HumanTraveler",
+      "output": "trips",
       "individual": [
         {"value": true, "parameter": "ResultTrajectoryEnabled"}
       ],
@@ -24,6 +25,7 @@
     },
     {
       "name": "BicycleLeader",
+      "output": "trips",
       "individual": [
         {"value": true, "parameter": "ResultTrajectoryEnabled"}
       ],
@@ -73,9 +75,9 @@
     {"name": "BicycleRentalLayer", "file": "resources/kellinghusenstrasse_bicycle_rental_stations.geojson", "outputFrequency":60, "output": "none"},
     {"name": "CarRentalLayer", "file": "resources/kellinghusenstrasse_car_rental.geojson"},
     {"name": "CarParkingLayer", "file": "resources/kellinghusenstrasse_car_parking.geojson"},
-    {"name": "HumanTravelerLayer", "file": "resources/human_traveler.csv", "output": "geojson"},
-    {"name": "HumanTravelerSchedulerLayer", "file": "resources/human_traveler.csv", "output": "geojson"},
-    {"name": "BicycleLeaderSchedulerLayer", "file": "resources/bicycle-leader.csv", "output": "geojson"},
+    {"name": "HumanTravelerLayer", "file": "resources/human_traveler.csv"},
+    {"name": "HumanTravelerSchedulerLayer", "file": "resources/human_traveler.csv"},
+    {"name": "BicycleLeaderSchedulerLayer", "file": "resources/bicycle-leader.csv"},
     {"name": "TrafficLightLayer", "file": "resources/trafficlights.csv"}
   ],
   "entities": [
