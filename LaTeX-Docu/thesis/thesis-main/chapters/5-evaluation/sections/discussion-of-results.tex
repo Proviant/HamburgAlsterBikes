@@ -4,3 +4,61 @@
 
 
 \section{Diskussion der Ergebnisse}\label{sec:discussion-of-results}
+
+Im Folgenden werden mit der gefundenen, erfolgreichen Zeitschaltung von \code{467 g | 3 r} und der dazugehörigen Erfolgstabelle~\ref{tab:experiment-4-table} die Hypothesen von dem Anfang der Arbeit untersucht.
+
+\textbf{Für einen Fahrradfahrer ist es möglich, mit durchschnittlicher Geschwindigkeit in 90\% der Fälle eine ,,Grüne Welle'' zu haben, in der er um die Binnen- und Außenalster fährt.}
+
+Diese Haupthypothese lässt sich mit der gefundenen Lichtsignalschaltung von \code{467 g | 3 r} und der Tabelle~\ref{tab:experiment-4-table} bestätigen.
+Die 90\% sind bei allen zehn Simulationsdurchgängen erreicht worden und pro Tag ist nicht mehr als eine ,,grüne Welle`` fehlgeschlagen.
+
+Aber auch wenn die zehn Simulationen dies bestätigen, so müssten für eine größere Absicherung deutlich mehr als nur zehn durchgeführt werden.
+In der Stochastik muss mit der Standardabweichung bei Experimenten gerechnet werden.
+In dem Fall dieser Experimente könnte das also bedeuten, dass sie vielleicht zufälligerweise außerhalb der 65\% von einer Normalverteilung liegen und damit nicht den Durchschnitt repräsentieren.
+
+Doch dafür waren dem Grenzen gesetzt einerseits durch die limitierte Zeit und andererseits durch die limitierte Hardware, wie sie in dem Kapitel der Probleme und Limitationen bereits erwähnt wurde.
+
+\textbf{Die Änderung von Lichtsignalschaltzeiten wirkt sich auf die Möglichkeit einer für Fahrradfahrer erreichbaren, ,,Grünen Welle'' aus.}
+
+Auch diese Hypothese lässt sich mit den Experimenttabellen~\ref{tab:experiment-1-table},~\ref{tab:experiment-2-table},~\ref{tab:experiment-3-table} und ~\ref{tab:experiment-4-table} bekräftigen.
+Mit jeder Senkung der Rot- und Erhöhung der Grünzeiten konnten mehr ,,grüne Wellen`` pro Experiment simuliert werden.
+
+Das Problem bei dieser Art von ,,grünen Welle``-Schaltung ist aber, dass die Rotphase deutlich kleiner sein muss, als die Grünphase.
+Tatsächlich ist die Schaltung \code{467 g | 3 r} viel näher an dem Ideal von \code{0 r}, als an der Realität mit \code{40 r}.
+Auch wenn diese Schaltung in diesem Szenario funktionieren mag, so ist der Einbau in die Realität immer noch fraglich, wenn kreuzende Straßen stets auf die 467 Sekunden oder ungefähr 7,7 Minuten lange Grünphase der jeweils anderen Ampel warten müssen.
+
+Lösungsansätze, die im Kapitel ,,Stand der Wissenschaft`` genannt wurden und auf Distanzberechnungen oder einer künstlichen Intelligenz basieren, sind dabei eine realitätsnähere Lösung als die hier.
+Dennoch beweist diese Arbeit damit, dass eine allgemein für alle Anlagen geltende Zeitschaltung nicht in der echten Welt umgesetzt werden sollte, auch wenn die Kosten oder technische Leichtigkeit dafür sprechen.
+
+\textbf{Die Veränderung der Verkehrslast wirkt sich auf die Möglichkeit einer für Fahrradfahrer erreichbaren, ,,Grünen Welle'' aus.}
+
+Die erhöhte Verkehrsauslastung ist mit den Beobachtungen aus allen Erfolgstabellen nicht für diese Simulation belegbar.
+Die Verteilungen von fehlgeschlagenen und erfolgreichen ,,grünen Wellen`` erscheint zufällig und nicht abhängig von den neu erschaffenen Verkehrsteilnehmer.
+Der ausschlaggebende Punkt scheint bei den Tabellen eher die zufällige Startzeit der Lichtsignalphasen zu sein.
+
+Weshalb die Fahrzeuge aber keinen Effekt haben, während der Stau und die Anzahl an Verkehrsteilnehmern in der echten Welt einen großen Teil des Verkehrs ausmachen, lässt sich auf zwei mögliche Gründe zurückführen:
+
+Einerseits scheint die Anzahl an aktiven Agenten zu gering zu sein.
+Dadurch, dass keine Echtdaten von der Stadt Hamburg oder anderen quellenbelegten Seiten vorliegen, ist der in dem Kapitel ,,Anzahl aktiver Agenten`` Ansatz nicht ausreichend belegt.
+Die Modellierung der Haupt-, Neben- und Schwachverkehrszeiten über ein Dokument, welches keine konkreten Zahlen angibt, eignet sich nicht allein für eine realitätsnahe Auswertung.
+Die Annäherung der Tagesverteilung von den Einwohnern hat dabei nicht einmal die vollen 53.427 Einwohner erreichen können, wie aus der Tabelle~\ref{tab:experiment-1-table} der Zeile ,,Gesamt: 11.703`` zu entnehmen ist.
+
+Andererseits scheint die Anzahl der pro Stunde hinzugefügten Agenten zu gering zu sein.
+Die meisten Verkehrsteilnehmer verweilen keine ganze Stunde in der Simulation, weil sie nur ein Ziel besitzen und danach entfernt werden.
+Wäre der Bereich größer oder hätten die \code{HumanTraveler} mehr als nur ein Ziel, so wäre vielleicht ihre Aktivitätszeit verlängert, jedoch stellt viel mehr die Erstellpause von einer Stunde eine Rolle.
+Mit einer erhöhten Frequenz, also zum Beispiel dem Erstellen von Agenten in jeder Viertelstunde, wären nicht nur mehr Agenten zum Interagieren mit den Lichtsignalanlagen unterwegs.
+Es wäre in dem Fall auch eine bessere Annäherung an die berechneten 53.427 Einwohner, da die Menge sich mindestens Vervierfachen würde bei einem Ansatz mit der Viertelstunde.
+Grob gerechnet kämen dabei mindestens 46.812 Einwohner auf, die hinzugefügt werden würden über den Verlauf eines Tages:
+\[11.703 * 4 = 46.812\]
+
+Die einzige Einschränkung bei diesem Ansatz wäre auch die deutlich erhöhte Simulationsdauer, da mit mindestens vierfach so vielen Agenten gleichzeitig simuliert wird.
+Dafür wären die zum Beispiel Cluster der HAW Hamburg hilfreich, sollten diese in der nächsten Zeit wieder verfügbar sein.
+
+Würden die Verkehrsteilnehmer korrekter in der Simulation eingebaut worden sein, so hätte dies auf die konkrete Zeitschaltung den folgenden Effekt:
+Das Verhältnis von der roten Lichtsignalphase zu der grünen würde stetig gegen 0 streben.
+Denn je mehr Agenten aktiv in der Simulation an Lichtsignalanlagen warten, desto länger braucht auch das Leeren der Warteschlange, sobald wieder grün ist.
+Das gibt dem \code{BicycleLeader} nur noch mehr Zeitpunkte, in denen er anhalten muss und damit keine ,,grüne Welle`` erhält.
+Das aktuelle Verhältnis der passenden Lichtsignalschaltung nähert sich bereits 0 an, was nur noch weiter in die Richtung der Untergrenz-Simulation strebt je mehr Verkehr in der Simulation aktiv ist:
+\[3 : 467 \approx 0,0064\]
+
+Dennoch wurde mit den Schwierigkeiten eine passende Schaltung gefunden und damit aufgezeigt, dass diese Art der ,,grünen Welle`` nicht in die Realität umgesetzt werden sollte.
